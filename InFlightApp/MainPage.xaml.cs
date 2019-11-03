@@ -1,4 +1,5 @@
 ﻿
+using InFlightApp.Configuration;
 using InFlightApp.Views;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace InFlightApp
         public MainPage(){
             this.InitializeComponent();
             this.ShowFrame.Navigate(typeof(StartAppPage));
+            Startup.ConfigureAsync().Wait();
         }
     }
 }
