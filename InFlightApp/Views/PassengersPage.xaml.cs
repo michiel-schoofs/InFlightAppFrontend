@@ -25,10 +25,10 @@ namespace InFlightApp.Views
         public PassengersPage()
         {
             this.InitializeComponent();
-            LayoutDesign();
+            LayoutSeatingDesign();
         }
 
-        private void LayoutDesign()
+        private void LayoutSeatingDesign()
         {
             string[] columns = { "A", "B", "C", "D", "E", "F", "G" };
             int seatsPerColumn = 40;
