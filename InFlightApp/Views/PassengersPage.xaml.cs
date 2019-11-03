@@ -25,6 +25,37 @@ namespace InFlightApp.Views
         public PassengersPage()
         {
             this.InitializeComponent();
+            LayoutDesign();
+        }
+
+        private void LayoutDesign()
+        {
+            string[] rows = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+            int seatsPerRow = 5;
+            for (int i = 0; i < rows.Length; i++)
+            {
+                RowDefinition rdRow = new RowDefinition();
+                rdRow.Height = new GridLength(1, GridUnitType.Auto);
+                SeatingsGrid.RowDefinitions.Add(rdRow);
+
+                for (int j = 0; j < seatsPerRow; j++)
+                {
+                    ColumnDefinition cdColumn = new ColumnDefinition();
+                    cdColumn.Width = new GridLength(1, GridUnitType.Auto);
+                    SeatingsGrid.ColumnDefinitions.Add(cdColumn);
+
+                    TextBlock tbRow = new TextBlock();
+                    tbRow.Text = $"{rows[i]} - {j + 1}";
+                    tbRow.HorizontalAlignment = HorizontalAlignment.Center;
+                    tbRow.VerticalAlignment = VerticalAlignment.Center;
+                    tbRow.FontSize = 30;
+                    tbRow.Margin = new Thickness(15);
+
+                    SeatingsGrid.Children.Add(tbRow);
+                    Grid.SetRow(tbRow, i);
+                    Grid.SetColumn(tbRow, j);
+                }
+            }
         }
     }
 }
