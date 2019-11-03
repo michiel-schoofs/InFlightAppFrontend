@@ -26,5 +26,29 @@ namespace InFlightApp.Views
         {
             this.InitializeComponent();
         }
+
+        private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (args.IsSettingsSelected)
+            {
+                NavigationViewFrame.Navigate(typeof(SettingsPage));
+            }
+            else
+            {
+                NavigationViewItem itemContent = args.SelectedItem as NavigationViewItem;
+                if (itemContent != null)
+                {
+                    switch (itemContent.Tag)
+                    {
+                        case "Nav_Entertainment":
+                            NavigationViewFrame.Navigate(typeof(EntertainmentMainPage));
+                            break;
+                        case "Nav_Passengers":
+                            NavigationViewFrame.Navigate(typeof(PassengersPage));
+                            break;
+                    }
+                }
+            }
+        }
     }
 }

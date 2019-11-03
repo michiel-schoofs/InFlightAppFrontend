@@ -9,10 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top">
+    <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Entertainment"></NavigationViewItem>
-            <NavigationViewItem Content="Passengers"></NavigationViewItem>
+            <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
+            <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Frame x:Name="NavigationViewFrame"></Frame>
