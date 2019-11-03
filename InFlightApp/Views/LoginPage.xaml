@@ -8,26 +8,5 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Border Name="Panel"  BorderBrush="Black" BorderThickness="4" CornerRadius="15" Height="400">
-        <Border.Background>
-            <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.01" TintColor="#CC766262"/>
-        </Border.Background>
-        <Grid MinWidth="400">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20px"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20px"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20px"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="40px"/>
-            </Grid.RowDefinitions>
-            <TextBlock Style="{StaticResource TitleStyle}" x:Uid="LoginForm" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-            <!--<Button x:Uid="PassengerButton" Style="{StaticResource MenuButton}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"/>
-                    <Button x:Uid="CrewmemberButton" Style="{StaticResource MenuButton}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"/> -->
-        </Grid>
-    </Border>
+
 </Page>

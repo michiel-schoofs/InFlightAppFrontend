@@ -26,7 +26,7 @@ namespace InFlightApp
     public sealed partial class MainPage : Page { 
         public MainPage(){
             this.InitializeComponent();
-            this.ShowFrame.Navigate(typeof(StartAppPage));
+            //this.ShowFrame.Navigate(typeof(StartAppPage));
         }
     }
 }
