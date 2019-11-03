@@ -91,16 +91,41 @@ namespace InFlightApp.Views
                         cdColumn.Width = new GridLength(1, GridUnitType.Auto);
                         SeatingsGrid.ColumnDefinitions.Add(cdColumn);
 
+                        StackPanel spPerson = new StackPanel();
+
                         TextBlock tbName = new TextBlock();
                         tbName.Text = "Tybo Vanderstraeten";
                         tbName.HorizontalAlignment = HorizontalAlignment.Center;
                         tbName.VerticalAlignment = VerticalAlignment.Center;
-                        tbName.FontSize = 30;
+                        tbName.FontSize = 20;
                         tbName.Margin = new Thickness(15);
+                        spPerson.Children.Add(tbName);
 
-                        SeatingsGrid.Children.Add(tbName);
-                        Grid.SetRow(tbName, i);
-                        Grid.SetColumn(tbName, j);
+                        StackPanel spButtons = new StackPanel();
+                        spButtons.Orientation = Orientation.Horizontal;
+
+                        Button btnChangeSeat = new Button();
+                        btnChangeSeat.Content = "Change seat";
+                        btnChangeSeat.HorizontalAlignment = HorizontalAlignment.Center;
+                        btnChangeSeat.VerticalAlignment = VerticalAlignment.Center;
+                        btnChangeSeat.FontSize = 20;
+                        btnChangeSeat.Margin = new Thickness(15);
+                        spButtons.Children.Add(btnChangeSeat);
+
+                        Button btnViewOrders = new Button();
+                        btnViewOrders.Content = "View orders";
+                        btnViewOrders.HorizontalAlignment = HorizontalAlignment.Center;
+                        btnViewOrders.VerticalAlignment = VerticalAlignment.Center;
+                        btnViewOrders.FontSize = 20;
+                        btnViewOrders.Margin = new Thickness(15);
+                        spButtons.Children.Add(btnViewOrders);
+
+                        spPerson.Children.Add(spButtons);
+                        spPerson.Margin = new Thickness(15);
+
+                        SeatingsGrid.Children.Add(spPerson);
+                        Grid.SetRow(spPerson, i);
+                        Grid.SetColumn(spPerson, j);
                     }
                 }
             }
