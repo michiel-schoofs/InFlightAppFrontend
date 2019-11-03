@@ -10,7 +10,7 @@ namespace InFlightApp.Configuration
  public class Startup{
             static private readonly ServiceCollection _serviceCollection = new ServiceCollection();
 
-            static public async Task ConfigureAsync(){
+            static public void ConfigureAsync(){
                 ServiceLocator.Configure(_serviceCollection);
             }
     }

@@ -43,7 +43,7 @@
                             <CheckBox MinWidth="20" IsChecked="{Binding RememberMe, Mode=TwoWay}"/>
                             <TextBlock x:Uid="rememberMe" VerticalAlignment="Center"/>
                     </StackPanel>
-            <Button Style="{StaticResource MenuButton}" x:Uid="loginButton" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
+            <Button Style="{StaticResource MenuButton}"  Command="{Binding Login}" x:Uid="loginButton" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
                     </Grid>
             </Border>
 </Page>

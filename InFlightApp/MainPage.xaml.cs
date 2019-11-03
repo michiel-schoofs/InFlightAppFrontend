@@ -28,7 +28,7 @@ namespace InFlightApp
         public MainPage(){
             this.InitializeComponent();
             this.ShowFrame.Navigate(typeof(StartAppPage));
-            Startup.ConfigureAsync().Wait();
+            Startup.ConfigureAsync();
         }
     }
 }
