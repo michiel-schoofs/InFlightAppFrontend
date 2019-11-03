@@ -15,43 +15,7 @@
                 <ImageBrush Opacity="0.6" AlignmentX="Center" AlignmentY="Center" ImageSource="/Assets/img/cliff.jpg"/>
             </Grid.Background>-->
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <!--<Frame Name="ShowFrame"/>-->
-            <Border Name="Panel"  BorderBrush="Black" BorderThickness="4" CornerRadius="15" Height="400">
-                <Border.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.01" TintColor="#CC766262"/>
-                </Border.Background>
-                <Grid MinWidth="400">
-                    <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20px"/>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="20px"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20px"/>
-                        <RowDefinition Height="auto" />
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="10px"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        <RowDefinition Height="40px"/>
-                    </Grid.RowDefinitions>
-                    <Button FontFamily="Segoe MDL2 Assets" Content="&#xF0D3;" Grid.Row="1" Grid.Column="1"/>
-                    <TextBlock x:Uid="LoginFormTitle" Style="{StaticResource TitleStyle}" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
-                    <SymbolIcon Symbol="People" Grid.Row="3" Grid.Column="1"/>
-                    <TextBox AcceptsReturn="true" x:Uid="usernameField" Grid.Column="2" Grid.Row="3" Margin="20,0,20,0"/>
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72E;" Grid.Row="5" Grid.Column="1"/>
-                    <PasswordBox x:Uid="passwordField" Grid.Column="2" Grid.Row="5" Margin="20,0,20,0"/>
-                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Padding="8,0,0,0">
-                            <CheckBox MinWidth="20"/>
-                            <TextBlock Text="Remember me"  VerticalAlignment="Center"/>
-                    </StackPanel>
-                        <Button Style="{StaticResource MenuButton}" Content="Login" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" />
-                    </Grid>
-            </Border>
+            <Frame Name="ShowFrame"/>
             </StackPanel>
         </Grid>
     </Grid>

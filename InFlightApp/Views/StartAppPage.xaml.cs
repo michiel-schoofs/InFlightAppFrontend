@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -22,9 +23,21 @@ namespace InFlightApp.Views
     /// </summary>
     public sealed partial class StartAppPage : Page
     {
-        public StartAppPage()
-        {
+        public StartAppPage() {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e){
+            base.OnNavigatedTo(e);
+            var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("BackwardConnectedAnimation");
+            if (anim != null){
+                anim.TryStart(crewButton);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e){
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation",crewButton);
+            this.Frame.Navigate(typeof(LoginPage),typeof(StartAppPage),new SuppressNavigationTransitionInfo());
         }
     }
 }

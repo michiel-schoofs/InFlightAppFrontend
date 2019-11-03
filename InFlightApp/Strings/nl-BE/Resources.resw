@@ -121,6 +121,10 @@
     <value>Ik ga reizen als boordpersoneel</value>
     <comment>Text for the opening screen button as crewMember</comment>
   </data>
+  <data name="loginButton.Content" xml:space="preserve">
+    <value>Aanmelden</value>
+    <comment>Log me in</comment>
+  </data>
   <data name="LoginFormTitle.Text" xml:space="preserve">
     <value>Blij om je aan boord te hebben!</value>
     <comment>Text for the login menu top</comment>
@@ -132,6 +136,10 @@
   <data name="passwordField.PlaceholderText" xml:space="preserve">
     <value>Wachtwoord</value>
     <comment>Text for the textbox password</comment>
+  </data>
+  <data name="rememberMe.Text" xml:space="preserve">
+    <value>Onthou me </value>
+    <comment>Text for the checkbox remember me</comment>
   </data>
   <data name="usernameField.PlaceholderText" xml:space="preserve">
     <value>Gebruikersnaam</value>
