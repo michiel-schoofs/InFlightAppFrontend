@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ScrollViewer Margin="0,40,0,40" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" >
+    <ScrollViewer Margin="40,40,40,40" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" >
         <Grid x:Name="SeatingsGrid">
         </Grid>
     </ScrollViewer>

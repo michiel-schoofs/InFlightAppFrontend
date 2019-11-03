@@ -30,17 +30,17 @@ namespace InFlightApp.Views
 
         private void LayoutDesign()
         {
-            string[] rows = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-            int seatsPerRow = 5;
+            string[] columns = { "A", "B", "C", "D", "E", "F", "G" };
+            int seatsPerColumn = 40;
 
 
-            for (int i = 0; i < rows.Length + 1; i++)
+            for (int i = 0; i < seatsPerColumn + 1; i++)
             {
                 RowDefinition rdRow = new RowDefinition();
                 rdRow.Height = new GridLength(1, GridUnitType.Auto);
                 SeatingsGrid.RowDefinitions.Add(rdRow);
 
-                for (int j = 0; j < seatsPerRow + 1; j++)
+                for (int j = 0; j < columns.Length + 1; j++)
                 {
                     if (i == 0 && j == 0)
                     {
@@ -55,7 +55,7 @@ namespace InFlightApp.Views
                         SeatingsGrid.ColumnDefinitions.Add(cdColumnHeader);
 
                         TextBlock tbHeader = new TextBlock();
-                        tbHeader.Text = $"{j}";
+                        tbHeader.Text = $"{columns[j - 1]}";
                         tbHeader.HorizontalAlignment = HorizontalAlignment.Center;
                         tbHeader.VerticalAlignment = VerticalAlignment.Center;
                         tbHeader.FontSize = 30;
@@ -74,7 +74,7 @@ namespace InFlightApp.Views
                         SeatingsGrid.RowDefinitions.Add(rdHeader);
 
                         TextBlock tbHeader = new TextBlock();
-                        tbHeader.Text = $"{rows[i - 1]}";
+                        tbHeader.Text = $"{i}";
                         tbHeader.HorizontalAlignment = HorizontalAlignment.Center;
                         tbHeader.VerticalAlignment = VerticalAlignment.Center;
                         tbHeader.FontSize = 30;
