@@ -1,12 +1,11 @@
 ﻿using InFlightApp.Services.Interfaces;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
+using Windows.Security.Credentials;
 
 namespace InFlightApp.Services.Repositories
 {
@@ -18,14 +17,42 @@ namespace InFlightApp.Services.Repositories
         }
 
         public bool Login(string username, string password){
-            string json = JsonConvert.SerializeObject(new { username = username, password = password});
-            var content = new StringContent(json , Encoding.UTF8, "application/json");
+            string json = JsonConvert.SerializeObject(new { username, password });
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/Users/crewmember/login", content).Result;
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
 
             return true;
+        }
+
+        public void StoreCredentials(string username, string password) {
+            var vault = new PasswordVault();
+            PasswordCredential cred = GetCredential();
+
+            if (cred != null)
+                vault.Remove(cred);
+
+            var credential = new Windows.Security.Credentials.PasswordCredential("InFlightApp",username,password);
+            vault.Add(credential);
+        }
+
+        public PasswordCredential GetCredential() {
+            var vault = new PasswordVault();
+
+            try{
+                PasswordCredential cred =  vault.FindAllByResource("InFlightApp").FirstOrDefault();
+                cred.RetrievePassword();
+                return cred;
+            } catch (Exception) {
+                return null;
+            }
+        }
+
+        public void  RemoveCredential(PasswordCredential cred) {
+            var vault = new PasswordVault();
+            vault.Remove(cred);
         }
     }
 }

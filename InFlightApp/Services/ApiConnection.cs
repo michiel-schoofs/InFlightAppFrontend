@@ -14,8 +14,9 @@ namespace InFlightApp.Services
         public static string URL { get => "https://localhost:44355/api"; }
         public static HttpClient Client { get{
                 //Doesn't check the ssl certificate on the API so it won't complain :)
-                HttpClientHandler handler = new HttpClientHandler();
-                handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                HttpClientHandler handler = new HttpClientHandler{
+                    ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+                };
                 HttpClient client = new HttpClient(handler);
 
                 if (Token != null) {

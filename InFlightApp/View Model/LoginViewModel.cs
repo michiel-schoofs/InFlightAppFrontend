@@ -15,6 +15,12 @@ namespace InFlightApp.View_Model{
         public readonly IUserInterface _userRepo;
         public RelayCommand Login { get; set; }
 
+        public delegate Task LoginFailedDelegate(string str);
+        public event LoginFailedDelegate LoginFailedEvent;
+
+        public delegate void LoginSuccessDelegate();
+        public event LoginSuccessDelegate LoginSuccess;
+
         public LoginViewModel() {
             try {
                 _userRepo = ServiceLocator.Current.GetService<IUserInterface>(true);
@@ -35,7 +41,15 @@ namespace InFlightApp.View_Model{
         }
 
         public void LoginToApplication() {
-            _userRepo.Login(Username, Password);
+            bool success = _userRepo.Login(Username, Password);
+
+            if (!success)
+                LoginFailedEvent.Invoke("Username or password incorrect");
+            else{
+                LoginSuccess.Invoke();
+                if (RememberMe)
+                    _userRepo.StoreCredentials(Username, Password);
+            }
         }
 
     }
