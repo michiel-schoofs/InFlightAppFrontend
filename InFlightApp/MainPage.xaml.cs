@@ -25,8 +25,10 @@ namespace InFlightApp
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page { 
-        public MainPage(){
+    public sealed partial class MainPage : Page
+    {
+        public MainPage()
+        {
             this.InitializeComponent();
             Startup.ConfigureAsync();
 
@@ -35,6 +37,11 @@ namespace InFlightApp
 
             this.ShowFrame.Navigate(typeof(StartAppPage));
             vm.CheckForUserCredentials();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MenuPage));
         }
     }
 }
