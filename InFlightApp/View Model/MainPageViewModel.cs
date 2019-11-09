@@ -7,9 +7,6 @@ namespace InFlightApp.View_Model{
     public class MainPageViewModel {
         IUserInterface _userRepo;
 
-        public delegate void LoginGrantedDelegate();
-        public event LoginGrantedDelegate LoginGranted;
-
         public MainPageViewModel() {
             try{
                 _userRepo = ServiceLocator.Current.GetService<IUserInterface>(true);
@@ -19,7 +16,7 @@ namespace InFlightApp.View_Model{
             }
         }
 
-        public void CheckForUserCredentials() {
+        public bool CheckForUserCredentials() {
             PasswordCredential cred = _userRepo.GetCredential();
 
             if (cred != null){
@@ -27,9 +24,11 @@ namespace InFlightApp.View_Model{
 
                 if (!res) 
                     _userRepo.RemoveCredential(cred);
-                else
-                    LoginGranted.Invoke();
+
+                return res;
             }
+
+            return false;
         }
 
     }

@@ -29,19 +29,38 @@ namespace InFlightApp
     {
         public MainPage()
         {
-            this.InitializeComponent();
             Startup.ConfigureAsync();
+            this.InitializeComponent();
 
-            MainPageViewModel vm = new MainPageViewModel();
-            vm.LoginGranted += () => { this.ShowFrame.Navigate(typeof(MainSelectionpage)); };
-
-            this.ShowFrame.Navigate(typeof(StartAppPage));
-            vm.CheckForUserCredentials();
+            try
+            {
+                LoginViewModel lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                lvm.LoginSuccess += NavigateToMP;
+            }catch (Exception e){
+                //Replace with logging later on
+                Console.WriteLine(e);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MenuPage));
+        }
+
+        private void NavigateToMP() {
+            this.Frame.Navigate(typeof(MenuPage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            MainPageViewModel vm = new MainPageViewModel();
+            bool cred = vm.CheckForUserCredentials();
+
+            if (cred)
+                Window.Current.Content = new MenuPage();
+            else
+                this.ShowFrame.Navigate(typeof(StartAppPage));
+            base.OnNavigatedTo(e);
         }
     }
 }

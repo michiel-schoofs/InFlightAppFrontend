@@ -15,9 +15,8 @@
                 <ImageBrush Opacity="0.6" AlignmentX="Center" AlignmentY="Center" ImageSource="/Assets/img/cliff.jpg"/>
             </Grid.Background>-->
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Frame Name="ShowFrame"/>
+                <Frame Name="ShowFrame"/>
             </StackPanel>
         </Grid>
-        <Button x:Name="button" Content="TEMPORARYBUTTON" HorizontalAlignment="Left" Margin="59,167,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Page>

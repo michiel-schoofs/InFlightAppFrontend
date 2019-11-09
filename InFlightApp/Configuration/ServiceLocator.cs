@@ -1,5 +1,6 @@
 ﻿using InFlightApp.Services.Interfaces;
 using InFlightApp.Services.Repositories;
+using InFlightApp.View_Model;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Concurrent;
@@ -21,7 +22,8 @@ namespace InFlightApp.Configuration
         #region Configuration
             static public void Configure(IServiceCollection serviceCollection)
             {
-                serviceCollection.AddSingleton<IUserInterface, UserInterface>();
+                serviceCollection.AddSingleton<IUserInterface, UserInterface>()
+                                 .AddSingleton<LoginViewModel>();
                 _rootServiceProvider = serviceCollection.BuildServiceProvider();
             } 
         #endregion

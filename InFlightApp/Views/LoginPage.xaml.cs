@@ -1,4 +1,5 @@
-﻿using InFlightApp.View_Model;
+﻿using InFlightApp.Configuration;
+using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,15 +33,16 @@ namespace InFlightApp.Views
         public LoginPage() {
             this.InitializeComponent();
             VisualStateManager.GoToState(usernameField, "Error", false);
-            model = new LoginViewModel();
-            this.DataContext = model;
-            model.LoginFailedEvent += Model_LoginFailedEvent;
-            model.LoginSuccess += Model_LoginSuccess;
-        }
 
-        private void Model_LoginSuccess(){
-            //Transition needs to be smoother
-            Frame.Navigate(typeof(MainSelectionpage));
+            try{
+                this.model = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                this.DataContext = model;
+                model.LoginFailedEvent += Model_LoginFailedEvent;
+            }catch (Exception e) {
+                //Replace with logging later on
+                Console.WriteLine(e);
+            }
+
         }
 
         private async Task Model_LoginFailedEvent(string str){

@@ -46,7 +46,7 @@ namespace InFlightApp.View_Model{
             if (!success)
                 LoginFailedEvent.Invoke("Username or password incorrect");
             else{
-                LoginSuccess.Invoke();
+                LoginSuccess?.Invoke();
                 if (RememberMe)
                     _userRepo.StoreCredentials(Username, Password);
             }
