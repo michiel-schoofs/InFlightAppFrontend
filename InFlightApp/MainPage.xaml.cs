@@ -1,4 +1,6 @@
 ﻿
+using InFlightApp.Configuration;
+using InFlightApp.View_Model;
 using InFlightApp.Views;
 using System;
 using System.Collections.Generic;
@@ -28,7 +30,13 @@ namespace InFlightApp
         public MainPage()
         {
             this.InitializeComponent();
+            Startup.ConfigureAsync();
+
+            MainPageViewModel vm = new MainPageViewModel();
+            vm.LoginGranted += () => { this.ShowFrame.Navigate(typeof(MainSelectionpage)); };
+
             this.ShowFrame.Navigate(typeof(StartAppPage));
+            vm.CheckForUserCredentials();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

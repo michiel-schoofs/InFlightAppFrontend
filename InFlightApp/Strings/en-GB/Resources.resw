@@ -125,6 +125,10 @@
     <value>Login</value>
     <comment>Log me in</comment>
   </data>
+  <data name="Loginfailed.Text" xml:space="preserve">
+    <value>The password or email is incorrect</value>
+    <comment>Text if login failed</comment>
+  </data>
   <data name="LoginFormTitle.Text" xml:space="preserve">
     <value>Glad to have you aboard!</value>
     <comment>Text for the login menu top</comment>

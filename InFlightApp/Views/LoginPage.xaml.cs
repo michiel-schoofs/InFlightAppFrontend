@@ -1,10 +1,13 @@
-﻿using System;
+﻿using InFlightApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,10 +27,34 @@ namespace InFlightApp.Views
     public sealed partial class LoginPage : Page
     {
         private Type _originPage;
+        private LoginViewModel model;
 
-        public LoginPage()
-        {
+        public LoginPage() {
             this.InitializeComponent();
+            VisualStateManager.GoToState(usernameField, "Error", false);
+            model = new LoginViewModel();
+            this.DataContext = model;
+            model.LoginFailedEvent += Model_LoginFailedEvent;
+            model.LoginSuccess += Model_LoginSuccess;
+        }
+
+        private void Model_LoginSuccess(){
+            //Transition needs to be smoother
+            Frame.Navigate(typeof(MainSelectionpage));
+        }
+
+        private async Task Model_LoginFailedEvent(string str){
+            SolidColorBrush redColorBrush = new SolidColorBrush(Colors.Red);
+            usernameField.BorderBrush = redColorBrush;
+            passwordField.BorderBrush = redColorBrush;
+
+            ContentDialog ErrorDialog = new ContentDialog(){
+                Title = "Login Failure",
+                Content = str,
+                CloseButtonText = "Ok"
+            };
+
+            await ErrorDialog.ShowAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e){
