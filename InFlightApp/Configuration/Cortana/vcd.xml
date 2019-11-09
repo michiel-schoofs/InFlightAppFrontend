@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="flightAppCommands">
+    <CommandPrefix>FLIP</CommandPrefix>
+    <Example>FLIP show me the info of my current flight</Example>
+    <Command Name="ShowMovie">
+      <Example>FLIP show me a movie</Example>
+      <ListenFor>Play {movie}</ListenFor>
+      <ListenFor>Show {movie}</ListenFor>
+      <Feedback>Playing {movie}</Feedback>
+      <Navigate Target="MainPage.xaml"/>
+    </Command>
+    <Command Name="FlightInfo">
+      <Example>FLIP show me my flight info</Example>
+      <ListenFor>Flight info</ListenFor>
+      <Feedback>Showing flight info</Feedback>
+      <Navigate Target="MainPage.xaml"/>
+    </Command>
+    <PhraseTopic Label="movie" Scenario="Natural Language">
+      <Subject>Movie</Subject>
+    </PhraseTopic>
+  </CommandSet>
+</VoiceCommands>
