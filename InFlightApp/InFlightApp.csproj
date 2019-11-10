@@ -133,9 +133,14 @@
     </Compile>
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductType.cs" />
+    <Compile Include="Model\Seat.cs" />
+    <Compile Include="Model\SeatType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IFlightRepository.cs" />
     <Compile Include="Services\Interfaces\IProductRepository.cs" />
+    <Compile Include="Services\Repositories\FlightRepository.cs" />
     <Compile Include="Services\Repositories\ProductRepository.cs" />
+    <Compile Include="View Model\PassengersViewModel.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
     <Compile Include="Views\EntertainmentMainPage.xaml.cs">
       <DependentUpon>EntertainmentMainPage.xaml</DependentUpon>

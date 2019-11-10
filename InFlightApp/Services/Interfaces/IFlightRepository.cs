@@ -9,6 +9,6 @@ namespace InFlightApp.Services.Interfaces
 {
     public interface IFlightRepository
     {
-        IEnumerable<Seat> GetSeats();
+        Task<IEnumerable<Seat>> GetSeats();
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InFlightApp.Configuration;
+using InFlightApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,25 +24,36 @@ namespace InFlightApp.Views
     /// </summary>
     public sealed partial class PassengersPage : Page
     {
+        private PassengersViewModel _model;
+
         public PassengersPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            try
+            {
+                _model = ServiceLocator.Current.GetService<PassengersViewModel>(true);
+                DataContext = _model;
+                _model.LoadSeats().Wait();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             LayoutSeatingDesign();
         }
 
         private void LayoutSeatingDesign()
         {
-            string[] columns = { "A", "B", "C", "D", "E", "F", "G" };
-            int seatsPerColumn = 40;
+            List<char> columnLetters = _model.GetSeatColumns();
+            int numberOfRows = _model.GetSeatRows();
 
-
-            for (int i = 0; i < seatsPerColumn + 1; i++)
+            for (int i = 0; i < numberOfRows + 1; i++)
             {
                 RowDefinition rdRow = new RowDefinition();
                 rdRow.Height = new GridLength(1, GridUnitType.Auto);
                 SeatingsGrid.RowDefinitions.Add(rdRow);
 
-                for (int j = 0; j < columns.Length + 1; j++)
+                for (int j = 0; j < columnLetters.Count() + 1; j++)
                 {
                     if (i == 0 && j == 0)
                     {
@@ -55,7 +68,7 @@ namespace InFlightApp.Views
                         SeatingsGrid.ColumnDefinitions.Add(cdColumnHeader);
 
                         TextBlock tbHeader = new TextBlock();
-                        tbHeader.Text = $"{columns[j - 1]}";
+                        tbHeader.Text = $"{columnLetters[j - 1]}";
                         tbHeader.HorizontalAlignment = HorizontalAlignment.Center;
                         tbHeader.VerticalAlignment = VerticalAlignment.Center;
                         tbHeader.FontSize = 30;
