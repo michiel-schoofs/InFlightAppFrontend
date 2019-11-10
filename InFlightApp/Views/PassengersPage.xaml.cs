@@ -33,7 +33,7 @@ namespace InFlightApp.Views
             {
                 _model = ServiceLocator.Current.GetService<PassengersViewModel>(true);
                 DataContext = _model;
-                _model.LoadSeats().Wait();
+                _model.LoadSeats();
             }
             catch (Exception e)
             {

@@ -29,7 +29,7 @@ namespace InFlightApp.View_Model
             }
         }
 
-        public async Task LoadSeats()
+        public void LoadSeats()
         {
             Seats = (ObservableCollection<Seat>)_flightRepo.GetSeats().GetAwaiter().GetResult();
 
@@ -45,7 +45,7 @@ namespace InFlightApp.View_Model
 
         public int GetSeatRows()
         {
-            return Seats.Count() / 5;
+            return Seats.Count() / GetSeatColumns().Count();
         }
 
     }
