@@ -24,6 +24,7 @@ namespace InFlightApp.Configuration
             {
                 serviceCollection.AddSingleton<IUserInterface, UserInterface>()
                                  .AddSingleton<LoginViewModel>()
+                                 .AddSingleton<ProductViewModel>()
                                  .AddSingleton<IProductRepository,ProductRepository>();
                 _rootServiceProvider = serviceCollection.BuildServiceProvider();
             } 

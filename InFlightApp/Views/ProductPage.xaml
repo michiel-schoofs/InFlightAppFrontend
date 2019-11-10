@@ -10,9 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.DataContext>
-        <vm:ProductViewModel/>
-    </Page.DataContext>
     <StackPanel>
         <Pivot x:Name="PivotSelection" ItemsSource="{Binding Categories}">
             <i:Interaction.Behaviors>
@@ -22,8 +19,9 @@
             </i:Interaction.Behaviors>
             <Pivot.ItemTemplate>
                 <DataTemplate>
-                    <!--This is the content that's being displayed in the different categories.-->
-                    <TextBlock>Test</TextBlock>
+                    <ContentControl>
+                        <local:GridViewProduct/>
+                    </ContentControl>
                 </DataTemplate>
             </Pivot.ItemTemplate>
         </Pivot>

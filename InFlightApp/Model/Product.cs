@@ -11,7 +11,7 @@ namespace InFlightApp.Model
         public int Amount{ get; set; }
         public string Name{ get; set; }
         public string Description { get; set; }
-        public int MyProperty { get; set; }
+        public ProductType Type { get; set; }
         public string ImageFile { get; set; }
     }
 }
