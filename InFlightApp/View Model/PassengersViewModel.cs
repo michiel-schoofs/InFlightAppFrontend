@@ -39,6 +39,7 @@ namespace InFlightApp.View_Model
             Passengers = (ObservableCollection<Passenger>)_userInterface.GetPassengers().GetAwaiter().GetResult();
 
         }
+
         public List<char> GetSeatColumns()
         {
             return Seats.Aggregate(new List<char>(), (result, seat) =>
@@ -51,6 +52,11 @@ namespace InFlightApp.View_Model
         public int GetSeatRows()
         {
             return Seats.Count() / GetSeatColumns().Count();
+        }
+
+        public void ChangeSeat(int userId, int seatId)
+        {
+            _userInterface.ChangeSeat(userId, seatId).Wait();
         }
 
     }
