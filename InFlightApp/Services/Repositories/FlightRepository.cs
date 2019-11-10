@@ -33,7 +33,7 @@ namespace InFlightApp.Services.Repositories
                     Type = (SeatType)Enum.Parse(typeof(SeatType), seat.Value<string>("type")),
                     SeatCode = seat.Value<string>("seatCode")
                 };
-            }).toList();
+            }).ToList();
         }
 
     }
