@@ -46,6 +46,9 @@ namespace InFlightApp.Views
                         case "Nav_Passengers":
                             NavigationViewFrame.Navigate(typeof(PassengersPage));
                             break;
+                        case "Nav_Products":
+                            NavigationViewFrame.Navigate(typeof(ProductPage));
+                            break;
                     }
                 }
             }

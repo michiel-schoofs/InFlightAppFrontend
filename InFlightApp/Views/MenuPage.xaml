@@ -13,6 +13,7 @@
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
+            <NavigationViewItem Content="Products" Tag="Nav_Products"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Frame x:Name="NavigationViewFrame"></Frame>

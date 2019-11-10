@@ -23,7 +23,8 @@ namespace InFlightApp.Configuration
             static public void Configure(IServiceCollection serviceCollection)
             {
                 serviceCollection.AddSingleton<IUserInterface, UserInterface>()
-                                 .AddSingleton<LoginViewModel>();
+                                 .AddSingleton<LoginViewModel>()
+                                 .AddSingleton<IProductRepository,ProductRepository>();
                 _rootServiceProvider = serviceCollection.BuildServiceProvider();
             } 
         #endregion
