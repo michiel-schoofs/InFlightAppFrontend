@@ -186,6 +186,9 @@
     <Content Include="Assets\Image Logo.png" />
     <Content Include="Assets\img\cliff.jpg" />
     <Content Include="Assets\img\met tekst ontwerp.png" />
+    <Content Include="Assets\img\products\default.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -263,10 +266,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PassengersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProductGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
