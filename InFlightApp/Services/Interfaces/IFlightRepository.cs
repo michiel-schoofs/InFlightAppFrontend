@@ -9,7 +9,6 @@ namespace InFlightApp.Services.Interfaces
 {
     public interface IFlightRepository
     {
-        string[] GetSeatTypes();
         IEnumerable<Seat> GetSeats();
     }
 }

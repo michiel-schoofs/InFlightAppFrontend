@@ -25,6 +25,7 @@ namespace InFlightApp.Configuration
             serviceCollection.AddSingleton<IUserInterface, UserInterface>()
                              .AddSingleton<LoginViewModel>()
                              .AddSingleton<ProductViewModel>()
+                             .AddSingleton<PassengersViewModel>()
                              .AddSingleton<IProductRepository, ProductRepository>()
                              .AddSingleton<IFlightRepository, FlightRepository>();
 
