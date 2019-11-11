@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,12 +26,14 @@ namespace InFlightApp.Views
     /// </summary>
     public sealed partial class GridViewProduct : UserControl
     {
+        private ProductViewModel pvm;
+
         public GridViewProduct()
         {
+            pvm = ServiceLocator.Current.GetService<ProductViewModel>(true);
             this.InitializeComponent();
-            ProductViewModel pvm = ServiceLocator.Current.GetService<ProductViewModel>(true);
             this.DataContext = pvm;
-            this.gridTemp.ItemsSource = pvm.Products;
+            this.gridTemp.ItemsSource = pvm.FilteredProducts;
         }
     }
 }

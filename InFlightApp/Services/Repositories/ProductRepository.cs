@@ -2,14 +2,19 @@
 using InFlightApp.Services.Interfaces;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InFlightApp.Services.Repositories{
     public class ProductRepository : IProductRepository{
         private HttpClient client;
+        private readonly static Dictionary<int, string> _images = new Dictionary<int, string>();
 
         public ProductRepository(){
             client = ApiConnection.Client;
@@ -35,6 +40,33 @@ namespace InFlightApp.Services.Repositories{
                     UnitPrice = p.Value<decimal>("productPrice")
                 };
             }).ToArray();
+        }
+
+        public async Task<string> GetImage(int productID){
+            string url = $"{ApiConnection.URL}/Products/{productID}/image";
+            string s = client.GetStringAsync(url).Result;
+            JObject obj = JObject.Parse(s);
+
+            if (obj != null && obj.Value<int>("id")>=0) {
+                string name = $"prod-{productID}.{obj.Value<string>("extension").ToLower()}";
+                byte[] bytes = Convert.FromBase64String(obj.Value<string>("data"));
+
+                StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
+
+                try{
+                    StorageFile fi = await sf.GetFileAsync(name);
+                    await fi.DeleteAsync();
+                }catch (Exception) { }
+
+                StorageFile f = await sf.CreateFileAsync(name);
+
+                Stream stream = f.OpenStreamForWriteAsync().Result;
+                stream.Write(bytes, 0, bytes.Length);
+
+                return f.Path;
+            }
+
+            return "/Assets/img/products/default.jpg";
         }
     }
 }
