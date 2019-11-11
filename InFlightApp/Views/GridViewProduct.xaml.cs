@@ -27,7 +27,9 @@ namespace InFlightApp.Views
         public GridViewProduct()
         {
             this.InitializeComponent();
-            this.gridTemp.ItemsSource = ServiceLocator.Current.GetService<ProductViewModel>(true).Products;
+            ProductViewModel pvm = ServiceLocator.Current.GetService<ProductViewModel>(true);
+            this.DataContext = pvm;
+            this.gridTemp.ItemsSource = pvm.Products;
         }
     }
 }

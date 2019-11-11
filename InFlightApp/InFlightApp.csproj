@@ -128,11 +128,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\StartUp.cs" />
+    <Compile Include="Converters\MoneyConverter.cs" />
+    <Compile Include="Converters\SortTypeConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductType.cs" />
+    <Compile Include="Model\SortType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interfaces\IProductRepository.cs" />
     <Compile Include="Services\Repositories\ProductRepository.cs" />

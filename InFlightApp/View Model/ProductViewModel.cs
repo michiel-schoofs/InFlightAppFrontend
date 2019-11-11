@@ -11,9 +11,14 @@ using System.Threading.Tasks;
 namespace InFlightApp.View_Model{
     public class ProductViewModel{
         private readonly IProductRepository _prodRepo;
+
         public string[] Categories { get; set; }
+        public SortType Sort { get; set; }
+        public bool OnlyShowAvailable { get; set; }
+
         public RelayCommand SelectCategory { get; set; }
 
+        public ObservableCollection<string> SortModes { get; set; }
         public ObservableCollection<Product> Products { get; set; }
 
         public ProductViewModel(){
@@ -21,6 +26,11 @@ namespace InFlightApp.View_Model{
                 _prodRepo = ServiceLocator.Current.GetService<IProductRepository>(true);
                 Categories = _prodRepo.GetCategories();
                 Products = new ObservableCollection<Product>();
+
+                Sort = SortType.None;
+                SortModes = new ObservableCollection<string>(Enum.GetNames(typeof(SortType)));
+
+                OnlyShowAvailable = false;
             }catch (Exception e){
                 //Replace with logging later on
                 Console.WriteLine(e);
