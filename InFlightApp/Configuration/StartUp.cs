@@ -20,7 +20,7 @@ namespace InFlightApp.Configuration
             static private async void ConfigureCortana() {
                  Uri uriVoiceCommands = new Uri("ms-appx:///Configuration/Cortana/vcd.xml", UriKind.Absolute);
                 StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(uriVoiceCommands);
-                await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(file);
+                //await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(file);
             }
     }
 }

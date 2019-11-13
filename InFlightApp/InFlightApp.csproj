@@ -133,12 +133,16 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\Persoon.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductType.cs" />
     <Compile Include="Model\SortType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Interfaces\IProductRepository.cs" />
+    <Compile Include="Services\Interfaces\ITravelGroupRepository.cs" />
     <Compile Include="Services\Repositories\ProductRepository.cs" />
+    <Compile Include="Services\Repositories\TravelGroupRepository.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
     <Compile Include="Views\EntertainmentMainPage.xaml.cs">
       <DependentUpon>EntertainmentMainPage.xaml</DependentUpon>
@@ -170,6 +174,9 @@
     <Compile Include="View Model\MainPageViewModel.cs" />
     <Compile Include="Views\StartAppPage.xaml.cs">
       <DependentUpon>StartAppPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TravelGroupPage.xaml.cs">
+      <DependentUpon>TravelGroupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +236,9 @@
     <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\vid\start.mp4" />
-    <Content Include="Configuration\Cortana\vcd.xml" />
+    <Content Include="Configuration\Cortana\vcd.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -281,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StartAppPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TravelGroupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
