@@ -29,9 +29,9 @@
         </Grid>
         <ScrollViewer  Grid.Column="0" Height="700" HorizontalScrollMode="Auto" VerticalScrollMode="Enabled" CanBeScrollAnchor="True" IsHorizontalScrollChainingEnabled="False" >
             <GridView x:Name="gridTemp" ScrollViewer.VerticalScrollBarVisibility="Visible" CanBeScrollAnchor="True" ShowsScrollingPlaceholders="True">
-                <GridView.ItemTemplate>
+                <GridView.ItemTemplate >
                     <DataTemplate>
-                        <Grid Height="350" Width="350">
+                        <Grid  Height="350" Width="350">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
                                 <RowDefinition Height="2*"/>
@@ -44,7 +44,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="20"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding ImageFile}" Grid.Column="1" Grid.Row="1" Margin="0,0,0,20"/>
+                            <Image Source="{Binding ImageFile}" Grid.Column="1" Grid.Row="1" Margin="0,0,0,20" Name="Image"/>
                             <StackPanel Grid.Column="1" Grid.Row="2">
                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Style="{StaticResource TitleStyle}"/>
                                 <TextBlock Text="{Binding Description}" Style="{StaticResource DescriptionStyle}"/>
@@ -69,6 +69,7 @@
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
+                    
             </GridView>
 
         </ScrollViewer>

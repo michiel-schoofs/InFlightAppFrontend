@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel>
-        <Pivot x:Name="PivotSelection" ItemsSource="{Binding Categories}">
+        <Pivot x:Name="PivotSelection" ItemsSource="{Binding Categories}" >
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding SelectCategory}" CommandParameter="{Binding ElementName=PivotSelection,Path=SelectedItem}"/>

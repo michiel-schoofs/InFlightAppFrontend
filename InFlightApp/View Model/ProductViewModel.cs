@@ -12,7 +12,7 @@ using Windows.UI.Core;
 
 namespace InFlightApp.View_Model{
     public class ProductViewModel{
-        public readonly IProductRepository _prodRepo;
+        public static IProductRepository _prodRepo;
 
         private string _nameFilter;
 
@@ -52,6 +52,9 @@ namespace InFlightApp.View_Model{
         public ObservableCollection<string> SortModes { get; set; }
         public ObservableCollection<Product> Products { get; set; }
         public ObservableCollection<Product> FilteredProducts { get; set; }
+
+        public delegate void SelectionChangedDel();
+        public event SelectionChangedDel SelectionChanged;
 
         public ProductViewModel(){
             try{
@@ -126,19 +129,18 @@ namespace InFlightApp.View_Model{
                 Products.Add(p);
             });
 
-            List<Task> tasks = new List<Task>();
-
-            foreach (Product p in Products)
-            {
-                tasks.Add( Task.Run(() => {
-                    string path = _prodRepo.GetImage(p.ProductID).Result;
-                    p.ImageFile = path;
-                }));
-            }
-
-            Task.WaitAll(tasks.ToArray());
-
             ResetFilters();
+            SelectionChanged?.Invoke();
         }
+
+        public async void GetImages(){
+            try{
+                foreach (Product p in Products) {
+                    string path = await _prodRepo.GetImage(p.ProductID);
+                    p.ImageFile = path;
+                }
+            }catch (Exception) { }
+        }
+
     }
 }

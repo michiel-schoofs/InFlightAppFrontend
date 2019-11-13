@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="cdf2a103-04ff-4f29-bfea-bee8447252f5"
+    Name="InFlightApp"
     Publisher="CN=gebruiker"
     Version="1.0.0.0" />
 

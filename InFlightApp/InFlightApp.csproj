@@ -130,6 +130,7 @@
     <Compile Include="Configuration\StartUp.cs" />
     <Compile Include="Converters\MoneyConverter.cs" />
     <Compile Include="Converters\SortTypeConverter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

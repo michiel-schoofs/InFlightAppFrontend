@@ -24,9 +24,20 @@ namespace InFlightApp.Views
     /// </summary>
     public sealed partial class ProductPage : Page
     {
+        private readonly ProductViewModel pvm;
         public ProductPage(){
-            this.DataContext= ServiceLocator.Current.GetService<ProductViewModel>(true);
+            pvm = ServiceLocator.Current.GetService<ProductViewModel>(true);
+            this.DataContext = pvm;
             this.InitializeComponent();
+            pvm.SelectionChanged += Pvm_SelectionChanged;
+        }
+
+        private void Pvm_SelectionChanged()
+        {
+            this.Dispatcher.TryRunAsync(Dispatcher.CurrentPriority, () =>
+            {
+                pvm.GetImages();
+            });
         }
     }
 }
