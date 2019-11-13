@@ -15,6 +15,7 @@ namespace InFlightApp.Services.Repositories{
     public class ProductRepository : IProductRepository{
         private HttpClient client;
         private readonly static Dictionary<int, string> _images = new Dictionary<int, string>();
+        private static StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
 
         public ProductRepository(){
             client = ApiConnection.Client;
@@ -43,6 +44,9 @@ namespace InFlightApp.Services.Repositories{
         }
 
         public async Task<string> GetImage(int productID){
+            if (_images.ContainsKey(productID))
+                return _images.GetValueOrDefault(productID);
+
             string url = $"{ApiConnection.URL}/Products/{productID}/image";
             string s = client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
@@ -50,8 +54,6 @@ namespace InFlightApp.Services.Repositories{
             if (obj != null && obj.Value<int>("id")>=0) {
                 string name = $"prod-{productID}.{obj.Value<string>("extension").ToLower()}";
                 byte[] bytes = Convert.FromBase64String(obj.Value<string>("data"));
-
-                StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
 
                 try{
                     StorageFile fi = await sf.GetFileAsync(name);
@@ -63,6 +65,7 @@ namespace InFlightApp.Services.Repositories{
                 Stream stream = f.OpenStreamForWriteAsync().Result;
                 stream.Write(bytes, 0, bytes.Length);
 
+                _images.Add(productID, f.Path);
                 return f.Path;
             }
 

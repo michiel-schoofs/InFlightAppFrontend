@@ -35,6 +35,7 @@ namespace InFlightApp.Model
             }
             set {
                 imageFile = value;
+                RaisePropertyChanged("ImageFile");
             }
         }
 
