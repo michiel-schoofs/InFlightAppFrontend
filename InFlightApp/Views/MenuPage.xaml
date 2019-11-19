@@ -14,6 +14,7 @@
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
             <NavigationViewItem Content="Products" Tag="Nav_Products"></NavigationViewItem>
+            <NavigationViewItem Content="Notifications" Tag="Nav_Notifications"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Frame x:Name="NavigationViewFrame"></Frame>
