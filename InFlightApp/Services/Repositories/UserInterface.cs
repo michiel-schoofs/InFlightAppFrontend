@@ -96,5 +96,10 @@ namespace InFlightApp.Services.Repositories
                 };
             }).ToList();
         }
+
+        public void SendNotification(string notification)
+        {
+            client.PostAsync($"{ApiConnection.URL}/Notification?notification={notification}", null);
+        }
     }
 }

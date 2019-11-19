@@ -141,6 +141,7 @@
     <Compile Include="Services\Interfaces\IProductRepository.cs" />
     <Compile Include="Services\Repositories\FlightRepository.cs" />
     <Compile Include="Services\Repositories\ProductRepository.cs" />
+    <Compile Include="View Model\NotificationsViewModel.cs" />
     <Compile Include="View Model\PassengersViewModel.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
     <Compile Include="Views\EntertainmentMainPage.xaml.cs">
@@ -296,6 +297,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client">
+      <Version>2.4.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
       <Version>3.0.0</Version>
     </PackageReference>

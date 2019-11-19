@@ -1,40 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using InFlightApp.Configuration;
+using InFlightApp.View_Model;
+using Microsoft.AspNet.SignalR.Client;
+using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace InFlightApp.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class NotificationsPage : Page
     {
+
+        private readonly NotificationsViewModel _model;
+
         public NotificationsPage()
         {
             this.InitializeComponent();
+            RunProxy();
+
+            try
+            {
+                _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+                DataContext = _model;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        private void BtnNotification_Click(object sender, RoutedEventArgs e)
+        public void RunProxy()
+        {
+            Task.Run(() => ConnectToNotificationHub());
+        }
+
+        public async Task ConnectToNotificationHub()
+        {
+            using (var hubConnection = new HubConnection("https://localhost:44355/"))
+            {
+                IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
+                notificationHubProxy.On<string>("ReceiveNotification", notification => CreateContentDialog(notification));
+                await hubConnection.Start();
+            }
+        }
+
+        private void CreateContentDialog(string notification)
         {
             ContentDialog contentDialog = new ContentDialog();
-            contentDialog.Title = "Notification from the crew";
+            contentDialog.Title = "Notification from crew";
+            contentDialog.Content = notification;
             contentDialog.CloseButtonText = "Close";
             contentDialog.DefaultButton = ContentDialogButton.Close;
-            contentDialog.Content = txtNotification.Text;
-            contentDialog.ShowAsync();
+            //contentDialog.ShowAsync();
+        }
+
+        private void BtnNotification_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var notification = txtNotification.Text;
+            if (notification != null && !string.Empty.Equals(notification))
+            {
+                _model.SendNotification(notification);
+            }
         }
     }
 }

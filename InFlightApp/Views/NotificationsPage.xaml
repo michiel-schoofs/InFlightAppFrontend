@@ -11,6 +11,6 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="Enter your notification:" Margin="10"></TextBlock>
         <TextBox x:Name="txtNotification" Margin="10"></TextBox>
-        <Button x:Name="btnNotification" Content="Send" Margin="10" HorizontalAlignment="right" Click="BtnNotification_Click"></Button>
+        <Button x:Name="btnNotification" Content="Send" Margin="10" HorizontalAlignment="right" Click="BtnNotification_Click"/>
     </StackPanel>
 </Page>
