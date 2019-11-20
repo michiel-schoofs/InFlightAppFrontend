@@ -28,7 +28,8 @@ namespace InFlightApp.Configuration
                              .AddSingleton<PassengersViewModel>()
                              .AddSingleton<NotificationsViewModel>()
                              .AddSingleton<IProductRepository, ProductRepository>()
-                             .AddSingleton<IFlightRepository, FlightRepository>();
+                             .AddSingleton<IFlightRepository, FlightRepository>()
+                             .AddSingleton<INotificationService,NotificationService>(); 
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

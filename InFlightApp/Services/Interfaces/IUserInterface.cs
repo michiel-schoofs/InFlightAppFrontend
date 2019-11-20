@@ -16,6 +16,5 @@ namespace InFlightApp.Services.Interfaces
         Task<IEnumerable<Passenger>> GetPassengers();
         Task ChangeSeat(int userId, int seatId);
 
-        void SendNotification(string notification);
     }
 }

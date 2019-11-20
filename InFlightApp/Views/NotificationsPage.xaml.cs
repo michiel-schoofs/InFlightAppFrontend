@@ -1,6 +1,5 @@
 ﻿using InFlightApp.Configuration;
 using InFlightApp.View_Model;
-using Microsoft.AspNet.SignalR.Client;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
@@ -16,9 +15,7 @@ namespace InFlightApp.Views
 
         public NotificationsPage()
         {
-            this.InitializeComponent();
-            RunProxy();
-
+            InitializeComponent();
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
@@ -28,31 +25,6 @@ namespace InFlightApp.Views
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-
-        public void RunProxy()
-        {
-            Task.Run(() => ConnectToNotificationHub());
-        }
-
-        public async Task ConnectToNotificationHub()
-        {
-            using (var hubConnection = new HubConnection("https://localhost:44355/"))
-            {
-                IHubProxy notificationHubProxy = hubConnection.CreateHubProxy("NotificationHub");
-                notificationHubProxy.On<string>("ReceiveNotification", notification => CreateContentDialog(notification));
-                await hubConnection.Start();
-            }
-        }
-
-        private void CreateContentDialog(string notification)
-        {
-            ContentDialog contentDialog = new ContentDialog();
-            contentDialog.Title = "Notification from crew";
-            contentDialog.Content = notification;
-            contentDialog.CloseButtonText = "Close";
-            contentDialog.DefaultButton = ContentDialogButton.Close;
-            //contentDialog.ShowAsync();
         }
 
         private void BtnNotification_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
