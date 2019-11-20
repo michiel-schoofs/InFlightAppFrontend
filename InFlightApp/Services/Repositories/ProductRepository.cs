@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,21 @@ namespace InFlightApp.Services.Repositories{
             }
 
             return "/Assets/img/products/default.jpg";
+        }
+
+        public bool AddToStock(int productID, int restock){
+            if (restock <= 0)
+                return false;
+
+            var content = new StringContent("",Encoding.UTF8, "application/json");
+            string url = $"{ApiConnection.URL}/Products/{productID}/restock/{restock}";
+
+            HttpResponseMessage message = client.PutAsync(url, content).Result;
+
+            if (message.StatusCode != HttpStatusCode.OK)
+                return false;
+
+            return true;
         }
     }
 }

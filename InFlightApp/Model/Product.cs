@@ -13,15 +13,15 @@ namespace InFlightApp.Model
             }
         }
 
-        public string Color { 
+        public string Glyph{
             get {
-                return (Amount > 0 ? "Green" : "Red");
-            } 
+                return (Amount > 0 ? "Accept" : "Clear");
+            }
         }
 
-        public string AvailableText {
+        public string Color {
             get {
-                return (Amount > 0 ? "Available" : "Not Available");
+                return (Amount > 0 ? "Lime" : "Red");
             }
         }
 
@@ -39,10 +39,21 @@ namespace InFlightApp.Model
             }
         }
 
+        private int _amount;
+
+        public int Amount{
+            get { return _amount; }
+            set {
+                _amount = value;
+                RaisePropertyChanged("Amount");
+                RaisePropertyChanged("Color");
+                RaisePropertyChanged("Glyph");
+            }
+        }
+
 
         public int ProductID { get; set; }
         public decimal UnitPrice { get; set; }
-        public int Amount{ get; set; }
         public string Name{ get; set; }
         public string Description { get; set; }
         public ProductType Type { get; set; }
