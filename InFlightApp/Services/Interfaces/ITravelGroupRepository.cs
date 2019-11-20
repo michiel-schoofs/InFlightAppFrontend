@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 namespace InFlightApp.Services.Interfaces {
     interface ITravelGroupRepository {
         Task<Message[]> GetMessages();
-        void AddMessage(string content);
+        bool AddMessage(string content);
     }
 }
