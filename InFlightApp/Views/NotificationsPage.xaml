@@ -8,11 +8,29 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel HorizontalAlignment="left" VerticalAlignment="Center">
-        <TextBlock Text="Enter your notification:" Margin="10"></TextBlock>
-        <TextBox x:Name="txtNotification" Margin="10"></TextBox>
-        <Button x:Name="btnNotification" Content="Send" Margin="10" HorizontalAlignment="right" Click="BtnNotification_Click"/>
-    </StackPanel>
-
-    
+    <SplitView>
+        <SplitView.Pane>
+            <StackPanel HorizontalAlignment="left" VerticalAlignment="Center">
+                <TextBlock Text="Enter your notification:" Margin="10"></TextBlock>
+                <TextBox x:Name="txtNotification" Margin="10"></TextBox>
+                <Button x:Name="btnNotification" Content="Send" Margin="10" HorizontalAlignment="right" Click="BtnNotification_Click"/>
+            </StackPanel>
+        </SplitView.Pane>
+        <ScrollViewer>
+            <StackPanel>
+                <ListView ItemsSource="{Binding Notifications}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Content}" 
+                                           Style="{ThemeResource HeaderTextBlockStyle}"/>
+                                <TextBlock Text="{Binding Timestamp}" 
+                                           Style="{ThemeResource BodyTextBlockStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </ScrollViewer>
+    </SplitView>
 </Page>
