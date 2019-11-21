@@ -107,6 +107,7 @@ namespace InFlightApp.Views
                         SeatingsGrid.ColumnDefinitions.Add(cdColumn);
 
                         StackPanel spPerson = new StackPanel();
+                        spPerson.Margin = new Thickness(15);
 
                         string gridCode = i.ToString() + columnLetters[j - 1];
                         Seat seat = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(gridCode));
@@ -155,15 +156,26 @@ namespace InFlightApp.Views
                         #region Button Change Seat
                         void ButtonChangeSeat_Click(object sender, RoutedEventArgs e)
                         {
-                            Popup pChangeSeat = new Popup();
+                            btnChangeSeat.IsEnabled = false;
+
                             StackPanel spChangeSeat = new StackPanel();
+                            spPerson.Children.Add(spChangeSeat);
+                            spChangeSeat.Orientation = Orientation.Horizontal;
+
                             ComboBox cbSeats = new ComboBox();
                             foreach (var s in _model.Seats.OrderBy(s => s.SeatCode))
                             {
                                 cbSeats.Items.Add(s.SeatCode);
                             }
+                            cbSeats.HorizontalAlignment = HorizontalAlignment.Center;
+                            cbSeats.VerticalAlignment = VerticalAlignment.Center;
+                            cbSeats.Margin = new Thickness(15);
+
                             Button btnChange = new Button();
                             btnChange.Content = "Change";
+                            btnChange.HorizontalAlignment = HorizontalAlignment.Center;
+                            btnChange.VerticalAlignment = VerticalAlignment.Center;
+                            btnChange.Margin = new Thickness(15);
                             btnChange.Click += ButtonChange_Click;
                             void ButtonChange_Click(object sender2, RoutedEventArgs e2)
                             {
@@ -171,26 +183,31 @@ namespace InFlightApp.Views
                                 {
                                     var seatToChangeTo = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(cbSeats.SelectedItem.ToString())).SeatId;
                                     _model.ChangeSeat(passenger.Id, seatToChangeTo);
-                                    pChangeSeat.IsOpen = false;
                                     LayoutSeatingDesign();
                                 }
                                 else
                                 {
-                                    pChangeSeat.IsOpen = false;
+                                    spPerson.Children.Remove(spChangeSeat);
+                                    btnChangeSeat.IsEnabled = true;
+
                                 }
                             }
+
                             Button btnCancel = new Button();
                             btnCancel.Content = "Cancel";
+                            btnCancel.HorizontalAlignment = HorizontalAlignment.Center;
+                            btnCancel.VerticalAlignment = VerticalAlignment.Center;
+                            btnCancel.Margin = new Thickness(15);
                             btnCancel.Click += ButtonCancel_Click;
                             void ButtonCancel_Click(object sender3, RoutedEventArgs e3)
                             {
-                                pChangeSeat.IsOpen = false;
+                                spPerson.Children.Remove(spChangeSeat);
+                                btnChangeSeat.IsEnabled = true;
                             }
+
                             spChangeSeat.Children.Add(cbSeats);
                             spChangeSeat.Children.Add(btnChange);
                             spChangeSeat.Children.Add(btnCancel);
-                            pChangeSeat.Child = spChangeSeat;
-                            pChangeSeat.IsOpen = true;
                         }
                         #endregion
 
@@ -201,9 +218,20 @@ namespace InFlightApp.Views
                         }
                         #endregion
 
-                        // Add buttons stackpanel to person stackpanel
-                        spPerson.Children.Add(spButtons);
-                        spPerson.Margin = new Thickness(15);
+                        #region Textblock Name 
+                        tbName.Tapped += TextBlockName_Tapped;
+                        void TextBlockName_Tapped(Object sender, RoutedEventArgs e)
+                        {
+                            if (spPerson.Children.Contains(spButtons))
+                            {
+                                spPerson.Children.Remove(spButtons);
+                            }
+                            else
+                            {
+                                spPerson.Children.Add(spButtons);
+                            }
+                        }
+                        #endregion
                         #endregion
 
                         // Add person stackpanel to grid
