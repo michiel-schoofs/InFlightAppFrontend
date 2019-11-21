@@ -71,7 +71,7 @@ namespace InFlightApp.Services.Repositories
         public void ChangeSeat(int userId, int seatId)
         {
             string url = $"{ApiConnection.URL}/Users/passengers/{userId}/seat/change/{seatId}";
-            client.PutAsync(url, null);
+            client.PutAsync(url, null).Wait();
         }
 
         public IEnumerable<Passenger> GetPassengers()

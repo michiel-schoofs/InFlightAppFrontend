@@ -167,9 +167,17 @@ namespace InFlightApp.Views
                             btnChange.Click += ButtonChange_Click;
                             void ButtonChange_Click(object sender2, RoutedEventArgs e2)
                             {
-                                var seatToChangeTo = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(cbSeats.SelectedItem.ToString())).SeatId;
-                                _model.ChangeSeat(passenger.Id, seatToChangeTo);
-                                LayoutSeatingDesign();
+                                if (cbSeats.SelectedItem != null)
+                                {
+                                    var seatToChangeTo = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(cbSeats.SelectedItem.ToString())).SeatId;
+                                    _model.ChangeSeat(passenger.Id, seatToChangeTo);
+                                    pChangeSeat.IsOpen = false;
+                                    LayoutSeatingDesign();
+                                }
+                                else
+                                {
+                                    pChangeSeat.IsOpen = false;
+                                }
                             }
                             Button btnCancel = new Button();
                             btnCancel.Content = "Cancel";

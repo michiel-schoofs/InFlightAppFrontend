@@ -24,8 +24,7 @@ namespace InFlightApp.View_Model
             {
                 _flightRepo = ServiceLocator.Current.GetService<IFlightRepository>(true);
                 _userInterface = ServiceLocator.Current.GetService<IUserInterface>(true);
-                Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
-                Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
+                LoadData();
             }
             catch (Exception e)
             {
@@ -55,8 +54,8 @@ namespace InFlightApp.View_Model
 
         private void LoadData()
         {
-            Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
             Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
+            Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
         }
     }
 }
