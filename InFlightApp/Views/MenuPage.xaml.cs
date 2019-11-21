@@ -49,6 +49,10 @@ namespace InFlightApp.Views
                         case "Nav_Products":
                             NavigationViewFrame.Navigate(typeof(ProductPage));
                             break;
+                        case "Nav_Notifications":
+                            NavigationViewFrame.Navigate(typeof(NotificationsPage));
+                            break;
+                        default: break;
                     }
                 }
             }
