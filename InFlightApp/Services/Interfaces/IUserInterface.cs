@@ -13,8 +13,8 @@ namespace InFlightApp.Services.Interfaces
         PasswordCredential GetCredential();
         void RemoveCredential(PasswordCredential cred);
 
-        Task<IEnumerable<Passenger>> GetPassengers();
-        Task ChangeSeat(int userId, int seatId);
+        IEnumerable<Passenger> GetPassengers();
+        void ChangeSeat(int userId, int seatId);
 
     }
 }

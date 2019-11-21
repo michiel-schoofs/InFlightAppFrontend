@@ -39,7 +39,8 @@ namespace InFlightApp.View_Model
             if (MostRecentNotification == null || MostRecentNotification.Timestamp != notification.Timestamp)
             {
                 MostRecentNotification = notification;
-                CreateContentDialog(MostRecentNotification.Content);
+                // Doesn't work because not activated from a page => doesn't know where to draw
+                // CreateContentDialog(MostRecentNotification.Content);
             }
         }
 

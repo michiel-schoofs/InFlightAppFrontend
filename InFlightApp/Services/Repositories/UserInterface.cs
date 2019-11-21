@@ -68,16 +68,16 @@ namespace InFlightApp.Services.Repositories
             vault.Remove(cred);
         }
 
-        public async Task ChangeSeat(int userId, int seatId)
+        public void ChangeSeat(int userId, int seatId)
         {
             string url = $"{ApiConnection.URL}/Users/passengers/${userId}/seat/change/${seatId}";
-            await client.PutAsync(url, null);
+            client.PutAsync(url, null);
         }
 
-        public async Task<IEnumerable<Passenger>> GetPassengers()
+        public IEnumerable<Passenger> GetPassengers()
         {
             string url = $"{ApiConnection.URL}/Users/passengers";
-            string s = await client.GetStringAsync(url);
+            string s = client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
 
             return ar.Select(passenger =>

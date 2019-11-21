@@ -24,8 +24,8 @@ namespace InFlightApp.View_Model
             {
                 _flightRepo = ServiceLocator.Current.GetService<IFlightRepository>(true);
                 _userInterface = ServiceLocator.Current.GetService<IUserInterface>(true);
-                Seats = new ObservableCollection<Seat>();
-                Passengers = new ObservableCollection<Passenger>();
+                Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
+                Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
             }
             catch (Exception e)
             {
@@ -33,20 +33,13 @@ namespace InFlightApp.View_Model
             }
         }
 
-        public void LoadData()
-        {
-            Seats = (ObservableCollection<Seat>)_flightRepo.GetSeats().GetAwaiter().GetResult();
-            Passengers = (ObservableCollection<Passenger>)_userInterface.GetPassengers().GetAwaiter().GetResult();
-
-        }
-
         public List<char> GetSeatColumns()
         {
             return Seats.Aggregate(new List<char>(), (result, seat) =>
-            {
-                result.Add(seat.SeatCode[seat.SeatCode.Length - 1]);
-                return result;
-            });
+                   {
+                       result.Add(seat.SeatCode[seat.SeatCode.Length - 1]);
+                       return result;
+                   }).Distinct().OrderBy(c => c).ToList();
         }
 
         public int GetSeatRows()
@@ -56,7 +49,7 @@ namespace InFlightApp.View_Model
 
         public void ChangeSeat(int userId, int seatId)
         {
-            _userInterface.ChangeSeat(userId, seatId).Wait();
+            _userInterface.ChangeSeat(userId, seatId);
         }
 
     }

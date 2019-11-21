@@ -26,9 +26,15 @@ namespace InFlightApp.Views
         public PassengersPage()
         {
             InitializeComponent();
-            _model = ServiceLocator.Current.GetService<PassengersViewModel>(true);
-            DataContext = _model;
-            _model.LoadData();
+            try
+            {
+                _model = ServiceLocator.Current.GetService<PassengersViewModel>(true);
+                DataContext = _model;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             LayoutSeatingDesign();
         }
 

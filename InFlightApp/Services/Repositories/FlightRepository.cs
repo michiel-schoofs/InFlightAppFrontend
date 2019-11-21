@@ -19,10 +19,10 @@ namespace InFlightApp.Services.Repositories
             client = ApiConnection.Client;
         }
 
-        public async Task<IEnumerable<Seat>> GetSeats()
+        public IEnumerable<Seat> GetSeats()
         {
             string url = $"{ApiConnection.URL}/Flight/seats";
-            string s = await client.GetStringAsync(url);
+            string s = client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
 
             return ar.Select(seat =>
