@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -40,14 +41,19 @@ namespace InFlightApp.Services.Repositories
         public Notification GetMostRecentNotification()
         {
             string url = $"{ApiConnection.URL}/Notification/recent";
-            string s = client.GetStringAsync(url).Result;
-            JObject obj = JObject.Parse(s);
-
-            return new Notification()
+            HttpResponseMessage s = client.GetAsync(url).Result;
+            if (s.StatusCode == HttpStatusCode.OK)
             {
-                Content = obj.Value<string>("content"),
-                Timestamp = obj.Value<DateTime>("timestamp")
-            };
+                string str = s.Content.ReadAsStringAsync().Result;
+                JObject obj = JObject.Parse(str);
+
+                return new Notification()
+                {
+                    Content = obj.Value<string>("content"),
+                    Timestamp = obj.Value<DateTime>("timestamp")
+                };
+            }
+            else { return null; }
         }
 
         public void SendNotification(string notification)

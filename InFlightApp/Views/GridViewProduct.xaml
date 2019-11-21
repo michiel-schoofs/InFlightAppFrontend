@@ -1,4 +1,5 @@
 ﻿<UserControl
+    
     x:Class="InFlightApp.Views.GridViewProduct"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
@@ -10,7 +11,7 @@
     xmlns:vm ="using:InFlightApp.View_Model"
     xmlns:x1="using:System"
     xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors">
-    <UserControl.Resources>
+    <!-- <UserControl.Resources>
         <converter:MoneyConverter x:Key="moneyConv"/>
         <converter:RefillConverter x:Key="refillConv"/>
         <converter:SortTypeConverter x:Key="sortTypeConv"/>
@@ -119,5 +120,5 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
-    </StackPanel>
+    </StackPanel>-->
 </UserControl>
