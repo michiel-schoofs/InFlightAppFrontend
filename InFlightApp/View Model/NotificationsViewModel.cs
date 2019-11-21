@@ -23,8 +23,7 @@ namespace InFlightApp.View_Model
             try
             {
                 _notificationService = ServiceLocator.Current.GetService<INotificationService>(true);
-                Notifications = new ObservableCollection<Notification>(_notificationService.GetAllNotifications().OrderByDescending(n => n.Timestamp));
-
+                LoadNotifications();
             }
             catch (Exception ex)
             {
@@ -32,6 +31,10 @@ namespace InFlightApp.View_Model
             }
         }
 
+        public void LoadNotifications()
+        {
+            Notifications = new ObservableCollection<Notification>(_notificationService.GetAllNotifications().OrderByDescending(n => n.Timestamp));
+        }
 
         public void LoadMostRecentNotification()
         {

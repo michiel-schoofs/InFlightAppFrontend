@@ -33,6 +33,8 @@ namespace InFlightApp.Views
             if (notification != null && !string.Empty.Equals(notification))
             {
                 _model.SendNotification(notification);
+                txtNotification.Text = String.Empty;
+                _model.LoadNotifications();
             }
         }
     }
