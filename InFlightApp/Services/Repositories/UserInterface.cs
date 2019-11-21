@@ -70,7 +70,7 @@ namespace InFlightApp.Services.Repositories
 
         public void ChangeSeat(int userId, int seatId)
         {
-            string url = $"{ApiConnection.URL}/Users/passengers/${userId}/seat/change/${seatId}";
+            string url = $"{ApiConnection.URL}/Users/passengers/{userId}/seat/change/{seatId}";
             client.PutAsync(url, null);
         }
 
@@ -79,22 +79,7 @@ namespace InFlightApp.Services.Repositories
             string url = $"{ApiConnection.URL}/Users/passengers";
             string s = client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
-
-            return ar.Select(passenger =>
-            {
-                return new Passenger()
-                {
-                    PassengerId = passenger.Value<int>("passengerId"),
-                    FirstName = passenger.Value<string>("firstName"),
-                    LastName = passenger.Value<string>("lastName"),
-                    Seat = new Seat()
-                    {
-                        SeatId = passenger.Value<int>("seat.seatID"),
-                        Type = (SeatType)Enum.Parse(typeof(SeatType), passenger.Value<string>("seat.type")),
-                        SeatCode = passenger.Value<string>("seat.seatCode")
-                    }
-                };
-            }).ToList();
+            return ar.Select(p => p.ToObject<Passenger>()).ToList();
         }
     }
 }

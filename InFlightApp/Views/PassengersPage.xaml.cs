@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace InFlightApp.Views
 
         private void LayoutSeatingDesign()
         {
+            SeatingsGrid.Children.Clear();
             List<char> columnLetters = _model.GetSeatColumns();
             int numberOfRows = _model.GetSeatRows();
 
@@ -96,20 +98,31 @@ namespace InFlightApp.Views
                     }
                     else
                     {
+                        /*
+                         *This block is to make up the seats and if present the passenger for that seat
+                         */
+
                         ColumnDefinition cdColumn = new ColumnDefinition();
                         cdColumn.Width = new GridLength(1, GridUnitType.Auto);
                         SeatingsGrid.ColumnDefinitions.Add(cdColumn);
 
                         StackPanel spPerson = new StackPanel();
 
+                        string gridCode = i.ToString() + columnLetters[j - 1];
+                        Seat seat = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(gridCode));
+                        Passenger passenger = _model.Passengers.SingleOrDefault(p => p.Seat.SeatId == seat.SeatId);
+
+                        #region Name
                         TextBlock tbName = new TextBlock();
-                        tbName.Text = "Tybo Vanderstraeten";
+                        tbName.Text = passenger != null ? passenger.FirstName + " " + passenger.LastName : "Empty seat";
                         tbName.HorizontalAlignment = HorizontalAlignment.Center;
                         tbName.VerticalAlignment = VerticalAlignment.Center;
                         tbName.FontSize = 20;
                         tbName.Margin = new Thickness(15);
                         spPerson.Children.Add(tbName);
+                        #endregion
 
+                        #region Buttons + clickHandlers
                         StackPanel spButtons = new StackPanel();
                         spButtons.Orientation = Orientation.Horizontal;
 
@@ -129,9 +142,63 @@ namespace InFlightApp.Views
                         btnViewOrders.Margin = new Thickness(15);
                         spButtons.Children.Add(btnViewOrders);
 
+                        if (passenger == null)
+                        {
+                            btnChangeSeat.Visibility = Visibility.Collapsed;
+                            btnViewOrders.Visibility = Visibility.Collapsed;
+                        }
+
+                        // Click events for buttons
+                        btnChangeSeat.Click += ButtonChangeSeat_Click;
+                        btnViewOrders.Click += ButtonViewOrders_Click;
+
+                        #region Button Change Seat
+                        void ButtonChangeSeat_Click(object sender, RoutedEventArgs e)
+                        {
+                            Popup pChangeSeat = new Popup();
+                            StackPanel spChangeSeat = new StackPanel();
+                            ComboBox cbSeats = new ComboBox();
+                            foreach (var s in _model.Seats.OrderBy(s => s.SeatCode))
+                            {
+                                cbSeats.Items.Add(s.SeatCode);
+                            }
+                            Button btnChange = new Button();
+                            btnChange.Content = "Change";
+                            btnChange.Click += ButtonChange_Click;
+                            void ButtonChange_Click(object sender2, RoutedEventArgs e2)
+                            {
+                                var seatToChangeTo = _model.Seats.SingleOrDefault(s => s.SeatCode.Equals(cbSeats.SelectedItem.ToString())).SeatId;
+                                _model.ChangeSeat(passenger.Id, seatToChangeTo);
+                                LayoutSeatingDesign();
+                            }
+                            Button btnCancel = new Button();
+                            btnCancel.Content = "Cancel";
+                            btnCancel.Click += ButtonCancel_Click;
+                            void ButtonCancel_Click(object sender3, RoutedEventArgs e3)
+                            {
+                                pChangeSeat.IsOpen = false;
+                            }
+                            spChangeSeat.Children.Add(cbSeats);
+                            spChangeSeat.Children.Add(btnChange);
+                            spChangeSeat.Children.Add(btnCancel);
+                            pChangeSeat.Child = spChangeSeat;
+                            pChangeSeat.IsOpen = true;
+                        }
+                        #endregion
+
+                        #region Button View Orders
+                        void ButtonViewOrders_Click(object sender, RoutedEventArgs e)
+                        {
+                            // To be filled in by Michiel
+                        }
+                        #endregion
+
+                        // Add buttons stackpanel to person stackpanel
                         spPerson.Children.Add(spButtons);
                         spPerson.Margin = new Thickness(15);
+                        #endregion
 
+                        // Add person stackpanel to grid
                         SeatingsGrid.Children.Add(spPerson);
                         Grid.SetRow(spPerson, i);
                         Grid.SetColumn(spPerson, j);

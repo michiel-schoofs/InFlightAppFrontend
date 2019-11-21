@@ -50,7 +50,13 @@ namespace InFlightApp.View_Model
         public void ChangeSeat(int userId, int seatId)
         {
             _userInterface.ChangeSeat(userId, seatId);
+            LoadData();
         }
 
+        private void LoadData()
+        {
+            Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
+            Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
+        }
     }
 }
