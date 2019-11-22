@@ -21,7 +21,7 @@
             <NavigationViewItem Content="Notifications" Tag="Nav_Notifications"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Frame x:Name="NavigationViewFrame"></Frame>
+                <Frame x:Name="NavigationViewFrame"></Frame>
         </NavigationView.Content>
     </NavigationView>
 </Page>

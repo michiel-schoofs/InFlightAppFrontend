@@ -13,14 +13,14 @@ namespace InFlightApp.Configuration
     public class Startup
     {
         static private readonly ServiceCollection _serviceCollection = new ServiceCollection();
-        static private NotificationsViewModel _notificationsViewModel;
+        //static private NotificationsViewModel _notificationsViewModel;
 
         static public void ConfigureAsync()
         {
             ServiceLocator.Configure(_serviceCollection);
-            _notificationsViewModel = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+            //_notificationsViewModel = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
             ConfigureCortana();
-            PollNotifications();
+            //PollNotifications();
         }
 
         static private async void ConfigureCortana()
@@ -30,16 +30,5 @@ namespace InFlightApp.Configuration
             await VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(file);
         }
 
-        static void PollNotifications()
-        {
-            Task.Run(async () =>
-            {
-                while (true)
-                {
-                    _notificationsViewModel.LoadMostRecentNotification();
-                    await Task.Delay(5000);
-                }
-            });
-        }
     }
 }
