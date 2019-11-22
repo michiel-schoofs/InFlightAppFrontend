@@ -50,6 +50,7 @@ namespace InFlightApp.View_Model
         public void SendNotification(string notification)
         {
             _notificationService.SendNotification(notification);
+            Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now });
         }
 
         public void CreateContentDialog(string notification)

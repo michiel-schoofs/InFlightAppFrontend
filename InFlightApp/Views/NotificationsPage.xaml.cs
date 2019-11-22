@@ -34,7 +34,6 @@ namespace InFlightApp.Views
             {
                 _model.SendNotification(notification);
                 txtNotification.Text = String.Empty;
-                _model.LoadNotifications();
             }
         }
     }
