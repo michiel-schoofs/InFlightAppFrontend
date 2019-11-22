@@ -10,19 +10,22 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Grid.Column="0" Grid.Row="0">
+        <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Center"
+                    Grid.Column="1" Grid.Row="0">
             <TextBlock Text="Enter your notification:" Margin="10"></TextBlock>
             <TextBox x:Name="txtNotification" Margin="10"></TextBox>
             <Button x:Name="btnNotification" Content="Send" Margin="10" HorizontalAlignment="right" Click="BtnNotification_Click"/>
         </StackPanel>
-        <ScrollViewer Grid.Column="0" Grid.Row="1">
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"> 
             <StackPanel>
                 <ListView ItemsSource="{Binding Notifications}">
                     <ListView.ItemTemplate>
