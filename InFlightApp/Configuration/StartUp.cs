@@ -16,7 +16,7 @@ namespace InFlightApp.Configuration
         static public void ConfigureAsync()
         {
             ServiceLocator.Configure(_serviceCollection);
-            ConfigureCortana();
+           // ConfigureCortana();
         }
 
         static private async void ConfigureCortana()

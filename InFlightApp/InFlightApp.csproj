@@ -152,6 +152,7 @@
     <Compile Include="Services\Repositories\FlightService.cs" />
     <Compile Include="Services\Repositories\NotificationService.cs" />
     <Compile Include="Services\Repositories\ProductService.cs" />
+    <Compile Include="View Model\EntertainmentViewModel.cs" />
     <Compile Include="View Model\NotificationsViewModel.cs" />
     <Compile Include="View Model\PassengersViewModel.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
@@ -167,6 +168,12 @@
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoviesPage.xaml.cs">
+      <DependentUpon>MoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPage.xaml.cs">
+      <DependentUpon>MusicPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
@@ -175,6 +182,9 @@
     </Compile>
     <Compile Include="Views\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SeriesPage.xaml.cs">
+      <DependentUpon>SeriesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -286,6 +296,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NotificationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SeriesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
