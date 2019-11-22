@@ -5,11 +5,11 @@ using Windows.Security.Credentials;
 
 namespace InFlightApp.View_Model{
     public class MainPageViewModel {
-        IUserInterface _userRepo;
+        IUserService _userRepo;
 
         public MainPageViewModel() {
             try{
-                _userRepo = ServiceLocator.Current.GetService<IUserInterface>(true);
+                _userRepo = ServiceLocator.Current.GetService<IUserService>(true);
             }catch (Exception e){
                 //Replace with logging later on
                 Console.WriteLine(e);

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Repositories
 {
-    public class FlightRepository : IFlightRepository
+    public class FlightService : IFlightService
     {
         private HttpClient client;
 
-        public FlightRepository()
+        public FlightService()
         {
             client = ApiConnection.Client;
         }

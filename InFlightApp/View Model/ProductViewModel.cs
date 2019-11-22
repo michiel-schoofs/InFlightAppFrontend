@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace InFlightApp.View_Model{
     public class ProductViewModel{
-        public static IProductRepository _prodRepo;
+        public static IProductService _prodRepo;
 
         private string _nameFilter;
 
@@ -60,7 +60,7 @@ namespace InFlightApp.View_Model{
 
         public ProductViewModel(){
             try{
-                _prodRepo = ServiceLocator.Current.GetService<IProductRepository>(true);
+                _prodRepo = ServiceLocator.Current.GetService<IProductService>(true);
                 Categories = _prodRepo.GetCategories();
 
                 Products = new ObservableCollection<Product>();

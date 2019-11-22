@@ -12,8 +12,8 @@ namespace InFlightApp.View_Model
 {
     public class PassengersViewModel
     {
-        private readonly IFlightRepository _flightRepo;
-        private readonly IUserInterface _userInterface;
+        private readonly IFlightService _flightRepo;
+        private readonly IUserService _userInterface;
 
         public ObservableCollection<Seat> Seats { get; set; }
         public ObservableCollection<Passenger> Passengers { get; set; }
@@ -22,8 +22,8 @@ namespace InFlightApp.View_Model
         {
             try
             {
-                _flightRepo = ServiceLocator.Current.GetService<IFlightRepository>(true);
-                _userInterface = ServiceLocator.Current.GetService<IUserInterface>(true);
+                _flightRepo = ServiceLocator.Current.GetService<IFlightService>(true);
+                _userInterface = ServiceLocator.Current.GetService<IUserService>(true);
                 LoadData();
             }
             catch (Exception e)

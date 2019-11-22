@@ -22,14 +22,15 @@ namespace InFlightApp.Configuration
         #region Configuration
         static public void Configure(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton<IUserInterface, UserInterface>()
+            serviceCollection.AddSingleton<IUserService, UserService>()
                              .AddSingleton<LoginViewModel>()
                              .AddSingleton<ProductViewModel>()
                              .AddSingleton<PassengersViewModel>()
                              .AddSingleton<NotificationsViewModel>()
-                             .AddSingleton<IProductRepository, ProductRepository>()
-                             .AddSingleton<IFlightRepository, FlightRepository>()
-                             .AddSingleton<INotificationService,NotificationService>(); 
+                             .AddSingleton<IProductService, ProductService>()
+                             .AddSingleton<IFlightService, FlightService>()
+                             .AddSingleton<INotificationService, NotificationService>()
+                             .AddSingleton<IEntertainmentService, EntertainmentService>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

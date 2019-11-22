@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Interfaces
 {
-    public interface IFlightRepository
+    public interface IFlightService
     {
         IEnumerable<Seat> GetSeats();
     }

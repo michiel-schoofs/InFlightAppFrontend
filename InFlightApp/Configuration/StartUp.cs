@@ -1,10 +1,9 @@
-﻿using InFlightApp.View_Model;
+﻿using InFlightApp.Model;
+using InFlightApp.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.VoiceCommands;
 using Windows.Storage;
 
@@ -13,14 +12,11 @@ namespace InFlightApp.Configuration
     public class Startup
     {
         static private readonly ServiceCollection _serviceCollection = new ServiceCollection();
-        //static private NotificationsViewModel _notificationsViewModel;
 
         static public void ConfigureAsync()
         {
             ServiceLocator.Configure(_serviceCollection);
-            //_notificationsViewModel = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
             ConfigureCortana();
-            //PollNotifications();
         }
 
         static private async void ConfigureCortana()

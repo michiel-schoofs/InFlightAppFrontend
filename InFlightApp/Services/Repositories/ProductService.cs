@@ -13,12 +13,12 @@ using Windows.Storage;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace InFlightApp.Services.Repositories{
-    public class ProductRepository : IProductRepository{
+    public class ProductService : IProductService{
         private HttpClient client;
         private readonly static Dictionary<int, string> _images = new Dictionary<int, string>();
         private static StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
 
-        public ProductRepository(){
+        public ProductService(){
             client = ApiConnection.Client;
         }
 

@@ -13,11 +13,11 @@ using Windows.Security.Credentials;
 
 namespace InFlightApp.Services.Repositories
 {
-    public class UserInterface : IUserInterface
+    public class UserService : IUserService
     {
         private HttpClient client;
 
-        public UserInterface()
+        public UserService()
         {
             client = ApiConnection.Client;
         }
