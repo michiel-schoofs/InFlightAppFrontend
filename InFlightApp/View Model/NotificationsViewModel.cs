@@ -4,10 +4,12 @@ using InFlightApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace InFlightApp.View_Model
 {
@@ -36,15 +38,16 @@ namespace InFlightApp.View_Model
             Notifications = new ObservableCollection<Notification>(_notificationService.GetAllNotifications().OrderByDescending(n => n.Timestamp));
         }
 
-        public void LoadMostRecentNotification()
+        public Notification LoadMostRecentNotification()
         {
+
             var notification = _notificationService.GetMostRecentNotification();
             if (MostRecentNotification == null || MostRecentNotification.Timestamp != notification.Timestamp)
             {
                 MostRecentNotification = notification;
-                // Doesn't work because not activated from a page => doesn't know where to draw
-                // CreateContentDialog(MostRecentNotification.Content);
+                return MostRecentNotification;
             }
+            return null;
         }
 
         public void SendNotification(string notification)
@@ -53,18 +56,7 @@ namespace InFlightApp.View_Model
             Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now });
         }
 
-        public void CreateContentDialog(string notification)
-        {
-            Task.Run(async () =>
-            {
-                ContentDialog contentDialog = new ContentDialog();
-                contentDialog.Title = "Notification from crew";
-                contentDialog.Content = notification;
-                contentDialog.CloseButtonText = "Close";
-                contentDialog.DefaultButton = ContentDialogButton.Close;
-                await contentDialog.ShowAsync();
-            });
-        }
+
 
     }
 }

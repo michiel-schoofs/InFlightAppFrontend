@@ -36,5 +36,6 @@ namespace InFlightApp.Views
                 txtNotification.Text = String.Empty;
             }
         }
+
     }
 }
