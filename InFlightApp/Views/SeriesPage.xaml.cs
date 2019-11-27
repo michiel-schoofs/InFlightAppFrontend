@@ -47,7 +47,7 @@ namespace InFlightApp.Views
             var selectedSerie = (Serie)GridViewSeries.SelectedItem;
             ContentDialog contentDialog = new ContentDialog();
 
-            StringBuilder content = new StringBuilder().Append(selectedSerie.Year + ", " + selectedSerie.Director + ", " + selectedSerie.Runtime + "\n\n");
+            StringBuilder content = new StringBuilder().Append(selectedSerie.Year + ", " + selectedSerie.Runtime + "\n\n");
             content.Append(selectedSerie.Genre + "\n\n");
             content.Append(selectedSerie.Plot + "\n\n");
             content.Append(selectedSerie.Actors);
