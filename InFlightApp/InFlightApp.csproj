@@ -168,6 +168,9 @@
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoviePlayerPage.xaml.cs">
+      <DependentUpon>MoviePlayerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MoviesPage.xaml.cs">
       <DependentUpon>MoviesPage.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\vid\start.mp4" />
+    <Content Include="Assets\vid\trailer.mp4" />
     <Content Include="Configuration\Cortana\vcd.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -293,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MoviePlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

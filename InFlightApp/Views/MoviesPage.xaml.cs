@@ -59,7 +59,13 @@ namespace InFlightApp.Views
             contentDialog.Title = selectedMovie.Title;
             contentDialog.Content = stackPanel;
             contentDialog.PrimaryButtonText = "Watch";
+            contentDialog.PrimaryButtonClick += ContentDialog_WatchButtonClick;
+            void ContentDialog_WatchButtonClick(ContentDialog sender2, ContentDialogButtonClickEventArgs e2)
+            {
+                Frame.Navigate(typeof(MoviePlayerPage));
+            }
             contentDialog.CloseButtonText = "Close";
+
             contentDialog.DefaultButton = ContentDialogButton.Primary;
 
             try
