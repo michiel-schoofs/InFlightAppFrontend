@@ -19,8 +19,8 @@ namespace InFlightApp.View_Model
             try
             {
                 _entertainmentService = ServiceLocator.Current.GetService<IEntertainmentService>(true);
-                LoadMovies();
-                LoadSeries();
+                Movies = new ObservableCollection<Movie>();
+                Series = new ObservableCollection<Serie>();
             }
             catch (Exception e)
             {
@@ -30,7 +30,7 @@ namespace InFlightApp.View_Model
 
         public void LoadMovies()
         {
-                Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
+            Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
         }
 
         public void LoadSeries()

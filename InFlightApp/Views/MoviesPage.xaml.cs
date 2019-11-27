@@ -30,6 +30,7 @@ namespace InFlightApp.Views
             try
             {
                 _model = ServiceLocator.Current.GetService<EntertainmentViewModel>(true);
+                _model.LoadMovies();
                 DataContext = _model;
             }
             catch (Exception ex)
