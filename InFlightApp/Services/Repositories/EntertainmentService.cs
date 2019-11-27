@@ -27,9 +27,9 @@ namespace InFlightApp.Services.Repositories
 
             // Want more movies? Add the url and add to the url[]
             string url1 = $"http://www.omdbapi.com/?apikey=bc156e83&s=harry+potter&type=movie";
-            //string url2 = $"http://www.omdbapi.com/?apikey=bc156e83&s=lord+of+the+rings&type=movie";
-            //string url3 = $"http://www.omdbapi.com/?apikey=bc156e83&s=star+wars&type=movie";
-            string[] urls = { url1 };
+            string url2 = $"http://www.omdbapi.com/?apikey=bc156e83&s=lord+of+the+rings&type=movie";
+            string url3 = $"http://www.omdbapi.com/?apikey=bc156e83&s=star+wars&type=movie";
+            string[] urls = { url1, url2, url3 };
 
             foreach (var url in urls)
             {
@@ -38,13 +38,17 @@ namespace InFlightApp.Services.Repositories
                 foreach (var e in ar)
                 {
                     Movie currMovie = e.ToObject<Movie>();
-                    string currUrl = $"http://omdbapi.com/?apikey=bc156e83&i={currMovie.imdbID}";
-                    string currS = client.GetStringAsync(currUrl).Result;
-                    currMovie = JObject.Parse(currS).ToObject<Movie>();
                     movies.Add(currMovie);
                 }
             }
             return movies;
+        }
+
+        public Movie GetMovie(string imdbID)
+        {
+            string url = $"http://omdbapi.com/?apikey=bc156e83&i={imdbID}";
+            string s = client.GetStringAsync(url).Result;
+            return JObject.Parse(s).ToObject<Movie>();
         }
 
         public IEnumerable<Serie> GetSeries()

@@ -10,6 +10,7 @@ namespace InFlightApp.Services.Interfaces
     public interface IEntertainmentService
     {
         IEnumerable<Movie> GetMovies();
+        Movie GetMovie(string imdbID);
         IEnumerable<Serie> GetSeries();
     }
 }

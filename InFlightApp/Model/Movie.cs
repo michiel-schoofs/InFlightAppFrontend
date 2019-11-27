@@ -19,6 +19,8 @@ namespace InFlightApp.Model
         public string Plot { get; set; }
         public string Language { get; set; }
         public string Country { get; set; }
-        public string Poster { get; set; } 
+        public string Poster { get; set; }
+
+        public bool DetailsLoaded { get; set; }
     }
 }

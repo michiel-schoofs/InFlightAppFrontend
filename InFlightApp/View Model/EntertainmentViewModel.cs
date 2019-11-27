@@ -3,6 +3,7 @@ using InFlightApp.Model;
 using InFlightApp.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace InFlightApp.View_Model
@@ -30,12 +31,36 @@ namespace InFlightApp.View_Model
 
         public void LoadMovies()
         {
-            Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
+            if (Movies.Count == 0)
+            {
+                Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
+            }
+        }
+
+        public void LoadDetailsMovie(string imdbID)
+        {
+            Movie movie = Movies.SingleOrDefault(m => m.imdbID.Equals(imdbID));
+            if (!movie.DetailsLoaded)
+            {
+                Movie movieDetail = _entertainmentService.GetMovie(imdbID);
+                movie.Released = movieDetail.Released;
+                movie.Runtime = movieDetail.Runtime;
+                movie.Genre = movieDetail.Genre;
+                movie.Director = movieDetail.Director;
+                movie.Actors = movieDetail.Actors;
+                movie.Plot = movieDetail.Plot;
+                movie.Language = movieDetail.Language;
+                movie.Country = movieDetail.Country;
+                movie.DetailsLoaded = true;
+            }
         }
 
         public void LoadSeries()
         {
-            Series = new ObservableCollection<Serie>(_entertainmentService.GetSeries());
+            if (Series.Count == 0)
+            {
+                Series = new ObservableCollection<Serie>(_entertainmentService.GetSeries());
+            }
         }
     }
 }
