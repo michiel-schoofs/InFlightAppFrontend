@@ -15,12 +15,19 @@
               SelectionMode="Single">
         <GridView.ItemTemplate>
             <DataTemplate x:Name="MovieTemplate" x:DataType="models:Movie">
-                <TextBlock Text="{x:Bind Title}"></TextBlock>
+                <StackPanel Orientation="Vertical" 
+                            Width="300"
+                            Margin="10">
+                <TextBlock Text="{x:Bind Title}" FontWeight="Bold" TextAlignment="Center" Padding="5"></TextBlock>
+                <Image Source="{x:Bind Poster}" Stretch="Uniform"/>
+                </StackPanel>
             </DataTemplate>
         </GridView.ItemTemplate>
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>
-                <ItemsWrapGrid MaximumRowsOrColumns="5" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                <ItemsWrapGrid MaximumRowsOrColumns="5" 
+                               Orientation="Horizontal" 
+                               HorizontalAlignment="Center"/>
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
     </GridView>
