@@ -3,6 +3,7 @@ using InFlightApp.Model;
 using InFlightApp.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace InFlightApp.View_Model
 {
@@ -29,7 +30,7 @@ namespace InFlightApp.View_Model
 
         public void LoadMovies()
         {
-            Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
+                Movies = new ObservableCollection<Movie>(_entertainmentService.GetMovies());
         }
 
         public void LoadSeries()

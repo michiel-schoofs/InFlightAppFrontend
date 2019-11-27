@@ -99,7 +99,11 @@ namespace InFlightApp.Views
             contentDialog.Content = notification;
             contentDialog.CloseButtonText = "Close";
             contentDialog.DefaultButton = ContentDialogButton.Close;
-            await contentDialog.ShowAsync();
+            try
+            {
+                await contentDialog.ShowAsync();
+            }
+            catch (Exception ex) { _model.MostRecentNotification = null; }
         }
     }
 }
