@@ -2,13 +2,27 @@
     x:Class="InFlightApp.Views.MoviesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:InFlightApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:models="using:InFlightApp.Model"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="MOVIES"></TextBlock>
-    </Grid>
+    <GridView x:Name="GridViewMovies"
+              ItemsSource="{Binding Movies}"
+              IsItemClickEnabled="True"
+              ItemClick="GridViewMovies_ItemClick"
+              SelectionMode="Single">
+        <GridView.ItemTemplate>
+            <DataTemplate x:Name="MovieTemplate" x:DataType="models:Movie">
+                <TextBlock Text="{x:Bind Title}"></TextBlock>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+        <GridView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid MaximumRowsOrColumns="5" Orientation="Horizontal" HorizontalAlignment="Center"/>
+            </ItemsPanelTemplate>
+        </GridView.ItemsPanel>
+    </GridView>
+
 </Page>

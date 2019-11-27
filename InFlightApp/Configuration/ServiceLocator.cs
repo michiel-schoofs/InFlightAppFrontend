@@ -27,6 +27,7 @@ namespace InFlightApp.Configuration
                              .AddSingleton<ProductViewModel>()
                              .AddSingleton<PassengersViewModel>()
                              .AddSingleton<NotificationsViewModel>()
+                             .AddSingleton<EntertainmentViewModel>()
                              .AddSingleton<IProductService, ProductService>()
                              .AddSingleton<IFlightService, FlightService>()
                              .AddSingleton<INotificationService, NotificationService>()

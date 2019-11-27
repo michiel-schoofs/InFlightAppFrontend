@@ -37,8 +37,8 @@ namespace InFlightApp.Services.Repositories
                 {
                     Movie currMovie = e.ToObject<Movie>();
                     string currUrl = $"http://omdbapi.com/?apikey=bc156e83&i={currMovie.imdbID}";
-                    string currS = client.GetStringAsync(url).Result;
-                    currMovie = JObject.Parse(s).ToObject<Movie>();
+                    string currS = client.GetStringAsync(currUrl).Result;
+                    currMovie = JObject.Parse(currS).ToObject<Movie>();
                     movies.Add(currMovie);
                 }
             }
