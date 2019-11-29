@@ -79,5 +79,19 @@ namespace InFlightApp.Services.Repositories
         }
 
 
+        public IEnumerable<Music> GetMusic()
+        {
+            ICollection<Music> music = new List<Music>();
+
+            string url = $"https://api.deezer.com/chart";
+            string s = client.GetStringAsync(url).Result;
+            JObject rootObj = JObject.Parse(s).Value<JObject>("tracks");
+            JArray ar = rootObj.Value<JArray>("data");
+            foreach (var e in ar)
+            {
+                music.Add(e.ToObject<Music>());
+            }
+            return music;
+        }
     }
 }

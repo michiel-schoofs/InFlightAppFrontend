@@ -14,6 +14,7 @@ namespace InFlightApp.View_Model
 
         public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Serie> Series { get; set; }
+        public ObservableCollection<Music> Music { get; set; }
 
         public EntertainmentViewModel()
         {
@@ -22,6 +23,7 @@ namespace InFlightApp.View_Model
                 _entertainmentService = ServiceLocator.Current.GetService<IEntertainmentService>(true);
                 Movies = new ObservableCollection<Movie>();
                 Series = new ObservableCollection<Serie>();
+                Music = new ObservableCollection<Music>();
             }
             catch (Exception e)
             {
@@ -60,6 +62,14 @@ namespace InFlightApp.View_Model
             if (Series.Count == 0)
             {
                 Series = new ObservableCollection<Serie>(_entertainmentService.GetSeries());
+            }
+        }
+
+        public void LoadMusic()
+        {
+            if (Music.Count == 0)
+            {
+                Music = new ObservableCollection<Music>(_entertainmentService.GetMusic());
             }
         }
     }

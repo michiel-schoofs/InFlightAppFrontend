@@ -1,5 +1,6 @@
 ﻿using InFlightApp.Model;
 using InFlightApp.Services.Interfaces;
+using InFlightApp.Services.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace InFlightApp.Configuration
         static public void ConfigureAsync()
         {
             ServiceLocator.Configure(_serviceCollection);
-           // ConfigureCortana();
+            // ConfigureCortana();
         }
 
         static private async void ConfigureCortana()

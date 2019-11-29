@@ -12,5 +12,6 @@ namespace InFlightApp.Services.Interfaces
         IEnumerable<Movie> GetMovies();
         Movie GetMovie(string imdbID);
         IEnumerable<Serie> GetSeries();
+        IEnumerable<Music> GetMusic();
     }
 }
