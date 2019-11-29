@@ -12,7 +12,7 @@ namespace InFlightApp.View_Model{
         public bool RememberMe { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public readonly IUserInterface _userRepo;
+        public readonly IUserService _userRepo;
         public RelayCommand Login { get; set; }
 
         public delegate Task LoginFailedDelegate(string str);
@@ -23,7 +23,7 @@ namespace InFlightApp.View_Model{
 
         public LoginViewModel() {
             try {
-                _userRepo = ServiceLocator.Current.GetService<IUserInterface>(true);
+                _userRepo = ServiceLocator.Current.GetService<IUserService>(true);
             } catch (Exception e) {
                 //Replace with logging later on
                 Console.WriteLine(e);
