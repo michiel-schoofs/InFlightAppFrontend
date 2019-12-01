@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Client.Hubs;
+﻿using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +25,6 @@ namespace InFlightApp.Views {
     /// </summary>
     public sealed partial class ChatPage : Page {
         private HubConnection hubConnection;
-        private IHubProxy hubProxy;
 
         public ChatPage() {
             this.InitializeComponent();
@@ -34,25 +32,24 @@ namespace InFlightApp.Views {
         }
 
         private async void InitilizeHub() {
-            hubConnection = new HubConnection("http://localhost:51178/chatHub", false);
-            hubProxy = hubConnection.CreateHubProxy("BroadcastHub");
-            ServicePointManager.DefaultConnectionLimit = 10;
-            await hubConnection.Start();
-            Console.WriteLine("Initialized.");
-            hubProxy.On<DateTime>("Broadcast", async data => {
+            hubConnection = new HubConnectionBuilder().WithUrl("http://localhost:51178/chatHub").Build();
+            hubConnection.On<string, string>("SendMessage", async (user, message) => {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    BroadcastResults.Text += data.ToString()
+                    BroadcastResults.Text += message
                 );
             });
 
-            //hubConnection.Closed += async () => {
-            //    await Task.Delay(new Random().Next(0, 5) * 1000);
-            //    await hubConnection.Start();
-            //};
+            await hubConnection.StartAsync();
+
+
+            hubConnection.Closed += async (error) => {
+                await Task.Delay(new Random().Next(0, 5) * 1000);
+                await hubConnection.StartAsync();
+            };
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e) {
-            await hubProxy.Invoke("SendMessage", "Me", "lqzdnlqdl");
+            await hubConnection.InvokeAsync("SendMessage", "Me", "lqzdnlqdl");
         }
     }
 }
