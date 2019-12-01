@@ -9,10 +9,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 namespace InFlightApp.View_Model{
     public class ProductViewModel{
-        public static IProductRepository _prodRepo;
+        public static IProductService _prodRepo;
 
         private string _nameFilter;
 
@@ -48,6 +49,7 @@ namespace InFlightApp.View_Model{
 
         public RelayCommand SelectCategory { get; set; }
         public RelayCommand KeyUpTextBox { get; set; }
+        public RelayCommand RefillProduct { get; set; }
 
         public ObservableCollection<string> SortModes { get; set; }
         public ObservableCollection<Product> Products { get; set; }
@@ -58,7 +60,7 @@ namespace InFlightApp.View_Model{
 
         public ProductViewModel(){
             try{
-                _prodRepo = ServiceLocator.Current.GetService<IProductRepository>(true);
+                _prodRepo = ServiceLocator.Current.GetService<IProductService>(true);
                 Categories = _prodRepo.GetCategories();
 
                 Products = new ObservableCollection<Product>();
@@ -87,6 +89,24 @@ namespace InFlightApp.View_Model{
             KeyUpTextBox = new RelayCommand((object o) =>{
                 NameFilter = (string)o;
             });
+            RefillProduct = new RelayCommand((object o) =>{
+                RefillProductHandler(o);
+            });
+        }
+
+        private void RefillProductHandler(object o) {
+            object[] obj = (object[])o;
+            Product p = ((Product)((Image)obj[0]).DataContext);
+            
+            int res;
+            bool suc = int.TryParse((string)obj[1], out res);
+
+            if (!suc || res == 0)
+                return;
+
+            p.Amount += res;
+            //Send to  backend
+            _prodRepo.AddToStock(p.ProductID, res);
         }
 
         public void SortProducts() {

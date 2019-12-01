@@ -1,8 +1,12 @@
-﻿using System;
+﻿using InFlightApp.Configuration;
+using InFlightApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +26,20 @@ namespace InFlightApp.Views
     /// </summary>
     public sealed partial class MenuPage : Page
     {
+        private readonly NotificationsViewModel _model;
+
         public MenuPage()
         {
             this.InitializeComponent();
+            try
+            {
+                _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            PollNotifications();
         }
 
         private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -49,9 +64,46 @@ namespace InFlightApp.Views
                         case "Nav_Products":
                             NavigationViewFrame.Navigate(typeof(ProductPage));
                             break;
+                        case "Nav_Notifications":
+                            NavigationViewFrame.Navigate(typeof(NotificationsPage));
+                            break;
+                        default: break;
                     }
                 }
             }
+        }
+
+        private void PollNotifications()
+        {
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    await Task.Delay(10000);
+                    var result = _model.LoadMostRecentNotification();
+                    if (result != null)
+                    {
+                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                        {
+                            await CreateContentDialog(result.Content);
+                        });
+                    }
+                }
+            });
+        }
+
+        private async Task CreateContentDialog(string notification)
+        {
+            ContentDialog contentDialog = new ContentDialog();
+            contentDialog.Title = "Notification from crew";
+            contentDialog.Content = notification;
+            contentDialog.CloseButtonText = "Close";
+            contentDialog.DefaultButton = ContentDialogButton.Close;
+            try
+            {
+                await contentDialog.ShowAsync();
+            }
+            catch (Exception ex) { _model.MostRecentNotification = null; }
         }
     }
 }

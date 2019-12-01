@@ -8,5 +8,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <TextBlock Text="Entertainment"></TextBlock>
+    <NavigationView x:Name="NavigationViewEntertainment"
+                    IsBackButtonVisible="Collapsed"
+                    IsPaneToggleButtonVisible="False"
+                    IsSettingsVisible="False"
+                    IsPaneOpen="True" SelectionChanged="NavigationViewEntertainment_SelectionChanged">
+        <NavigationView.MenuItems>
+            <NavigationViewItem Content="Movies" Tag="Nav_Entertainment_Movies"></NavigationViewItem>
+            <NavigationViewItem Content="Series" Tag="Nav_Entertainment_Series"></NavigationViewItem>
+            <NavigationViewItem Content="Music" Tag="Nav_Entertainment_Music"></NavigationViewItem>
+        </NavigationView.MenuItems>
+        <NavigationView.Content>
+            <Frame x:Name="NavigationViewEntertainmentFrame"></Frame>
+        </NavigationView.Content>
+    </NavigationView>
 </Page>

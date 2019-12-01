@@ -5,17 +5,23 @@
     xmlns:local="using:InFlightApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+    <Page.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="#003973" Offset="0"/>
+            <GradientStop Color="#E5E5BE" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
     <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
             <NavigationViewItem Content="Products" Tag="Nav_Products"></NavigationViewItem>
+            <NavigationViewItem Content="Notifications" Tag="Nav_Notifications"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Frame x:Name="NavigationViewFrame"></Frame>
+                <Frame x:Name="NavigationViewFrame"></Frame>
         </NavigationView.Content>
     </NavigationView>
 </Page>

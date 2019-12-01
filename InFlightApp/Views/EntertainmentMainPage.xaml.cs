@@ -26,5 +26,28 @@ namespace InFlightApp.Views
         {
             this.InitializeComponent();
         }
+
+        private void NavigationViewEntertainment_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            NavigationViewItem itemContent = args.SelectedItem as NavigationViewItem;
+            if (itemContent != null)
+            {
+                switch (itemContent.Tag)
+                {
+                    case "Nav_Entertainment_Movies":
+                        NavigationViewEntertainmentFrame.Navigate(typeof(MoviesPage));
+                        break;
+                    case "Nav_Entertainment_Series":
+                        NavigationViewEntertainmentFrame.Navigate(typeof(SeriesPage));
+                        break;
+                    case "Nav_Entertainment_Music":
+                        NavigationViewEntertainmentFrame.Navigate(typeof(MusicPage));
+                        break;
+
+                    default: break;
+                }
+
+            }
+        }
     }
 }
