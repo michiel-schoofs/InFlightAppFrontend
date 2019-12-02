@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace InFlightApp.View_Model {
     class TravelGroupViewModel {
         public HubConnection hubConnection { get; private set;}
-        public ObservableCollection<Message> messages { get; private set; }
+        public ObservableCollection<Message> Messages { get; private set; }
         private IEnumerable<Passenger> passengers;
         private Passenger current;
 
@@ -27,8 +27,11 @@ namespace InFlightApp.View_Model {
                 //TODO: Get seat from screen
                 _userService.AuthenticatePassenger(10);
                 _travelGroupService.ReloadHttpClient();
+                _userService.ReloadHttpClient();
                 getPassengers();
-                this.current = passengers.SingleOrDefault(p => p.Id == _userService.GetLoggedIn().Id);
+                Messages = new ObservableCollection<Message>();
+                var pers = _userService.GetLoggedIn();
+                current = passengers.SingleOrDefault(p => p.Id == pers.Id);
                 getMessages();
             }
             catch (Exception ex)
@@ -40,7 +43,7 @@ namespace InFlightApp.View_Model {
 
         private async void getMessages() {
             var temp = await _travelGroupService.GetMessages();
-            messages = new ObservableCollection<Message>(temp);
+            temp.ToList().ForEach(m => Messages.Add(m));
             InitilizeHub();
         }
 
@@ -59,14 +62,11 @@ namespace InFlightApp.View_Model {
                 await hubConnection.StartAsync();
             };
 
-            hubConnection.On<int, int, int, string, string>("ReceiveSentMessage", async (travelgroupId, messageId, userId, date, message) => {
+            hubConnection.On<int, int, int, string, string>("ReceiveSentMessage", (travelgroupId, messageId, userId, date, message) => {
                 if (current != null && current.TravelGroupId == travelgroupId) {
                     var sender = passengers.Where(p => p.TravelGroupId == travelgroupId && p.Id == userId).FirstOrDefault();
-                    messages.Add(new Message { MessageId = messageId, Sender = sender, Content = message, DateSent = DateTime.Parse(date) });
+                    Messages.Add(new Message { MessageId = messageId, Sender = sender, Content = message, DateSent = DateTime.Parse(date) });
                 }
-                //await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                //    BroadcastResults.Text += message
-                //);
             });
         }
 

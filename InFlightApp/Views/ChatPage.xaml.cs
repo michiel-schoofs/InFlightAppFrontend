@@ -6,8 +6,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace InFlightApp.Views {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -26,13 +24,15 @@ namespace InFlightApp.Views {
                 Console.WriteLine(ex.Message);
             }
             this.InitializeComponent();
-
-            //ObservableCollection weergeven in XML..
-            //_model.messages;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            _model.SendMessage("qjhdqkjd");
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if ( InputBox.Text != "")
+            {
+                _model.SendMessage(InputBox.Text);
+                InputBox.Text = "";
+            }
         }
     }
 }

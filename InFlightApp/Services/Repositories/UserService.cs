@@ -103,5 +103,9 @@ namespace InFlightApp.Services.Repositories
             JObject obj = JObject.Parse(s);
             return obj.ToObject<Passenger>();
         }
+
+        public void ReloadHttpClient() {
+            client = ApiConnection.Client;
+        }
     }
 }

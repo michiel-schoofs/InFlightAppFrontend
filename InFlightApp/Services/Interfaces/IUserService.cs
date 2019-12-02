@@ -10,7 +10,7 @@ namespace InFlightApp.Services.Interfaces
     {
         bool Login(string username, string password);
         bool AuthenticatePassenger(int seatnumber);
-
+        void ReloadHttpClient();
         void StoreCredentials(string username, string password);
         PasswordCredential GetCredential();
         void RemoveCredential(PasswordCredential cred);
