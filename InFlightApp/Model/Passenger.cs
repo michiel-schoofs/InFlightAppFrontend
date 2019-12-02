@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Model
 {
-    public class Passenger
+    public class Passenger : Persoon
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        //public int Id { get; set; }
+        //public string FirstName { get; set; }
+        //public string LastName { get; set; }
         public Seat Seat { get; set; }
+        public int TravelGroupId { get; set; }
     }
 }

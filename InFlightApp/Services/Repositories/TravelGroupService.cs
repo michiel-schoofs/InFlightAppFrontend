@@ -19,6 +19,10 @@ namespace InFlightApp.Services.Repositories {
             client = ApiConnection.Client;
         }
 
+        public void ReloadHttpClient() {
+            client = ApiConnection.Client;
+        }
+
         public bool AddMessage(string content) {
             HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/TravelGroup/messages?content={content}", null).Result;
 
@@ -36,7 +40,8 @@ namespace InFlightApp.Services.Repositories {
             if (responseArray != null)
             {
                 return responseArray.Select(e => {
-                    JObject persoonObj = JObject.Parse(e.Value<string>("sender"));
+                    var token = e.Value<JToken>("sender");
+                    JObject persoonObj = JObject.Parse(token.ToString());
                     Persoon p = new Persoon { 
                         Id = persoonObj.Value<int>("id"),
                         FirstName = persoonObj.Value<string>("firstName"),

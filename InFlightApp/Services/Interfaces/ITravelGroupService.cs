@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Interfaces {
     interface ITravelGroupService {
+        void ReloadHttpClient();
         Task<Message[]> GetMessages();
         bool AddMessage(string content);
     }
