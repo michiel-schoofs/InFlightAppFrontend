@@ -72,7 +72,7 @@ namespace InFlightApp.View_Model {
 
         public async void SendMessage(string message) {
             if (current != null) {
-                await hubConnection.InvokeAsync("SendMessage", current.TravelGroupId, message);
+                await hubConnection.InvokeAsync("SendMessage", current.Id, message);
             }
         }
     }
