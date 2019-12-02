@@ -11,11 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Repositories {
-    class TravelGroupRepository : ITravelGroupRepository {
+    class TravelGroupService : ITravelGroupService {
 
         private HttpClient client;
 
-        public TravelGroupRepository() {
+        public TravelGroupService() {
             client = ApiConnection.Client;
         }
 

@@ -158,9 +158,10 @@
     <Compile Include="View Model\EntertainmentViewModel.cs" />
     <Compile Include="View Model\NotificationsViewModel.cs" />
     <Compile Include="View Model\PassengersViewModel.cs" />
-    <Compile Include="Services\Interfaces\ITravelGroupRepository.cs" />
-    <Compile Include="Services\Repositories\TravelGroupRepository.cs" />
+    <Compile Include="Services\Interfaces\ITravelGroupService.cs" />
+    <Compile Include="Services\Repositories\TravelGroupService.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
+    <Compile Include="View Model\TravelGroupViewModel.cs" />
     <Compile Include="Views\ChatPage.xaml.cs">
       <DependentUpon>ChatPage.xaml</DependentUpon>
     </Compile>

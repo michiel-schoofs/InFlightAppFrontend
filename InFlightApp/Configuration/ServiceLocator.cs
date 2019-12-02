@@ -28,10 +28,12 @@ namespace InFlightApp.Configuration
                              .AddSingleton<PassengersViewModel>()
                              .AddSingleton<NotificationsViewModel>()
                              .AddSingleton<EntertainmentViewModel>()
+                             .AddSingleton<TravelGroupViewModel>()
                              .AddSingleton<IProductService, ProductService>()
                              .AddSingleton<IFlightService, FlightService>()
                              .AddSingleton<INotificationService, NotificationService>()
-                             .AddSingleton<IEntertainmentService, EntertainmentService>();
+                             .AddSingleton<IEntertainmentService, EntertainmentService>()
+                             .AddSingleton<ITravelGroupService, TravelGroupService>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }

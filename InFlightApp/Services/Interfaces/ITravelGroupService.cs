@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Interfaces {
-    interface ITravelGroupRepository {
+    interface ITravelGroupService {
         Task<Message[]> GetMessages();
         bool AddMessage(string content);
     }
