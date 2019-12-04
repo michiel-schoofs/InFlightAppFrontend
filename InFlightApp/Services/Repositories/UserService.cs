@@ -33,7 +33,7 @@ namespace InFlightApp.Services.Repositories
 
             if (response.IsSuccessStatusCode){
                 ApiConnection.Token = response.Content.ReadAsStringAsync().Result;
-                client = ApiConnection.Client;
+                ReloadHttpClient();
             }
 
             return true;
@@ -104,6 +104,18 @@ namespace InFlightApp.Services.Repositories
             string s = client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
             return obj.ToObject<Passenger>();
+        }
+
+        public void LogOut() {
+            ApiConnection.Token = null;
+            ReloadHttpClient();
+
+            var vault = new PasswordVault();
+            PasswordCredential cred = GetCredential();
+
+            if (cred != null) {
+                vault.Remove(cred);
+            }
         }
 
         public void ReloadHttpClient() {

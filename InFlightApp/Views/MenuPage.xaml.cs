@@ -35,13 +35,19 @@ namespace InFlightApp.Views
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
                 LoginViewModel lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
-                userIcon.DataContext = lvm.GetLoggedInUser();
+                logoutBtn.DataContext = lvm;
+                UserStackPanel.DataContext = lvm;
+                lvm.LoggedOut += Lvm_LoggedOut;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             PollNotifications();
+        }
+
+        private void Lvm_LoggedOut(){
+            Frame.Navigate(typeof(MainPage));
         }
 
         private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
