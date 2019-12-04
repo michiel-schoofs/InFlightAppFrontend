@@ -2,8 +2,9 @@
     x:Class="InFlightApp.Views.MenuPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:InFlightApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:local="using:InFlightApp.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Background>
@@ -13,7 +14,7 @@
         </LinearGradientBrush>
     </Page.Background>
 
-    <NavigationView x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
+    <NavigationView Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
@@ -24,5 +25,8 @@
         <NavigationView.Content>
                 <Frame x:Name="NavigationViewFrame"></Frame>
         </NavigationView.Content>
+        <NavigationView.PaneFooter>
+            <local:UserButton/>
+        </NavigationView.PaneFooter>
     </NavigationView>
 </Page>

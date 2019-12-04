@@ -31,8 +31,10 @@ namespace InFlightApp.Services.Repositories
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode){
                 ApiConnection.Token = response.Content.ReadAsStringAsync().Result;
+                client = ApiConnection.Client;
+            }
 
             return true;
         }

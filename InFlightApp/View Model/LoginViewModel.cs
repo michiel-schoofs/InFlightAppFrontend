@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.Services;
 using InFlightApp.Services.Interfaces;
 using System;
@@ -36,6 +37,10 @@ namespace InFlightApp.View_Model{
             ConfigureCommands();
         }
 
+        public Persoon GetLoggedInUser() {
+            return _userRepo.GetLoggedIn();
+        }
+
         private void ConfigureCommands() {
             Login = new RelayCommand(_ => LoginToApplication());
         }
@@ -46,6 +51,7 @@ namespace InFlightApp.View_Model{
             if (!success)
                 LoginFailedEvent.Invoke("Username or password incorrect");
             else{
+                
                 LoginSuccess?.Invoke();
                 if (RememberMe)
                     _userRepo.StoreCredentials(Username, Password);
