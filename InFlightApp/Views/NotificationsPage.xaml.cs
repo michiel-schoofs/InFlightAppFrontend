@@ -37,13 +37,16 @@ namespace InFlightApp.Views
                 if (ReceiverBox.SelectedItem != null)
                 {
                     var receiver = (ReceiverBox.SelectedItem as Passenger).Seat.SeatCode;
+                    if (receiver.Equals("All")) { receiver = null; }
                     _model.SendNotification(notification, receiver);
                 }
                 else
                 {
                     _model.SendNotification(notification, null);
-                    txtNotification.Text = String.Empty;
                 }
+                ReceiverBox.SelectedIndex = -1;
+                txtNotification.Text = String.Empty;
+
             }
         }
 

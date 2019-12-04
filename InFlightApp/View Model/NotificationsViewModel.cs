@@ -60,7 +60,8 @@ namespace InFlightApp.View_Model
 
         public void LoadPassengers()
         {
-            Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
+            Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers().OrderBy(p=>p.Seat.SeatCode).ToList());
+            Passengers.Insert(0, new Passenger() { FirstName = "All", LastName = "Passengers", Seat = new Seat() { SeatCode = "All" } });
         }
 
 

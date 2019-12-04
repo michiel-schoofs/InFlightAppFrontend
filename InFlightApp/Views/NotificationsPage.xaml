@@ -34,10 +34,16 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Content}" 
-                                           Style="{ThemeResource HeaderTextBlockStyle}"/>
+                                <TextBlock xml:space="preserve" 
+                                           Style="{ThemeResource HeaderTextBlockStyle}"><Run Text="{Binding Content}"></Run></TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock xml:space="preserve" 
+                                           Style="{ThemeResource BodyTextBlockStyle}"><Run Text="Sent to:"></Run></TextBlock>
+                                    <TextBlock xml:space="preserve" 
+                                           Style="{ThemeResource BodyTextBlockStyle}"> <Run Text="{Binding Receiver}"></Run></TextBlock>
+                                </StackPanel>
                                 <TextBlock Text="{Binding Timestamp}" 
-                                           Style="{ThemeResource BodyTextBlockStyle}"/>
+                                           Style="{ThemeResource BodyTextBlockStyle}"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
