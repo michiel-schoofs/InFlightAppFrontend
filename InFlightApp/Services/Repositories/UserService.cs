@@ -99,11 +99,17 @@ namespace InFlightApp.Services.Repositories
             return ar.Select(p => p.ToObject<Passenger>()).ToList();
         }
 
-        public Persoon GetLoggedIn() {
-            string url = $"{ApiConnection.URL}/Users/current";
-            string s = client.GetStringAsync(url).Result;
-            JObject obj = JObject.Parse(s);
-            return obj.ToObject<Passenger>();
+        public Passenger GetLoggedIn() {
+            try
+            {
+                string url = $"{ApiConnection.URL}/Users/current";
+                string s = client.GetStringAsync(url).Result;
+                JObject obj = JObject.Parse(s);
+                return obj.ToObject<Passenger>();
+            }catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         public void ReloadHttpClient() {

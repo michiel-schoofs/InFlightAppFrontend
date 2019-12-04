@@ -13,5 +13,10 @@ namespace InFlightApp.Model
         //public string LastName { get; set; }
         public Seat Seat { get; set; }
         public int TravelGroupId { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString() + $" | {Seat.SeatCode}";
+        }
     }
 }

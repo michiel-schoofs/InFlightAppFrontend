@@ -58,5 +58,10 @@ namespace InFlightApp.View_Model{
             }
         }
 
+        public Passenger GetLoggedIn()
+        {
+            return _userRepo.GetLoggedIn();
+        }
+
     }
 }

@@ -19,13 +19,15 @@ namespace InFlightApp.View_Model
         public ObservableCollection<Notification> Notifications { get; set; }
         public Notification MostRecentNotification { get; set; }
 
+        public ObservableCollection<Passenger> Passengers { get; set; }
+        private readonly IUserService _userInterface;
 
         public NotificationsViewModel()
         {
             try
             {
                 _notificationService = ServiceLocator.Current.GetService<INotificationService>(true);
-                LoadNotifications();
+                _userInterface = ServiceLocator.Current.GetService<IUserService>(true);
             }
             catch (Exception ex)
             {
@@ -50,12 +52,17 @@ namespace InFlightApp.View_Model
             return null;
         }
 
-        public void SendNotification(string notification)
+        public void SendNotification(string notification, string receiver)
         {
-            _notificationService.SendNotification(notification);
-            Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now });
+            _notificationService.SendNotification(notification, receiver);
+            Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now, Receiver = receiver });
         }
 
+        public void LoadPassengers()
+        {
+            Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers().OrderBy(p=>p.Seat.SeatCode).ToList());
+            Passengers.Insert(0, new Passenger() { FirstName = "All", LastName = "Passengers", Seat = new Seat() { SeatCode = "All" } });
+        }
 
 
     }
