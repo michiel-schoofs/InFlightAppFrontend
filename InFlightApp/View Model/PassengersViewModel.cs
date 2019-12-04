@@ -56,6 +56,7 @@ namespace InFlightApp.View_Model
         {
             Passengers = new ObservableCollection<Passenger>(_userInterface.GetPassengers());
             Seats = new ObservableCollection<Seat>(_flightRepo.GetSeats());
+
         }
     }
 }

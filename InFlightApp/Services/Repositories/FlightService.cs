@@ -19,6 +19,32 @@ namespace InFlightApp.Services.Repositories
             client = ApiConnection.Client;
         }
 
+        public Weather GetCurrentWeather(string city, string country)
+        {
+            string url = $"https://samples.openweathermap.org/data/2.5/weather?q={city},{country}&appid=b6907d289e10d714a6e88b30761fae22";
+            string s = client.GetStringAsync(url).Result;
+            JObject obj = JObject.Parse(s);
+
+            return new Weather()
+            {
+                Cloudiness = obj.Value<double>("clouds.all"),
+                Humidity = obj.Value<double>("main.humidity"),
+                Pressure = obj.Value<double>("main.pressure"),
+                Temp = obj.Value<double>("main.pressure"),
+                TempMax = obj.Value<double>("main.temp_max"),
+                TempMin = obj.Value<double>("main.temp_min"),
+                //Description = obj.Value<string>("weather")[0].
+                WindSpeed = obj.Value<double>("wind.speed")
+            };
+        }
+
+        public Flight GetFlight()
+        {
+            string url = $"{ApiConnection.URL}/Flight/info";
+            string s = client.GetStringAsync(url).Result;
+            return JObject.Parse(s).ToObject<Flight>();
+        }
+
         public IEnumerable<Seat> GetSeats()
         {
             string url = $"{ApiConnection.URL}/Flight/seats";
