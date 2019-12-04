@@ -39,5 +39,10 @@ namespace InFlightApp.Views
             ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation",crewButton);
             this.Frame.Navigate(typeof(LoginPage),typeof(StartAppPage),new SuppressNavigationTransitionInfo());
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e){
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("ForwardConnectedAnimation", passengerButton);
+            this.Frame.Navigate(typeof(UserloginGrid), typeof(StartAppPage), new SuppressNavigationTransitionInfo());
+        }
     }
 }

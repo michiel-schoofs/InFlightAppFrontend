@@ -203,6 +203,9 @@
     <Compile Include="Views\StartAppPage.xaml.cs">
       <DependentUpon>StartAppPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PassengerLoginPage.xaml.cs">
+      <DependentUpon>PassengerLoginPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -224,6 +227,9 @@
     <Content Include="Assets\img\products\default.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\img\seats\businessclass.png" />
+    <Content Include="Assets\img\seats\economyclass.png" />
+    <Content Include="Assets\img\seats\firstclass.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
@@ -338,6 +344,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PassengerLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Cimbalino.Toolkit">
@@ -362,12 +372,14 @@
       <Version>12.0.3-beta2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <PRIResource Include="Strings\en-GB\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Strings\nl-BE\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

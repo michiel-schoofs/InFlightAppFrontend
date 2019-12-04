@@ -18,6 +18,9 @@ namespace InFlightApp.View_Model
         public ObservableCollection<Seat> Seats { get; set; }
         public ObservableCollection<Passenger> Passengers { get; set; }
 
+        public int SeatRows { get => GetSeatRows(); }
+        public int SeatColumns { get => GetSeatColumns().Count; }
+
         public PassengersViewModel()
         {
             try

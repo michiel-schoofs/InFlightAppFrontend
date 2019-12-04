@@ -25,7 +25,7 @@
                 <RowDefinition Height="40px"/>
             </Grid.RowDefinitions>
             <Image Grid.Column="1" Grid.Row="1"  Source="/Assets/img/met tekst ontwerp.png"  />
-            <Button x:Uid="PassengerButton" Style="{StaticResource MenuButton}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"/>
+            <Button x:Uid="PassengerButton"  Name="passengerButton" Style="{StaticResource MenuButton}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Click="Button_Click_1" />
             <Button x:Uid="CrewmemberButton" Name ="crewButton" Style="{StaticResource MenuButton}" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Click="Button_Click"/>
         </Grid>
     </Border>
