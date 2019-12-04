@@ -72,5 +72,22 @@ namespace InFlightApp.View_Model
                 Music = new ObservableCollection<Music>(_entertainmentService.GetMusic());
             }
         }
+
+        public void SetPlaying(Music song)
+        {
+            foreach (var track in Music)
+            {
+                track.IsPlaying = false;
+            }
+            song.IsPlaying = true;
+        }
+
+        public void SetNotPlaying()
+        {
+            foreach (var track in Music)
+            {
+                track.IsPlaying = false;
+            }
+        }
     }
 }

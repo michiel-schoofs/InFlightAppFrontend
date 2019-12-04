@@ -6,27 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converter ="using:InFlightApp.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <UserControl.Resources>
+        <converter:DurationConverter x:Key="durationConverter"/>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="567*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="8*"></RowDefinition>
-            <RowDefinition Height="0*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="0">
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                    Margin="0,0,0,0" VerticalAlignment="Stretch">
             <TextBlock Text="Top 10 Tracks" Style="{ThemeResource HeaderTextBlockStyle}" 
                    FontWeight="Bold" Margin="15"></TextBlock>
         </StackPanel>
 
-        <ScrollViewer Grid.Column="0" Grid.Row="1">
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" 
+                      Margin="0,0,0,0" VerticalAlignment="Stretch">
             <StackPanel>
-                <ListView ItemsSource="{Binding Music}">
+                <MediaElement x:Name="MusicPlayer" Source="/Assets/mp3/arcticMonkeys.mp3" AutoPlay="False"></MediaElement>
+                <ListView ItemsSource="{Binding Music}" x:Name="Songlist">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" 
@@ -43,21 +51,26 @@
                                 <TextBlock xml:space="preserve"  
                                            Style="{ThemeResource SubheaderTextBlockStyle}"
                                            VerticalAlignment="Center"> <Run Text="{Binding Title}"></Run></TextBlock>
+                                <SymbolIcon Visibility="{Binding IsPlaying, Mode=OneWay}"
+                                            Symbol="Volume"
+                                            VerticalAlignment="Center" 
+                                            Margin="10,0,0,0"/>
+
                             </StackPanel>
-                            
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
                 </ListView>
             </StackPanel>
-            
         </ScrollViewer>
 
-        <StackPanel Grid.Column="0" Grid.Row="2">
-            <MediaElement  AutoPlay="False" AreTransportControlsEnabled="True"
-                          Source="/Assets/mp3/arcticMonkeys.mp3" x:Name="MusicPlayer"></MediaElement>
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+            Orientation="Vertical" Margin="15,15,15,15"    >
+            <Slider x:Name="SongSlider" Width="Auto"
+                    IsThumbToolTipEnabled="False">
+            </Slider>
+            <TextBlock Text="{Binding ElementName=SongSlider,Path=Value,Converter={StaticResource durationConverter}}"/>
         </StackPanel>
-        
-    </Grid>
 
+    </Grid>
 </Page>

@@ -27,6 +27,7 @@ namespace InFlightApp.Views
     public sealed partial class MenuPage : Page
     {
         private readonly NotificationsViewModel _model;
+        private readonly LoginViewModel _userModel;
 
         public MenuPage()
         {
@@ -86,21 +87,30 @@ namespace InFlightApp.Views
 
         private void PollNotifications()
         {
-            Task.Run(async () =>
+            var loggedInPassenger = _userModel.GetLoggedIn();
+            if (loggedInPassenger != null)
+            {
+                Task.Run(async () =>
             {
                 while (true)
                 {
-                    await Task.Delay(10000);
+                    await Task.Delay(5000);
                     var result = _model.LoadMostRecentNotification();
                     if (result != null)
                     {
-                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                         {
-                            await CreateContentDialog(result.Content);
-                        });
+                            if (result.Receiver == null || result.Receiver.Equals(loggedInPassenger.Seat.SeatCode))
+                            {
+                                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                                {
+                                    await CreateContentDialog(result.Content);
+                                });
+                            }
+                        }
                     }
                 }
             });
+            }
         }
 
         private async Task CreateContentDialog(string notification)

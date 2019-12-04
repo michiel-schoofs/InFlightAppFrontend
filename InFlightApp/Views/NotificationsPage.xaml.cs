@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Threading.Tasks;
@@ -12,13 +13,14 @@ namespace InFlightApp.Views
     {
 
         private readonly NotificationsViewModel _model;
-
         public NotificationsPage()
         {
             InitializeComponent();
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+                _model.LoadNotifications();
+                _model.LoadPassengers();
                 DataContext = _model;
             }
             catch (Exception ex)
@@ -32,8 +34,19 @@ namespace InFlightApp.Views
             var notification = txtNotification.Text;
             if (notification != null && !string.Empty.Equals(notification))
             {
-                _model.SendNotification(notification);
+                if (ReceiverBox.SelectedItem != null)
+                {
+                    var receiver = (ReceiverBox.SelectedItem as Passenger).Seat.SeatCode;
+                    if (receiver.Equals("All")) { receiver = null; }
+                    _model.SendNotification(notification, receiver);
+                }
+                else
+                {
+                    _model.SendNotification(notification, null);
+                }
+                ReceiverBox.SelectedIndex = -1;
                 txtNotification.Text = String.Empty;
+
             }
         }
 
