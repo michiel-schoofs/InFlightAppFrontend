@@ -6,14 +6,23 @@
     xmlns:vm="using:InFlightApp.View_Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+    <Page.Resources>
+    </Page.Resources>
     <Page.DataContext>
         <vm:TravelGroupViewModel/>
     </Page.DataContext>
     <StackPanel Width="500" >
         <ScrollViewer>
             <ListView ItemsSource="{Binding Messages}" Height="500">
+                <ListView.Background>
+                    <AcrylicBrush TintOpacity="0.13"/>
+                </ListView.Background>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel ItemsUpdatingScrollMode="KeepLastItemInView" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Width="500" Margin="10,10,10,10">
@@ -28,10 +37,18 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
-        <StackPanel Orientation="Horizontal">
-            <TextBox Width="300" x:Name="InputBox"></TextBox>
-            <Button Content="Verstuur" Click="Button_Click_1"/>
-        </StackPanel>
-
+        <Grid Width="500" BorderThickness="0,1,0,0" BorderBrush="Gray">
+            <Grid.Background>
+                <AcrylicBrush TintColor="#CCFFFFFF"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Style="{StaticResource ChatTextBox}" Grid.Column ="0" x:Name="InputBox"></TextBox>
+            <Button Style="{StaticResource ChatButtonStyle}" Grid.Column ="1" Click="Button_Click_1" Height="32">
+                <Image Source="/Assets/send.png" Stretch="UniformToFill"/>
+            </Button>
+        </Grid>
     </StackPanel>
 </Page>
