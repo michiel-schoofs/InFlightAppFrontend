@@ -223,9 +223,6 @@
     <Compile Include="Views\PassengerLoginPage.xaml.cs">
       <DependentUpon>PassengerLoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserButton.xaml.cs">
-      <DependentUpon>UserButton.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -382,10 +379,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TravelGroupPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

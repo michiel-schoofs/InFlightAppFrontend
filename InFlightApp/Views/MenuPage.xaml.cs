@@ -34,6 +34,8 @@ namespace InFlightApp.Views
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+                LoginViewModel lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                userIcon.DataContext = lvm.GetLoggedInUser();
             }
             catch (Exception ex)
             {
@@ -107,6 +109,10 @@ namespace InFlightApp.Views
                 await contentDialog.ShowAsync();
             }
             catch (Exception ex) { _model.MostRecentNotification = null; }
+        }
+
+        private void userIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
+            userIcon.ContextFlyout.ShowAt(userIcon);
         }
     }
 }
