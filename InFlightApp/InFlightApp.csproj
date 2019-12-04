@@ -156,6 +156,7 @@
     <Compile Include="Services\Repositories\NotificationService.cs" />
     <Compile Include="Services\Repositories\ProductService.cs" />
     <Compile Include="View Model\EntertainmentViewModel.cs" />
+    <Compile Include="View Model\InfoViewModel.cs" />
     <Compile Include="View Model\NotificationsViewModel.cs" />
     <Compile Include="View Model\PassengersViewModel.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />

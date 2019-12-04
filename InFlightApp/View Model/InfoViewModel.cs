@@ -30,9 +30,7 @@ namespace InFlightApp.View_Model
 
         public void LoadFlightInfo()
         {
-
             Flight = _flightService.GetFlight();
-
         }
 
         public void LoadWeatherInfo()
