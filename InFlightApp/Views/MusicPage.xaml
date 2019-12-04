@@ -26,7 +26,7 @@
 
         <ScrollViewer Grid.Column="0" Grid.Row="1">
             <StackPanel>
-                <ListView ItemsSource="{Binding Music}">
+                <ListView ItemsSource="{Binding Music}" x:Name="Songlist">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" 
@@ -43,21 +43,25 @@
                                 <TextBlock xml:space="preserve"  
                                            Style="{ThemeResource SubheaderTextBlockStyle}"
                                            VerticalAlignment="Center"> <Run Text="{Binding Title}"></Run></TextBlock>
+                                <SymbolIcon Visibility="{Binding IsPlaying, Mode=OneWay}"
+                                            Symbol="Volume"
+                                            VerticalAlignment="Center" 
+                                            Margin="10,0,0,0"/>
                             </StackPanel>
-                            
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
                 </ListView>
             </StackPanel>
-            
+
         </ScrollViewer>
 
         <StackPanel Grid.Column="0" Grid.Row="2">
             <MediaElement  AutoPlay="False" AreTransportControlsEnabled="True"
                           Source="/Assets/mp3/arcticMonkeys.mp3" x:Name="MusicPlayer"></MediaElement>
         </StackPanel>
-        
+
     </Grid>
 
 </Page>

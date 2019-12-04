@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,6 @@ namespace InFlightApp.Views
     public sealed partial class MusicPage : Page
     {
         private readonly EntertainmentViewModel _model;
-        private bool IsPlaying { get; set; }
 
         public MusicPage()
         {
@@ -39,33 +39,19 @@ namespace InFlightApp.Views
 
         private void Song_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            var stackPanel = sender as StackPanel;
-            var symbolIcon = new SymbolIcon()
+            var song = Songlist.SelectedItem as Music;
+
+            if (!song.IsPlaying)
             {
-                Symbol = Symbol.Volume,
-                VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(10, 0, 0, 0)
-            };
-            if (!IsPlaying)
-            {
-                if (stackPanel.Children.Contains(symbolIcon))
-                {
-                    stackPanel.Children.Remove(symbolIcon);
-                }
+                _model.SetPlaying(song);
                 MusicPlayer.Position = TimeSpan.FromSeconds(0);
                 MusicPlayer.Play();
-                IsPlaying = true;
-                stackPanel.Children.Add(symbolIcon);
             }
             else
             {
+                _model.SetNotPlaying();
                 MusicPlayer.Position = TimeSpan.FromSeconds(0);
                 MusicPlayer.Stop();
-                IsPlaying = false;
-                if (stackPanel.Children.Contains(symbolIcon))
-                {
-                    stackPanel.Children.Remove(symbolIcon);
-                }
             }
         }
     }
