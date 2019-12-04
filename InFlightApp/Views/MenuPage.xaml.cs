@@ -35,10 +35,10 @@ namespace InFlightApp.Views
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
-                LoginViewModel lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
-                logoutBtn.DataContext = lvm;
-                UserStackPanel.DataContext = lvm;
-                lvm.LoggedOut += Lvm_LoggedOut;
+                _userModel = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                logoutBtn.DataContext = _userModel;
+                UserStackPanel.DataContext = _userModel;
+                _userModel.LoggedOut += Lvm_LoggedOut;
             }
             catch (Exception ex)
             {
