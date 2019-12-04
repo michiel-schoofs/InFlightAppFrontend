@@ -14,5 +14,7 @@ namespace InFlightApp.Model
         public string Content { get; set; }
 
         public DateTime Timestamp { get; set; }
+
+        public string Receiver { get; set; }
     }
 }
