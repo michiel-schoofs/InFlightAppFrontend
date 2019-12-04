@@ -134,17 +134,37 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Movie.cs" />
+    <Compile Include="Model\Music.cs" />
+    <Compile Include="Model\Notification.cs" />
+    <Compile Include="Model\Passenger.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Persoon.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductType.cs" />
+    <Compile Include="Model\Seat.cs" />
+    <Compile Include="Model\SeatType.cs" />
+    <Compile Include="Model\Serie.cs" />
     <Compile Include="Model\SortType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Interfaces\IProductRepository.cs" />
-    <Compile Include="Services\Interfaces\ITravelGroupRepository.cs" />
-    <Compile Include="Services\Repositories\ProductRepository.cs" />
-    <Compile Include="Services\Repositories\TravelGroupRepository.cs" />
+    <Compile Include="Services\Repositories\EntertainmentService.cs" />
+    <Compile Include="Services\Interfaces\IFlightService.cs" />
+    <Compile Include="Services\Interfaces\IEntertainmentService.cs" />
+    <Compile Include="Services\Interfaces\INotificationService.cs" />
+    <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\Repositories\FlightService.cs" />
+    <Compile Include="Services\Repositories\NotificationService.cs" />
+    <Compile Include="Services\Repositories\ProductService.cs" />
+    <Compile Include="View Model\EntertainmentViewModel.cs" />
+    <Compile Include="View Model\NotificationsViewModel.cs" />
+    <Compile Include="View Model\PassengersViewModel.cs" />
+    <Compile Include="Services\Interfaces\ITravelGroupService.cs" />
+    <Compile Include="Services\Repositories\TravelGroupService.cs" />
     <Compile Include="View Model\ProductViewModel.cs" />
+    <Compile Include="View Model\TravelGroupViewModel.cs" />
+    <Compile Include="Views\ChatPage.xaml.cs">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EntertainmentMainPage.xaml.cs">
       <DependentUpon>EntertainmentMainPage.xaml</DependentUpon>
     </Compile>
@@ -157,19 +177,34 @@
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MoviePlayerPage.xaml.cs">
+      <DependentUpon>MoviePlayerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MoviesPage.xaml.cs">
+      <DependentUpon>MoviesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPage.xaml.cs">
+      <DependentUpon>MusicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationsPage.xaml.cs">
+      <DependentUpon>NotificationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PassengersPage.xaml.cs">
       <DependentUpon>PassengersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SeriesPage.xaml.cs">
+      <DependentUpon>SeriesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\ApiConnection.cs" />
-    <Compile Include="Services\Interfaces\IUserInterface.cs" />
-    <Compile Include="Services\Repositories\UserInterface.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Repositories\UserService.cs" />
     <Compile Include="Configuration\ServiceLocator.cs" />
     <Compile Include="View Model\LoginViewModel.cs" />
     <Compile Include="View Model\MainPageViewModel.cs" />
@@ -205,6 +240,7 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\mp3\arcticMonkeys.mp3" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -237,6 +273,8 @@
     <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\vid\start.mp4" />
+    <Content Include="Assets\vid\trailer.mp4" />
+    <Content Include="Configuration\Cortana\vcd.xml" />
     <Content Include="Configuration\Cortana\vcd.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -262,6 +300,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ChatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EntertainmentMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,11 +320,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MoviePlayerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MoviesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotificationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PassengersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProductPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SeriesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,11 +362,23 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
+      <Version>3.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Cimbalino.Toolkit">
+      <Version>2.5.2</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
       <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
