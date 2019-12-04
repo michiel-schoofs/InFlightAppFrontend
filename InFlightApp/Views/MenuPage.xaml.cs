@@ -27,6 +27,7 @@ namespace InFlightApp.Views
     public sealed partial class MenuPage : Page
     {
         private readonly NotificationsViewModel _model;
+        private readonly LoginViewModel _userModel;
 
         public MenuPage()
         {
@@ -34,6 +35,7 @@ namespace InFlightApp.Views
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+                _userModel = ServiceLocator.Current.GetService<LoginViewModel>(true);
             }
             catch (Exception ex)
             {
@@ -84,7 +86,7 @@ namespace InFlightApp.Views
                 {
                     await Task.Delay(10000);
                     var result = _model.LoadMostRecentNotification();
-                    if (result != null)
+                    if (result != null && (result.Receiver == null || result.Receiver.Equals(_userModel.GetLoggedIn().Seat.SeatCode)))
                     {
                         await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                         {

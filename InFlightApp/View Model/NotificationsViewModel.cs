@@ -25,7 +25,6 @@ namespace InFlightApp.View_Model
             try
             {
                 _notificationService = ServiceLocator.Current.GetService<INotificationService>(true);
-                LoadNotifications();
             }
             catch (Exception ex)
             {
@@ -50,10 +49,10 @@ namespace InFlightApp.View_Model
             return null;
         }
 
-        public void SendNotification(string notification)
+        public void SendNotification(string notification, string receiver)
         {
-            _notificationService.SendNotification(notification);
-            Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now });
+            _notificationService.SendNotification(notification, receiver);
+            Notifications.Insert(0, new Notification() { Content = notification, Timestamp = DateTime.Now, Receiver = receiver });
         }
 
 

@@ -97,7 +97,7 @@ namespace InFlightApp.Services.Repositories
             return ar.Select(p => p.ToObject<Passenger>()).ToList();
         }
 
-        public Persoon GetLoggedIn() {
+        public Passenger GetLoggedIn() {
             string url = $"{ApiConnection.URL}/Users/current";
             string s = client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);

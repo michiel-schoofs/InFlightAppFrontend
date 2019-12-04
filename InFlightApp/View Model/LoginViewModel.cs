@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.Services;
 using InFlightApp.Services.Interfaces;
 using System;
@@ -50,6 +51,11 @@ namespace InFlightApp.View_Model{
                 if (RememberMe)
                     _userRepo.StoreCredentials(Username, Password);
             }
+        }
+
+        public Passenger GetLoggedIn()
+        {
+            return _userRepo.GetLoggedIn();
         }
 
     }

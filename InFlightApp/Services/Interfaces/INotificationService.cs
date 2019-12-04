@@ -9,7 +9,7 @@ namespace InFlightApp.Services.Interfaces
 {
     public interface INotificationService
     {
-        void SendNotification(string notification);
+        void SendNotification(string notification,string receiver);
         IEnumerable<Notification> GetAllNotifications();
         Notification GetMostRecentNotification();
     }

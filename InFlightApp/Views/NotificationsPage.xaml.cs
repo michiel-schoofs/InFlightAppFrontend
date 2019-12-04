@@ -19,6 +19,7 @@ namespace InFlightApp.Views
             try
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
+                _model.LoadNotifications();
                 DataContext = _model;
             }
             catch (Exception ex)
@@ -30,9 +31,10 @@ namespace InFlightApp.Views
         private void BtnNotification_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             var notification = txtNotification.Text;
+            string receiver = null;
             if (notification != null && !string.Empty.Equals(notification))
             {
-                _model.SendNotification(notification);
+                _model.SendNotification(notification,receiver);
                 txtNotification.Text = String.Empty;
             }
         }
