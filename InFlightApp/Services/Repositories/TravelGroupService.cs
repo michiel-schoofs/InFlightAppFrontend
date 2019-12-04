@@ -51,7 +51,7 @@ namespace InFlightApp.Services.Repositories {
                     {
                         MessageId = e.Value<int>("messageId"),
                         Content = e.Value<string>("content"),
-                        DateSent = DateTime.Parse(e.Value<string>("dateSent")),
+                        DateSent = DateTime.ParseExact(e.Value<string>("dateSent"), "dd/MM/yyyy HH:mm:ss", null),
                         Sender = p
                     };
                 }).ToArray();

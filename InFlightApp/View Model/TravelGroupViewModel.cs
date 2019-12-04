@@ -65,7 +65,7 @@ namespace InFlightApp.View_Model {
             hubConnection.On<int, int, int, string, string>("ReceiveSentMessage", (travelgroupId, messageId, userId, date, message) => {
                 if (current != null && current.TravelGroupId == travelgroupId) {
                     var sender = passengers.Where(p => p.TravelGroupId == travelgroupId && p.Id == userId).FirstOrDefault();
-                    Messages.Add(new Message { MessageId = messageId, Sender = sender, Content = message, DateSent = DateTime.Parse(date) });
+                    Messages.Add(new Message { MessageId = messageId, Sender = sender, Content = message, DateSent = DateTime.ParseExact(date, "dd/MM/yyyy HH:mm:ss", null)});
                 }
             });
         }
