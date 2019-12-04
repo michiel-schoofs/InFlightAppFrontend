@@ -19,13 +19,13 @@ namespace InFlightApp.View_Model {
         private readonly ITravelGroupService _travelGroupService;
         private readonly IUserService _userService;
 
-        public TravelGroupViewModel() {
+        public TravelGroupViewModel(int seatNr) {
             try
             {
                 _travelGroupService = ServiceLocator.Current.GetService<ITravelGroupService>(true);
                 _userService = ServiceLocator.Current.GetService<IUserService>(true);
                 //TODO: Get seat from screen
-                _userService.AuthenticatePassenger(10);
+                _userService.AuthenticatePassenger(seatNr);
                 _travelGroupService.ReloadHttpClient();
                 _userService.ReloadHttpClient();
                 getPassengers();

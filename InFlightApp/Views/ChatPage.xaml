@@ -9,9 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
     </Page.Resources>
-    <Page.DataContext>
-        <vm:TravelGroupViewModel/>
-    </Page.DataContext>
+  
     <StackPanel Width="500" >
         <ScrollViewer>
             <ListView ItemsSource="{Binding Messages}" Height="500">

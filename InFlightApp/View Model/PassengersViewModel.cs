@@ -18,8 +18,14 @@ namespace InFlightApp.View_Model
         public ObservableCollection<Seat> Seats { get; set; }
         public ObservableCollection<Passenger> Passengers { get; set; }
 
+        public Seat SelectedSeat { get; set; }
+        public RelayCommand SetPassenger { get; set; }
+
         public int SeatRows { get => GetSeatRows(); }
         public int SeatColumns { get => GetSeatColumns().Count; }
+
+        public delegate void SeatSelectionChanged(Seat s);
+        public event SeatSelectionChanged SelectionChanged;
 
         public PassengersViewModel()
         {
@@ -28,11 +34,18 @@ namespace InFlightApp.View_Model
                 _flightRepo = ServiceLocator.Current.GetService<IFlightService>(true);
                 _userInterface = ServiceLocator.Current.GetService<IUserService>(true);
                 LoadData();
+                MakeCommands();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+        }
+
+        private void MakeCommands() {
+            SetPassenger = new RelayCommand((object o) => {
+                SelectionChanged.Invoke(SelectedSeat);
+            });
         }
 
         public List<char> GetSeatColumns()

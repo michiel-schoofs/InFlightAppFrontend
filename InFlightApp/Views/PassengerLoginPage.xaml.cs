@@ -1,4 +1,5 @@
-﻿using InFlightApp.View_Model;
+﻿using InFlightApp.Model;
+using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,12 +26,17 @@ namespace InFlightApp.Views
     public sealed partial class UserloginGrid : Page
     {
         private Type _originPage;
-        public static readonly DependencyProperty ViewModelProperty =  DependencyProperty.Register("ViewModel", typeof(PassengersViewModel)
-            , typeof(UserloginGrid), new PropertyMetadata(0));
 
         public UserloginGrid()
         {
+            PassengersViewModel pvm = new PassengersViewModel();
+            this.DataContext = pvm;
+            pvm.SelectionChanged += Pvm_SelectionChanged;
             this.InitializeComponent();
+        }
+
+        private void Pvm_SelectionChanged(Seat s){
+            this.Frame.Navigate(typeof(ChatPage),s.SeatId);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e){

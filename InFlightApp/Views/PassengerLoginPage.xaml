@@ -4,15 +4,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InFlightApp.Views"
-    xmlns:vm ="using:InFlightApp.View_Model"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.DataContext>
-        <vm:PassengersViewModel></vm:PassengersViewModel>
-    </Page.DataContext>
-    <GridView Name="Grid" ItemsSource="{Binding Seats}">
-        
+    <GridView Name="Grid" ItemsSource="{Binding Seats}" SelectedItem="{Binding SelectedSeat, Mode=TwoWay}">
+        <i:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="SelectionChanged">
+                <core:InvokeCommandAction Command="{Binding DataContext.SetPassenger, ElementName=Page}"/>
+            </core:EventTriggerBehavior>
+        </i:Interaction.Behaviors>
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>
                 <ItemsWrapGrid x:Name="MaxItemsWrapGrid" 
