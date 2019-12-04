@@ -67,6 +67,9 @@ namespace InFlightApp.Views
                         case "Nav_Notifications":
                             NavigationViewFrame.Navigate(typeof(NotificationsPage));
                             break;
+                        case "Nav_Info":
+                            NavigationViewFrame.Navigate(typeof(InfoPage));
+                            break;
                         default: break;
                     }
                 }
