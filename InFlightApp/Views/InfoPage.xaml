@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="InFlightApp.Views.InfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:InFlightApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="InfoGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10,0,0,0">
+            <TextBlock Text="FLIGHT" Style="{ThemeResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Text="{Binding Flight.FlightNr}" Style="{ThemeResource SubtitleTextBlockStyle}">Flight nr:</TextBlock>
+            <TextBlock Text="{Binding Flight.Plane}" Style="{ThemeResource SubtitleTextBlockStyle}">Plane:</TextBlock>
+            <TextBlock Text="{Binding  Flight.DepartureTime}" Style="{ThemeResource SubtitleTextBlockStyle}">Departure:</TextBlock>
+            <TextBlock Text="{Binding Flight.ArrivalTime}" Style="{ThemeResource SubtitleTextBlockStyle}">Arrival:</TextBlock>
+            <TextBlock Text="{Binding Flight.Eta}" Style="{ThemeResource SubtitleTextBlockStyle}">ETA:</TextBlock>
+            <TextBlock Text="{Binding Flight.Origin.City}" Style="{ThemeResource SubtitleTextBlockStyle}">Origin:</TextBlock>
+            <TextBlock Text="{Binding Flight.Destination.City}" Style="{ThemeResource SubtitleTextBlockStyle}">Destination:</TextBlock>
+            <TextBlock Text="{Binding Flight.Agency}" Style="{ThemeResource SubtitleTextBlockStyle}">Agency:</TextBlock>
+            <TextBlock Text="{Binding Flight.Altitude}" Style="{ThemeResource SubtitleTextBlockStyle}">Altitude:</TextBlock>
+            <TextBlock Text="{Binding Flight.Speed}" Style="{ThemeResource SubtitleTextBlockStyle}">Speed:</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
+            <TextBlock Text="WEATHER AT DESTINATION" Style="{ThemeResource HeaderTextBlockStyle}"></TextBlock>
+            <TextBlock Text="{Binding Weather.Description}" Style="{ThemeResource SubtitleTextBlockStyle}"></TextBlock>
+            <TextBlock Text="{Binding Weather.Temp}" Style="{ThemeResource SubtitleTextBlockStyle}">Temp:</TextBlock>
+            <TextBlock Text="{Binding Weather.TempMax}" Style="{ThemeResource SubtitleTextBlockStyle}">Max temp:</TextBlock>
+            <TextBlock Text="{Binding Weather.TempMin}" Style="{ThemeResource SubtitleTextBlockStyle}">Min temp:</TextBlock>
+            <TextBlock Text="{Binding Weather.WindSpeed}" Style="{ThemeResource SubtitleTextBlockStyle}">Windspeed:</TextBlock>
+            <TextBlock Text="{Binding Weather.Humidity}" Style="{ThemeResource SubtitleTextBlockStyle}">Humidity:</TextBlock>
+            <TextBlock Text="{Binding Weather.Cloudiness}" Style="{ThemeResource SubtitleTextBlockStyle}">Cloudiness%:</TextBlock>
+            <TextBlock Text="{Binding Weather.Pressure}" Style="{ThemeResource SubtitleTextBlockStyle}">Pressure:</TextBlock>
+        </StackPanel>
+    </Grid>
+
+</Page>

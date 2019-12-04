@@ -37,6 +37,18 @@ namespace InFlightApp.Services.Repositories
             return true;
         }
 
+        public bool AuthenticatePassenger(int seatnumber) {
+            HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/Users/passengers/login/{seatnumber}", null).Result;
+
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+                return false;
+
+            if (response.IsSuccessStatusCode)
+                ApiConnection.Token = response.Content.ReadAsStringAsync().Result;
+
+            return true;
+        }
+
         public void StoreCredentials(string username, string password)
         {
             var vault = new PasswordVault();
@@ -83,6 +95,17 @@ namespace InFlightApp.Services.Repositories
             string s = client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
             return ar.Select(p => p.ToObject<Passenger>()).ToList();
+        }
+
+        public Persoon GetLoggedIn() {
+            string url = $"{ApiConnection.URL}/Users/current";
+            string s = client.GetStringAsync(url).Result;
+            JObject obj = JObject.Parse(s);
+            return obj.ToObject<Passenger>();
+        }
+
+        public void ReloadHttpClient() {
+            client = ApiConnection.Client;
         }
     }
 }

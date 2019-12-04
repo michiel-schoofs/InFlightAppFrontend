@@ -10,5 +10,7 @@ namespace InFlightApp.Services.Interfaces
     public interface IFlightService
     {
         IEnumerable<Seat> GetSeats();
+        Flight GetFlight();
+        Weather GetCurrentWeather(string city,string country);
     }
 }
