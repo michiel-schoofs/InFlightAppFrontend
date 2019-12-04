@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ namespace InFlightApp.Views
     {
 
         private readonly NotificationsViewModel _model;
-
         public NotificationsPage()
         {
             InitializeComponent();
@@ -20,6 +20,7 @@ namespace InFlightApp.Views
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
                 _model.LoadNotifications();
+                _model.LoadPassengers();
                 DataContext = _model;
             }
             catch (Exception ex)
@@ -31,11 +32,18 @@ namespace InFlightApp.Views
         private void BtnNotification_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             var notification = txtNotification.Text;
-            string receiver = null;
             if (notification != null && !string.Empty.Equals(notification))
             {
-                _model.SendNotification(notification,receiver);
-                txtNotification.Text = String.Empty;
+                if (ReceiverBox.SelectedItem != null)
+                {
+                    var receiver = (ReceiverBox.SelectedItem as Passenger).Seat.SeatCode;
+                    _model.SendNotification(notification, receiver);
+                }
+                else
+                {
+                    _model.SendNotification(notification, null);
+                    txtNotification.Text = String.Empty;
+                }
             }
         }
 
