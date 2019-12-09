@@ -5,10 +5,9 @@
     xmlns:local="using:InFlightApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-    <Grid>
+    <!--<Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -50,5 +49,21 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
+    </Grid>-->
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Enter your notification:" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <ComboBox x:Name="ReceiverBox"  HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding Passengers}" PlaceholderText="Pick a passenger">
+            </ComboBox>
+            <TextBox x:Name="txtNotification"></TextBox>
+            <Button x:Name="btnNotification" Content="Send" HorizontalAlignment="right" Click="BtnNotification_Click"/>
+        </StackPanel>
+
     </Grid>
 </Page>

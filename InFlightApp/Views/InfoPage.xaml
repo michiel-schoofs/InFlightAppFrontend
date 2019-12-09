@@ -13,10 +13,10 @@
             <localConverter:DoubleConverter x:Key="DoubleConverter"/>
             <localConverter:FlightDurationConverter x:Key="DurationConverter"/>
         </StackPanel.Resources>
-        <!--<StackPanel.Background>
-            <AcrylicBrush TintOpacity="0.13"/>
-        </StackPanel.Background>-->
-        <Grid BorderThickness="0,0,0,1" BorderBrush="Black">
+        <StackPanel.Background>
+            <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+        </StackPanel.Background>
+        <Grid BorderThickness="0,0,0,1" BorderBrush="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel BorderThickness="0,0,0,1" BorderBrush="Black" Margin="0,20,0,0">
+        <StackPanel BorderThickness="0,0,0,1" BorderBrush="White" Margin="0,20,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
