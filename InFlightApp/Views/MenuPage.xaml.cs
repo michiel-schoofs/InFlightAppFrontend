@@ -62,14 +62,7 @@ namespace InFlightApp.Views
             ensureonetime = true;
         }
 
-        private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-            if (args.IsSettingsSelected)
-            {
-                NavigationViewFrame.Navigate(typeof(SettingsPage));
-            }
-            else
-            {
+        private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args) {
                 NavigationViewItem itemContent = args.SelectedItem as NavigationViewItem;
                 if (itemContent != null)
                 {
@@ -93,7 +86,6 @@ namespace InFlightApp.Views
                         default: break;
                     }
                 }
-            }
         }
 
         private void PollNotifications()
