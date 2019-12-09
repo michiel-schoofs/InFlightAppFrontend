@@ -18,6 +18,9 @@ namespace InFlightApp.Services.Interfaces
 
         Passenger GetLoggedIn();
 
+        Task<bool> HasImage();
+        Task<string> GetImage();
+
         IEnumerable<Passenger> GetPassengers();
         void ChangeSeat(int userId, int seatId);
 

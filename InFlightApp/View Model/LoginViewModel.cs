@@ -68,6 +68,16 @@ namespace InFlightApp.View_Model{
             }
         }
 
+        public async void GetUserImage()
+        {
+            try{
+                await _userRepo.GetImage();
+            }catch (Exception e){
+                Console.Write(e);
+            }
+        }
+
+
         public Passenger GetLoggedIn()
         {
             return _userRepo.GetLoggedIn();

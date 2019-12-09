@@ -27,6 +27,9 @@ namespace InFlightApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private LoginViewModel lvm;
+        private static bool ensureOneTime;
+
         public MainPage()
         {
             Startup.ConfigureAsync();
@@ -34,8 +37,11 @@ namespace InFlightApp
 
             try
             {
-                LoginViewModel lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
-                lvm.LoginSuccess += NavigateToMP;
+                if (lvm == null){
+                    ensureOneTime = false;
+                    lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                    lvm.LoginSuccess += NavigateToMP;
+                }
             }catch (Exception e){
                 //Replace with logging later on
                 Console.WriteLine(e);
@@ -48,7 +54,10 @@ namespace InFlightApp
         }
 
         private void NavigateToMP() {
-            this.Frame.Navigate(typeof(MenuPage));
+            if(!ensureOneTime)
+                this.Frame.Navigate(typeof(MenuPage));
+
+            ensureOneTime = true;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

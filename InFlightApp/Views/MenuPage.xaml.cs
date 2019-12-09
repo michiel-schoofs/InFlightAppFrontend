@@ -28,6 +28,9 @@ namespace InFlightApp.Views
     {
         private readonly NotificationsViewModel _model;
         private readonly LoginViewModel _userModel;
+        private CancellationTokenSource source;
+        private Task task;
+        private static bool ensureonetime = false;
 
         public MenuPage()
         {
@@ -39,6 +42,12 @@ namespace InFlightApp.Views
                 logoutBtn.DataContext = _userModel;
                 UserStackPanel.DataContext = _userModel;
                 _userModel.LoggedOut += Lvm_LoggedOut;
+
+                source = new CancellationTokenSource();
+                ensureonetime = false;
+                this.Dispatcher.RunAsync(Dispatcher.CurrentPriority, () => {
+                    _userModel.GetUserImage();
+                });
             }
             catch (Exception ex)
             {
@@ -48,7 +57,9 @@ namespace InFlightApp.Views
         }
 
         private void Lvm_LoggedOut(){
-            Frame.Navigate(typeof(MainPage));
+            if(!ensureonetime)
+                Frame.Navigate(typeof(MainPage));
+            ensureonetime = true;
         }
 
         private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -90,9 +101,9 @@ namespace InFlightApp.Views
             var loggedInPassenger = _userModel.GetLoggedIn();
             if (loggedInPassenger != null)
             {
-                Task.Run(async () =>
-            {
-                while (true)
+                CancellationToken ct = source.Token;
+                task =  Task.Run(async () =>{
+                while (true && !ct.IsCancellationRequested)
                 {
                     await Task.Delay(5000);
                     var result = _model.LoadMostRecentNotification();
@@ -111,6 +122,13 @@ namespace InFlightApp.Views
                 }
             });
             }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            source.Cancel();
+            this.Dispatcher.StopProcessEvents();
+            base.OnNavigatingFrom(e);
         }
 
         private async Task CreateContentDialog(string notification)

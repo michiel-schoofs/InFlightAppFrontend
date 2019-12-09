@@ -1,6 +1,7 @@
 ﻿using InFlightApp.Services.Interfaces;
 using InFlightApp.Services.Repositories;
 using InFlightApp.View_Model;
+using InFlightApp.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Concurrent;
@@ -28,6 +29,7 @@ namespace InFlightApp.Configuration
                              .AddSingleton<PassengersViewModel>()
                              .AddSingleton<NotificationsViewModel>()
                              .AddSingleton<EntertainmentViewModel>()
+                             .AddSingleton<MenuPage>()
                              .AddSingleton<InfoViewModel>()
                              .AddSingleton<TravelGroupViewModel>()
                              .AddSingleton<IProductService, ProductService>()
