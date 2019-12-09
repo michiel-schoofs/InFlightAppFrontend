@@ -26,17 +26,25 @@ namespace InFlightApp.Services.Repositories {
             return ar.Select(o => {
                 var token = o.Value<JToken>("passenger");
                 JObject persoonObj = JObject.Parse(token.ToString());
+
+                token = persoonObj.Value<JToken>("seat");
+                JObject seatObj = JObject.Parse(token.ToString());
+
                 Passenger p = new Passenger {
                     Id = persoonObj.Value<int>("id"),
                     FirstName = persoonObj.Value<string>("firstName"),
                     LastName = persoonObj.Value<string>("lastName"),
                     TravelGroupId = persoonObj.Value<int>("travelGroupId"),
+                    Seat = new Seat { 
+                        SeatId = seatObj.Value<int>("seatID"),
+                        SeatCode = seatObj.Value<string>("seatCode")
+                    }
                 };
 
                 token = o.Value<JToken>("orderLines");
                 JArray orderlinesObj = JArray.Parse(token.ToString());
                 var orderlines = orderlinesObj.Select(ol => {
-                    token = o.Value<JToken>("product");
+                    token = ol.Value<JToken>("product");
                     JObject productObj = JObject.Parse(token.ToString());
                     Product product = new Product {
                         ProductID = productObj.Value<int>("productID"),

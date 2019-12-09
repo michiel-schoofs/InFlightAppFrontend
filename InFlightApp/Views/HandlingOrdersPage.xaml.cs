@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InFlightApp.Configuration;
+using InFlightApp.View_Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,8 +22,12 @@ namespace InFlightApp.Views {
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class HandlingOrdersPage : Page {
+        private HandleOrdersViewModel _model;
+
         public HandlingOrdersPage() {
             this.InitializeComponent();
+            _model = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
+            DataContext = _model;
         }
     }
 }

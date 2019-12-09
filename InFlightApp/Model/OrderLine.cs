@@ -10,6 +10,9 @@ namespace InFlightApp.Model {
     public class OrderLine : INotifyPropertyChanged {
         public Order Order { get; set; }
         public Product Product { get; set; }
+        public string Displayable {
+            get => this.ToString();
+        }
 
         private int _amount;
         public int Amount { 
@@ -23,6 +26,10 @@ namespace InFlightApp.Model {
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged([CallerMemberName]string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override string ToString() {
+            return $"{Product.Name}: {Amount} x {String.Format("{0:0.00} \u20AC", Product.UnitPrice)}";
         }
     }
 }
