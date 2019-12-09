@@ -14,7 +14,7 @@
         </LinearGradientBrush>
     </Page.Background>
 
-    <NavigationView Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
+    <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
@@ -27,7 +27,7 @@
         </NavigationView.Content>
         <NavigationView.PaneFooter>
             <StackPanel Orientation="Vertical" Name="UserStackPanel">
-                <Ellipse Name="userIcon" Height="30" Width="30" Margin="0,5,0,0" PointerPressed="userIcon_PointerPressed" DataContext="{Binding LoggedInUser,Mode=OneWay}">
+                <Ellipse Name="userIcon" Height="30" Width="30" Margin="0,5,20,0" PointerPressed="userIcon_PointerPressed" DataContext="{Binding LoggedInUser,Mode=OneWay}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ImageFile}"/>
                     </Ellipse.Fill>
