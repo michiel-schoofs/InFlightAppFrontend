@@ -16,5 +16,6 @@ namespace InFlightApp.Model
         public double TempMin { get; set; }
         public string Description { get; set; }
         public double WindSpeed { get; set; }
+        public string Icon { get; set; }
     }
 }

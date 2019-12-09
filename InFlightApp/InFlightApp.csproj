@@ -128,9 +128,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Configuration\StartUp.cs" />
+    <Compile Include="Converters\DoubleConverter.cs" />
     <Compile Include="Converters\DurationConverter.cs" />
+    <Compile Include="Converters\FlightDurationConverter.cs" />
     <Compile Include="Converters\MoneyConverter.cs" />
     <Compile Include="Converters\SortTypeConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -241,6 +244,19 @@
     <Content Include="Assets\Image Logo %281%29.png" />
     <Content Include="Assets\Image Logo.png" />
     <Content Include="Assets\img\cliff.jpg" />
+    <Content Include="Assets\img\info\landing.png" />
+    <Content Include="Assets\img\info\landingw.png" />
+    <Content Include="Assets\img\info\take-off.png" />
+    <Content Include="Assets\img\info\take-offw.png" />
+    <Content Include="Assets\img\info\weather\01d.png" />
+    <Content Include="Assets\img\info\weather\02d.png" />
+    <Content Include="Assets\img\info\weather\03d.png" />
+    <Content Include="Assets\img\info\weather\04d.png" />
+    <Content Include="Assets\img\info\weather\09d.png" />
+    <Content Include="Assets\img\info\weather\10d.png" />
+    <Content Include="Assets\img\info\weather\11d.png" />
+    <Content Include="Assets\img\info\weather\13d.png" />
+    <Content Include="Assets\img\info\weather\50d.png" />
     <Content Include="Assets\img\met tekst ontwerp.png" />
     <Content Include="Assets\img\products\default.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

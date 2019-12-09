@@ -25,17 +25,20 @@ namespace InFlightApp.Services.Repositories
             string s = client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
 
-
-            return new Weather()
-            {
+            string desc = obj.SelectToken("weather")[0].SelectToken("description").ToString();
+            if (!String.IsNullOrEmpty(desc)) { 
+                desc = desc.First().ToString().ToUpper() + desc.Substring(1);
+            }
+            return new Weather() {
                 Cloudiness = double.Parse(obj.SelectToken("clouds").SelectToken("all").ToString()),
                 Humidity = double.Parse(obj.SelectToken("main").SelectToken("humidity").ToString()),
                 Pressure = double.Parse(obj.SelectToken("main").SelectToken("pressure").ToString()),
                 Temp = double.Parse(obj.SelectToken("main").SelectToken("temp").ToString()) - 273.15,
                 TempMax = double.Parse(obj.SelectToken("main").SelectToken("temp_max").ToString()) - 273.15,
                 TempMin = double.Parse(obj.SelectToken("main").SelectToken("temp_min").ToString()) - 273.15,
-                Description = obj.SelectToken("weather")[0].SelectToken("description").ToString(),
+                Description = desc,
                 WindSpeed = double.Parse(obj.SelectToken("wind").SelectToken("speed").ToString()),
+                Icon = obj.SelectToken("weather")[0].SelectToken("icon").ToString(),
             };
         }
 
