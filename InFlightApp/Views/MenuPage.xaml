@@ -20,13 +20,13 @@
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
             <NavigationViewItem Content="Products" Tag="Nav_Products"></NavigationViewItem>
             <NavigationViewItem Content="Notifications" Tag="Nav_Notifications"></NavigationViewItem>
-            <NavigationViewItem Content="Info" Tag="Nav_Info"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Frame HorizontalAlignment="Stretch" x:Name="NavigationViewFrame"></Frame>
         </NavigationView.Content>
         <NavigationView.PaneFooter>
-            <StackPanel Orientation="Vertical" Name="UserStackPanel">
+            <StackPanel Orientation="Horizontal" Name="UserStackPanel" >
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80F;" Margin="0,5,10,0" PointerPressed="FontIcon_PointerPressed" />
                 <Ellipse Name="userIcon" Height="30" Width="30" Margin="0,5,20,0" PointerPressed="userIcon_PointerPressed" DataContext="{Binding LoggedInUser,Mode=OneWay}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ImageFile}"/>

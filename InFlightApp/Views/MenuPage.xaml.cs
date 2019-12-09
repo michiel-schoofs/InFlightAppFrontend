@@ -48,6 +48,8 @@ namespace InFlightApp.Views
                 this.Dispatcher.RunAsync(Dispatcher.CurrentPriority, () => {
                     _userModel.GetUserImage();
                 });
+
+                NavigateToInfoPage();
             }
             catch (Exception ex)
             {
@@ -79,9 +81,6 @@ namespace InFlightApp.Views
                             break;
                         case "Nav_Notifications":
                             NavigationViewFrame.Navigate(typeof(NotificationsPage));
-                            break;
-                        case "Nav_Info":
-                            NavigationViewFrame.Navigate(typeof(InfoPage));
                             break;
                         default: break;
                     }
@@ -139,6 +138,15 @@ namespace InFlightApp.Views
 
         private void userIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
             userIcon.ContextFlyout.ShowAt(userIcon);
+        }
+
+        private void NavigateToInfoPage() {
+            NavigationViewControl.SelectedItem = null;
+            NavigationViewFrame.Navigate(typeof(InfoPage));
+        }
+
+        private void FontIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
+            NavigateToInfoPage();
         }
     }
 }
