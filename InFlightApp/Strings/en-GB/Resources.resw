@@ -137,6 +137,10 @@
     <value>I'm going to travel as a passenger</value>
     <comment>Text for the opening screen button as passenger</comment>
   </data>
+  <data name="PassengerLoginFormTitle.Text" xml:space="preserve">
+    <value>Thanks for flying with us today!</value>
+    <comment>Text for the login passenger menu top</comment>
+  </data>
   <data name="passwordField.PlaceholderText" xml:space="preserve">
     <value>Password</value>
     <comment>Text for the textbox password</comment>

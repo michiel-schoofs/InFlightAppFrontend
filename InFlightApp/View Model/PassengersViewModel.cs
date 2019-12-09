@@ -22,7 +22,7 @@ namespace InFlightApp.View_Model
         public RelayCommand SetPassenger { get; set; }
 
         public int SeatRows { get => GetSeatRows(); }
-        public int SeatColumns { get => GetSeatColumns().Count; }
+        public int SeatColumns { get => GetSeatColumns().Count*2; }
 
         public delegate void SeatSelectionChanged(Seat s);
         public event SeatSelectionChanged SelectionChanged;

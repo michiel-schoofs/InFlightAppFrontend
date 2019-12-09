@@ -7,11 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Border Name="Panel"  BorderBrush="Black" BorderThickness="4" CornerRadius="15" Height="400">
+    <Border Name="Panel"  BorderBrush="Black" BorderThickness="4" CornerRadius="15" Height="500">
         <Border.Background>
             <AcrylicBrush BackgroundSource="Backdrop" TintOpacity="0.01" TintColor="#CC766262"/>
         </Border.Background>
-        <Grid MinWidth="400">
+        <Grid MinWidth="500">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20px"/>
                 <ColumnDefinition Width="*"/>

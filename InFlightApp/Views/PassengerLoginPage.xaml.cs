@@ -48,5 +48,11 @@ namespace InFlightApp.Views
                 anim.TryStart(Grid);
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e){
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("BackwardConnectedAnimation", Grid);
+            if (_originPage != null)
+                this.Frame.Navigate(_originPage, null, new SuppressNavigationTransitionInfo());
+        }
     }
 }
