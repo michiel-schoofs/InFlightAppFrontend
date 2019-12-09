@@ -14,7 +14,7 @@
         </LinearGradientBrush>
     </Page.Background>
 
-    <NavigationView IsBackButtonVisible="Collapsed" IsSettingsVisible="False" Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
+    <NavigationView IsBackButtonVisible="Collapsed" AlwaysShowHeader="False" HorizontalContentAlignment="Stretch" IsSettingsVisible="False" Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
             <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
@@ -23,7 +23,7 @@
             <NavigationViewItem Content="Info" Tag="Nav_Info"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Frame x:Name="NavigationViewFrame"></Frame>
+            <Frame HorizontalAlignment="Stretch" x:Name="NavigationViewFrame"></Frame>
         </NavigationView.Content>
         <NavigationView.PaneFooter>
             <StackPanel Orientation="Vertical" Name="UserStackPanel">

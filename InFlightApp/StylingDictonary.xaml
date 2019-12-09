@@ -460,7 +460,7 @@
                         </Grid>
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" MinHeight="92"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <StackPanel x:Name="TopNavArea" Background="{ThemeResource NavigationViewTopPaneBackground}" HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Top" Canvas.ZIndex="1">
@@ -554,7 +554,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <ContentControl x:Name="HeaderContent" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="Stretch" IsTabStop="False" MinHeight="{StaticResource PaneToggleButtonHeight}" Style="{StaticResource NavigationViewTitleHeaderContentControlTextStyle}" VerticalContentAlignment="Stretch"/>
+                                    <ContentControl x:Name="HeaderContent" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" HorizontalContentAlignment="Stretch" Visibility="Collapsed" IsTabStop="False" MinHeight="{StaticResource PaneToggleButtonHeight}" Style="{StaticResource NavigationViewTitleHeaderContentControlTextStyle}" VerticalContentAlignment="Stretch"/>
                                     <ContentPresenter Content="{TemplateBinding Content}" AutomationProperties.LandmarkType="Main" Grid.Row="1"/>
                                 </Grid>
                             </SplitView>
