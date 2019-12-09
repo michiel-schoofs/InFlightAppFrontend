@@ -6,64 +6,38 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <!--<Grid>
+    <Grid>
+        <Grid.Background>
+            <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Stretch"  VerticalAlignment="Center"
-                    Grid.Column="1" Grid.Row="0">
-            <TextBlock Text="Enter your notification:" Margin="10"></TextBlock>
-            <ComboBox x:Name="ReceiverBox" Margin="10" HorizontalAlignment="Stretch"
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Enter your notification:" Style="{ThemeResource SubtitleTextBlockStyle}"  Margin="10"/>
+            <ComboBox x:Name="ReceiverBox"  HorizontalAlignment="Stretch"  Margin="10"
                       ItemsSource="{Binding Passengers}" PlaceholderText="Pick a passenger">
             </ComboBox>
-            <TextBox x:Name="txtNotification" Margin="10"></TextBox>
-            <Button x:Name="btnNotification" Content="Send" Margin="10"  HorizontalAlignment="right" Click="BtnNotification_Click"/>
+            <TextBox x:Name="txtNotification"  Margin="10"/>
+            <Button x:Name="btnNotification" Content="Send" HorizontalAlignment="right" Click="BtnNotification_Click"  Margin="10"/>
         </StackPanel>
-        <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+        <ScrollViewer Grid.Column="1">
+            <ScrollViewer.Background>
+                <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+            </ScrollViewer.Background>
             <StackPanel>
                 <ListView ItemsSource="{Binding Notifications}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock xml:space="preserve" 
-                                           Style="{ThemeResource HeaderTextBlockStyle}"><Run Text="{Binding Content}"></Run></TextBlock>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock xml:space="preserve" 
-                                           Style="{ThemeResource BodyTextBlockStyle}"><Run Text="Sent to:"></Run></TextBlock>
-                                    <TextBlock xml:space="preserve" 
-                                           Style="{ThemeResource BodyTextBlockStyle}"> <Run Text="{Binding Receiver}"></Run></TextBlock>
-                                </StackPanel>
-                                <TextBlock Text="{Binding Timestamp}" 
-                                           Style="{ThemeResource BodyTextBlockStyle}"></TextBlock>
+                            <StackPanel Margin="10,0,0,20">
+                                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding Content}"/>
+                                <TextBlock Text="{Binding Timestamp}" Style="{ThemeResource BodyTextBlockStyle}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </ScrollViewer>
-    </Grid>-->
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Enter your notification:" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <ComboBox x:Name="ReceiverBox"  HorizontalAlignment="Stretch"
-                      ItemsSource="{Binding Passengers}" PlaceholderText="Pick a passenger">
-            </ComboBox>
-            <TextBox x:Name="txtNotification"></TextBox>
-            <Button x:Name="btnNotification" Content="Send" HorizontalAlignment="right" Click="BtnNotification_Click"/>
-        </StackPanel>
-
     </Grid>
 </Page>
