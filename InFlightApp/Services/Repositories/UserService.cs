@@ -4,17 +4,23 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Security.Credentials;
+using Windows.Storage;
 
 namespace InFlightApp.Services.Repositories
 {
     public class UserService : IUserService
     {
+        private static Persoon persoon;
+        private static bool imageAsked;
+        private static StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
+
         private HttpClient client;
 
         public UserService()
@@ -102,10 +108,17 @@ namespace InFlightApp.Services.Repositories
         public Passenger GetLoggedIn() {
             try
             {
+
+                if (persoon != null && persoon is Passenger)
+                    return (Passenger)persoon;
+
                 string url = $"{ApiConnection.URL}/Users/current";
                 string s = client.GetStringAsync(url).Result;
                 JObject obj = JObject.Parse(s);
-                return obj.ToObject<Passenger>();
+
+                Passenger p = obj.ToObject<Passenger>();
+                persoon = p;
+                return p;
             }catch(Exception ex)
             {
                 return null;
@@ -118,6 +131,8 @@ namespace InFlightApp.Services.Repositories
 
             var vault = new PasswordVault();
             PasswordCredential cred = GetCredential();
+            persoon = null;
+            imageAsked = false;
 
             if (cred != null) {
                 vault.Remove(cred);
@@ -126,6 +141,55 @@ namespace InFlightApp.Services.Repositories
 
         public void ReloadHttpClient() {
             client = ApiConnection.Client;
+        }
+
+        public async Task<string> GetImage(){
+            if (imageAsked && persoon != null) {
+                if (persoon.ImageFile != null)
+                    return persoon.ImageFile;
+
+                return "Assets/img/users/defaultuser.png";
+            }
+
+            string url = $"{ApiConnection.URL}/Users/current/image";
+            string s = client.GetStringAsync(url).Result;
+            JObject obj = JObject.Parse(s);
+
+            if (obj != null && obj.Value<int>("id") >= 0)
+            {
+                string name = $"user.{obj.Value<string>("extension").ToLower()}";
+                byte[] bytes = Convert.FromBase64String(obj.Value<string>("data"));
+
+                try
+                {
+                    StorageFile fi = await sf.GetFileAsync(name);
+                    await fi.DeleteAsync();
+                }
+                catch (Exception) { }
+
+                StorageFile f = await sf.CreateFileAsync(name);
+
+                Stream stream = f.OpenStreamForWriteAsync().Result;
+                stream.Write(bytes, 0, bytes.Length);
+
+                if (persoon != null){
+                    persoon.ImageFile = f.Path;
+                    imageAsked = true;
+                }
+
+                return f.Path;
+            }
+
+            return "Assets/img/users/defaultuser.png";
+        }
+
+        public async Task<bool> HasImage(){
+            if (persoon != null && imageAsked)
+                return persoon.ImageFile != null;
+            
+            string url = $"{ApiConnection.URL}/Users/current/image/exist";
+            bool exist = bool.Parse(client.GetStringAsync(url).Result);
+            return exist;
         }
     }
 }
