@@ -32,11 +32,13 @@ namespace InFlightApp.Configuration
                              .AddSingleton<MenuPage>()
                              .AddSingleton<InfoViewModel>()
                              .AddSingleton<TravelGroupViewModel>()
+                             .AddSingleton<HandleOrdersViewModel>()
                              .AddSingleton<IProductService, ProductService>()
                              .AddSingleton<IFlightService, FlightService>()
                              .AddSingleton<INotificationService, NotificationService>()
                              .AddSingleton<IEntertainmentService, EntertainmentService>()
-                             .AddSingleton<ITravelGroupService, TravelGroupService>();
+                             .AddSingleton<ITravelGroupService, TravelGroupService>()
+                             .AddSingleton<IHandleOrderService, HandleOrderService>();
 
             _rootServiceProvider = serviceCollection.BuildServiceProvider();
         }
