@@ -12,5 +12,7 @@ namespace InFlightApp.Services.Interfaces
         IEnumerable<Seat> GetSeats();
         Flight GetFlight();
         Weather GetCurrentWeather(string city,string country);
+        Persoon GetPassengerOnSeat(int seatID);
+        bool SeatHasUser(int id);
     }
 }

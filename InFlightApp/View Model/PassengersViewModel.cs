@@ -48,6 +48,20 @@ namespace InFlightApp.View_Model
             });
         }
 
+        public async Task<bool> SeatHasUser() {
+            if (SelectedSeat == null)
+                return false;
+
+            return _flightRepo.SeatHasUser(SelectedSeat.SeatId);
+        }
+
+        public Persoon GetPassengerOnSeat() {
+            if (SelectedSeat == null)
+                return null;
+
+            return _flightRepo.GetPassengerOnSeat(SelectedSeat.SeatId);
+        }
+
         public List<char> GetSeatColumns()
         {
             return Seats.Aggregate(new List<char>(), (result, seat) =>

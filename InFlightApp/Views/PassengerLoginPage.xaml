@@ -36,7 +36,7 @@
                     <TextBlock Grid.Column="2" x:Uid="LoginFormTitle"  TextAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource TitleStyle}" />
                 </Grid>
             </StackPanel>
-            <GridView Grid.Row="2" Grid.Column="1" Name="Grid" ItemsSource="{Binding Seats}" SelectedItem="{Binding SelectedSeat, Mode=TwoWay}">
+            <GridView Style="{StaticResource GridviewPassenger}"  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" SelectionChanged="Grid_SelectionChanged" VerticalAlignment="Center" Name="Grid" ItemsSource="{Binding Seats}" SelectedItem="{Binding SelectedSeat, Mode=TwoWay}">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
                         <core:InvokeCommandAction Command="{Binding DataContext.SetPassenger, ElementName=Page}"/>
@@ -51,10 +51,29 @@
                 </GridView.ItemsPanel>
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical" Margin="10">
-                            <Image Source="{Binding ImagePath}" Width="50" Height="50"/>
-                            <TextBlock Text="{Binding SeatCode}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
-                        </StackPanel>
+                        <Grid PointerPressed="Grid_PointerPressed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Vertical" Padding="10" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1">
+                                <Image Source="{Binding ImagePath}" Width="50" Height="50"/>
+                                <TextBlock Text="{Binding SeatCode}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <FlyoutBase.AttachedFlyout>
+                                <Flyout x:Name="Flyout">
+                                    <StackPanel>
+                                        <TextBlock Text="Test"/>
+                                    </StackPanel>
+                                </Flyout>
+                            </FlyoutBase.AttachedFlyout>
+                        </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

@@ -149,6 +149,10 @@
     <value>Onthoud me </value>
     <comment>Text for the checkbox remember me</comment>
   </data>
+  <data name="seatHasNoUser" xml:space="preserve">
+    <value>Er zit niemand op deze stoel</value>
+    <comment>Text to display when seat has no user</comment>
+  </data>
   <data name="usernameField.PlaceholderText" xml:space="preserve">
     <value>Gebruikersnaam</value>
     <comment>Text for the texbox username</comment>

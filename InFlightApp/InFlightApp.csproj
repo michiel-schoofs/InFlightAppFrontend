@@ -207,6 +207,9 @@
     <Compile Include="Views\NotificationsPage.xaml.cs">
       <DependentUpon>NotificationsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PassengerPopupPage.xaml.cs">
+      <DependentUpon>PassengerPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PassengersPage.xaml.cs">
       <DependentUpon>PassengersPage.xaml</DependentUpon>
     </Compile>
@@ -377,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NotificationsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PassengerPopupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
