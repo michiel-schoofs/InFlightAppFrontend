@@ -5,11 +5,11 @@
     xmlns:local="using:InFlightApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <ScrollViewer Margin="40,40,40,40" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" >
-        <Grid x:Name="SeatingsGrid">
-        </Grid>
+    mc:Ignorable="d">
+    <Page.Background>
+        <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+    </Page.Background>
+    <ScrollViewer Margin="40,40,40,40" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center">
+        <Grid x:Name="SeatingsGrid"/>
     </ScrollViewer>
 </Page>
