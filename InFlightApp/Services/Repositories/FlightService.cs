@@ -49,6 +49,22 @@ namespace InFlightApp.Services.Repositories
             return JObject.Parse(s).ToObject<Flight>();
         }
 
+        public Persoon GetPassengerOnSeat(int seatID){
+            string url = $"{ApiConnection.URL}/Flight/seats/{seatID}/user";
+            string s = client.GetStringAsync(url).Result;
+
+            JObject jObject = JObject.Parse(s);
+            string voornaam = jObject.Value<string>("firstName");
+            string achternaam = jObject.Value<string>("lastName");
+            int id = jObject.Value<int>("id");
+
+            return new Persoon(){
+                FirstName = voornaam,
+                LastName = achternaam,
+                Id = id
+            };
+        }
+
         public IEnumerable<Seat> GetSeats()
         {
             string url = $"{ApiConnection.URL}/Flight/seats";
@@ -63,8 +79,12 @@ namespace InFlightApp.Services.Repositories
                     Type = (SeatType)Enum.Parse(typeof(SeatType), seat.Value<string>("type")),
                     SeatCode = seat.Value<string>("seatCode")
                 };
-            }).ToList();
+            }).OrderBy(se=>se.SeatCode).ToList();
         }
 
+        public bool SeatHasUser(int id){
+            string url = $"{ApiConnection.URL}/Flight/seats/{id}/user/exist";
+            return bool.Parse(client.GetStringAsync(url).Result);
+        }
     }
 }
