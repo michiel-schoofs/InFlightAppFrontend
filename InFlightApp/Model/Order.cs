@@ -15,6 +15,7 @@ namespace InFlightApp.Model {
         public DateTime OrderDate { get; set; }
         public Boolean IsDone { get; set; }
         public IEnumerable<OrderLine> OrderLines { get; set; }
+        public decimal TotalPrice { get => OrderLines.Sum(item => item.Amount * item.Product.UnitPrice); }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged([CallerMemberName]string propertyName = "") {
