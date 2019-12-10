@@ -27,6 +27,11 @@ namespace InFlightApp.View_Model
         public delegate void SeatSelectionChanged(Seat s);
         public event SeatSelectionChanged SelectionChanged;
 
+        public RelayCommand LoginAsPassenger { get; set; }
+
+        public delegate void LoginSuccessDelegate();
+        public event LoginSuccessDelegate LoginSuccess;
+
         public PassengersViewModel()
         {
             try
@@ -46,6 +51,11 @@ namespace InFlightApp.View_Model
             SetPassenger = new RelayCommand((object o) => {
                 SelectionChanged.Invoke(SelectedSeat);
             });
+
+            LoginAsPassenger = new RelayCommand((object o) =>{
+                if (_userInterface.AuthenticatePassenger(SelectedSeat.SeatId))
+                    LoginSuccess.Invoke(); 
+            });
         }
 
         public async Task<bool> SeatHasUser() {
@@ -53,6 +63,10 @@ namespace InFlightApp.View_Model
                 return false;
 
             return _flightRepo.SeatHasUser(SelectedSeat.SeatId);
+        }
+
+        public async Task<string> GetImageForPassenger(Persoon pers) {
+            return _userInterface.GetImageForPerson(pers).Result;
         }
 
         public Persoon GetPassengerOnSeat() {

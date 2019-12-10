@@ -40,6 +40,9 @@ namespace InFlightApp
                 if (lvm == null){
                     ensureOneTime = false;
                     lvm = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                    PassengersViewModel pvm = ServiceLocator.Current.GetService<PassengersViewModel>(true);
+
+                    pvm.LoginSuccess += NavigateToMP;
                     lvm.LoginSuccess += NavigateToMP;
                 }
             }catch (Exception e){

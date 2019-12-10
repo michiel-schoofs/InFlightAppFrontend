@@ -25,11 +25,33 @@ namespace InFlightApp.Views
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class PassengerPopupPage : Page{
+        private Persoon pers;
+        private PassengersViewModel pvm;
+
+        public delegate void CancelButtonPressedDel();
+        public event CancelButtonPressedDel CancelButtonPressed;
 
         public PassengerPopupPage(Persoon pas){
-            PassengersViewModel pvm = ServiceLocator.Current.GetService<PassengersViewModel>(true);
-            Console.WriteLine(pas);
+            pers = pas;
+            this.DataContext = pas;
+
+            pvm = ServiceLocator.Current.GetService<PassengersViewModel>(true);
+
+            DispatchImage();
             this.InitializeComponent();
+
+            confButton.DataContext = pvm;
+        }
+
+        private async void DispatchImage() {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                string path = pvm.GetImageForPassenger(pers).Result;
+                pers.ImageFile = path;
+            });
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            CancelButtonPressed.Invoke();
         }
     }
 }

@@ -6,11 +6,11 @@ using Windows.Security.Credentials;
 
 namespace InFlightApp.Services.Interfaces
 {
-    public interface IUserService
-    {
+    public interface IUserService{
         bool Login(string username, string password);
         void LogOut();
         bool AuthenticatePassenger(int seatnumber);
+
         void ReloadHttpClient();
         void StoreCredentials(string username, string password);
         PasswordCredential GetCredential();
@@ -20,6 +20,8 @@ namespace InFlightApp.Services.Interfaces
 
         Task<bool> HasImage();
         Task<string> GetImage();
+        Task<string> GetImageForPerson(Persoon pers);
+
 
         IEnumerable<Passenger> GetPassengers();
         void ChangeSeat(int userId, int seatId);

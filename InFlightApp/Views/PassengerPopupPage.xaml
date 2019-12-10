@@ -7,6 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="Hello world"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Uid="isThisYou" Style="{StaticResource userText}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" FontSize="20"/>
+        <Ellipse Width="50" Height="50" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="{Binding ImageFile}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock x:Uid="firstName" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Style="{StaticResource userText}" Grid.Column="3" Grid.Row="1"/>
+        <TextBlock Text="{Binding FirstName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Style="{StaticResource userText}" Grid.Row="1" Grid.Column="5"/>
+        <TextBlock x:Uid="lastName" Style="{StaticResource userText}" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Grid.Column="3" Grid.Row="2"/>
+        <TextBlock Text="{Binding LastName}"  Style="{StaticResource userText}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="5"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Padding="0,15,0,0" Grid.Row="3" Grid.ColumnSpan="6" HorizontalAlignment="Center">
+            <Button x:Uid="okButton" x:Name="confButton" Command="{Binding LoginAsPassenger}" Margin="0,0,15,0"/>
+            <Button x:Uid="cancelButton" Click="Button_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

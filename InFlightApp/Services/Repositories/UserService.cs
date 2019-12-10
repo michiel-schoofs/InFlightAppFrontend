@@ -191,5 +191,34 @@ namespace InFlightApp.Services.Repositories
             bool exist = bool.Parse(client.GetStringAsync(url).Result);
             return exist;
         }
+
+        public async Task<string> GetImageForPerson(Persoon pers){
+            string url = $"{ApiConnection.URL}/Users/{pers.Id}/image";
+            string s = client.GetStringAsync(url).Result;
+            JObject obj = JObject.Parse(s);
+            if (obj != null && obj.Value<int>("id") >= 0)
+            {
+                string name = $"user-{pers.Id}.{obj.Value<string>("extension").ToLower()}";
+                byte[] bytes = Convert.FromBase64String(obj.Value<string>("data"));
+
+                StorageFile f = null;
+                try {
+                    f = sf.CreateFileAsync(name).AsTask().Result;
+                }catch (Exception) {
+                    //Bug fix
+                    StorageFile fi = sf.GetFileAsync(name).AsTask().Result;
+                    fi.DeleteAsync().AsTask().Wait();
+                    f = sf.CreateFileAsync(name).AsTask().Result;
+                }
+
+
+                Stream stream = f.OpenStreamForWriteAsync().Result;
+                stream.Write(bytes, 0, bytes.Length);
+
+                return f.Path;
+            }
+
+            return "Assets/users/defaultuser.png";
+        }
     }
 }

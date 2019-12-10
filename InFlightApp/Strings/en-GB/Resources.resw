@@ -117,9 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Text to display in button</comment>
+  </data>
   <data name="CrewmemberButton.Content" xml:space="preserve">
     <value>I'm going to travel as a crewmember</value>
     <comment>Text for the opening screen button as crewMember</comment>
+  </data>
+  <data name="firstName.Text" xml:space="preserve">
+    <value>Firstname:</value>
+    <comment>Text to display in userlogin name field</comment>
+  </data>
+  <data name="isThisYou.Text" xml:space="preserve">
+    <value>Is this your info?</value>
+    <comment>Text to display in userlogin</comment>
+  </data>
+  <data name="lastName.Text" xml:space="preserve">
+    <value>Lastname:</value>
+    <comment>Text to display in userlogin name field</comment>
   </data>
   <data name="loginButton.Content" xml:space="preserve">
     <value>Login</value>
@@ -132,6 +148,10 @@
   <data name="LoginFormTitle.Text" xml:space="preserve">
     <value>Glad to have you aboard!</value>
     <comment>Text for the login menu top</comment>
+  </data>
+  <data name="okButton.Content" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Text to display in button </comment>
   </data>
   <data name="PassengerButton.Content" xml:space="preserve">
     <value>I'm going to travel as a passenger</value>

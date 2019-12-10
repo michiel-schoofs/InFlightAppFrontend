@@ -37,6 +37,7 @@ namespace InFlightApp.Views
             this.InitializeComponent();
         }
 
+
         private void Pvm_SelectionChanged(Seat s){
 
             //this.Frame.Navigate(typeof(ChatPage),s.SeatId);
@@ -59,9 +60,11 @@ namespace InFlightApp.Views
         }
 
         private void Grid_SelectionChanged(object sender, SelectionChangedEventArgs e){
-            int index = Grid.SelectedIndex;
-            var cont = Grid.ContainerFromIndex(index);
-            ShowFlyoutAt((FrameworkElement)cont);
+            if (Grid.SelectedItem != null){
+                int index = Grid.SelectedIndex;
+                var cont = Grid.ContainerFromIndex(index);
+                ShowFlyoutAt((FrameworkElement)cont);
+            }
         }
 
         private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
@@ -74,6 +77,8 @@ namespace InFlightApp.Views
 
         private async void ShowFlyoutAt(FrameworkElement element) {
             Flyout fl = new Flyout();
+            fl.Closing += Fl_Closing;
+
 
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 bool b = pvm.SeatHasUser().Result;
@@ -84,11 +89,21 @@ namespace InFlightApp.Views
                     fl.Content = tb;
                 }else {
                    Persoon pas = pvm.GetPassengerOnSeat();
-                   fl.Content = new PassengerPopupPage(pas);
+                    
+                    PassengerPopupPage ppp = new PassengerPopupPage(pas);
+                    ppp.CancelButtonPressed += () => {
+                        fl.Hide();
+                    };
+
+                    fl.Content = ppp;
                 }
                 fl.ShowAt(element);
             });
 
+        }
+
+        private void Fl_Closing(FlyoutBase sender, FlyoutBaseClosingEventArgs args) {
+            Grid.SelectedItem = null;
         }
 
         private TextBlock MakeTextBlock(string text) {
