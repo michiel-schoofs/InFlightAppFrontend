@@ -17,6 +17,16 @@ namespace InFlightApp.Services.Repositories {
             client = ApiConnection.Client;
         }
 
+        public void ApproveOrder(int id) {
+            string url = $"{ApiConnection.URL}/Order/crew/approve/{id}";
+            client.PostAsync(url, null).Wait();
+        }
+
+        public void DenyOrder(int id) {
+            string url = $"{ApiConnection.URL}/Order/crew/deny/{id}";
+            client.PostAsync(url, null).Wait();
+        }
+
         public IEnumerable<Order> GetAllUnprocessed() {
             string url = $"{ApiConnection.URL}/Order/crew/orders";
             string s = client.GetStringAsync(url).Result;

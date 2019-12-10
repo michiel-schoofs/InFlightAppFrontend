@@ -13,19 +13,40 @@ namespace InFlightApp.View_Model {
         private readonly IHandleOrderService _handleOrdersService;
         public ObservableCollection<Order> Orders { get; private set; }
 
+        public RelayCommand ApproveOrder { get; set; }
+        public RelayCommand DenyOrder { get; set; }
+
         public HandleOrdersViewModel() {
             try {
+                Orders = new ObservableCollection<Order>();
                 _handleOrdersService = ServiceLocator.Current.GetService<IHandleOrderService>(true);
-                updateOrders();
+                UpdateOrders();
+                
+                ApproveOrder = new RelayCommand((object o) => {
+                    if (o.GetType() == typeof(Order)) {
+                        var order = (Order)o;
+                        _handleOrdersService.ApproveOrder(order.OrderId);
+                        UpdateOrders();
+                    }
+                });
+                
+                DenyOrder = new RelayCommand((object o) => {
+                    if (o.GetType() == typeof(Order)) {
+                        var order = (Order)o;
+                        _handleOrdersService.DenyOrder(order.OrderId);
+                        UpdateOrders();
+                    }
+                });
+
             } catch (Exception e) {
                 //Replace with logging later on
                 Console.WriteLine(e);
             }
         }
 
-        private void updateOrders() {
+        private void UpdateOrders() {
             var orders = _handleOrdersService.GetAllUnprocessed();
-            Orders = new ObservableCollection<Order>();
+            Orders.Clear();
             foreach (var item in orders) {
                 Orders.Add(item);
             }

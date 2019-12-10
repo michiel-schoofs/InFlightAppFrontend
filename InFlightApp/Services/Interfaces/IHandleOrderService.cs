@@ -8,5 +8,7 @@ using System.Threading.Tasks;
 namespace InFlightApp.Services.Interfaces {
     interface IHandleOrderService {
         IEnumerable<Order> GetAllUnprocessed();
+        void ApproveOrder(int id);
+        void DenyOrder(int id);
     }
 }

@@ -7,9 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:converter ="using:InFlightApp.Converters"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+    mc:Ignorable="d">
+    <Page.Background>
+        <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+    </Page.Background>
+
     <UserControl.Resources>
         <converter:DurationConverter x:Key="durationConverter"/>
     </UserControl.Resources>

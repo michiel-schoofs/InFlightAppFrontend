@@ -10,9 +10,6 @@ namespace InFlightApp.Model {
     public class OrderLine : INotifyPropertyChanged {
         public Order Order { get; set; }
         public Product Product { get; set; }
-        public string Displayable {
-            get => this.ToString();
-        }
 
         private int _amount;
         public int Amount { 

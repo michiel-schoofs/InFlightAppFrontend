@@ -5,8 +5,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:models="using:InFlightApp.Model"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:models="using:InFlightApp.Model">
+    <Page.Background>
+        <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
+    </Page.Background>
 
     <GridView x:Name="GridViewMovies"
               ItemsSource="{Binding Movies}"
