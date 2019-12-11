@@ -78,6 +78,10 @@ namespace InFlightApp.View_Model{
         }
 
 
+        public PassengerType? GetPassengerType() {
+            return _userRepo.GetpassengerType();
+        }
+
         public Passenger GetLoggedIn()
         {
             return _userRepo.GetLoggedIn();

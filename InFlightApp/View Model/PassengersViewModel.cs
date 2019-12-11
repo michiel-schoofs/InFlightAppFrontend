@@ -54,7 +54,8 @@ namespace InFlightApp.View_Model
 
             LoginAsPassenger = new RelayCommand((object o) =>{
                 if (_userInterface.AuthenticatePassenger(SelectedSeat.SeatId))
-                    LoginSuccess.Invoke(); 
+                    LoginSuccess.Invoke();
+                
             });
         }
 

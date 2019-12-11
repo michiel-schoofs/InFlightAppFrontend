@@ -17,10 +17,10 @@
     <NavigationView IsBackButtonVisible="Collapsed" AlwaysShowHeader="False" HorizontalContentAlignment="Stretch" IsSettingsVisible="False" Style="{StaticResource NavigationViewWithScalableMenu}" x:Name="NavigationViewControl" PaneDisplayMode="Top" SelectionChanged="NavigationViewControl_SelectionChanged">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Entertainment" Tag="Nav_Entertainment"></NavigationViewItem>
-            <NavigationViewItem Content="Passengers" Tag="Nav_Passengers"></NavigationViewItem>
+            <NavigationViewItem Content="Passengers" Tag="Nav_Passengers" Name="NavPassenger"></NavigationViewItem>
             <NavigationViewItem Content="Products" Tag="Nav_Products"></NavigationViewItem>
-            <NavigationViewItem Content="Notifications" Tag="Nav_Notifications"></NavigationViewItem>
-            <NavigationViewItem Content="Orders" Tag="Nav_Orders"></NavigationViewItem>
+            <NavigationViewItem Content="Notifications" Tag="Nav_Notifications" Name="NavNotif"></NavigationViewItem>
+            <NavigationViewItem Content="Orders" Tag="Nav_Orders" Name="NavOrders"></NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.Content>
             <Frame HorizontalAlignment="Stretch" x:Name="NavigationViewFrame"></Frame>

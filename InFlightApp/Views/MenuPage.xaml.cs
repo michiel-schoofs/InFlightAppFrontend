@@ -1,4 +1,5 @@
 ﻿using InFlightApp.Configuration;
+using InFlightApp.Model;
 using InFlightApp.View_Model;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,11 @@ namespace InFlightApp.Views
                 UserStackPanel.DataContext = _userModel;
                 _userModel.LoggedOut += Lvm_LoggedOut;
 
+                PassengerType? pt = _userModel.GetPassengerType();
+                if (pt != null && pt == PassengerType.Passenger) {
+                    HideUIElements();
+                }
+                
                 source = new CancellationTokenSource();
                 ensureonetime = false;
                 this.Dispatcher.RunAsync(Dispatcher.CurrentPriority, () => {
@@ -56,6 +62,16 @@ namespace InFlightApp.Views
                 Console.WriteLine(ex.Message);
             }
             PollNotifications();
+        }
+
+        private void HideUIElements() {
+            NavPassenger.Visibility = Visibility.Collapsed;
+            NavOrders.Visibility = Visibility.Collapsed;
+            NavNotif.Visibility = Visibility.Collapsed;
+        }
+
+        private void AddUIElements() { 
+        
         }
 
         private void Lvm_LoggedOut(){

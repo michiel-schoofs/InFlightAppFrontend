@@ -51,8 +51,10 @@ namespace InFlightApp.Services.Repositories
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode){
                 ApiConnection.Token = response.Content.ReadAsStringAsync().Result;
+                ReloadHttpClient();
+            }
 
             return true;
         }
@@ -105,6 +107,14 @@ namespace InFlightApp.Services.Repositories
             return ar.Select(p => p.ToObject<Passenger>()).ToList();
         }
 
+        public PassengerType? GetpassengerType() {
+            if (persoon != null && persoon is Passenger)
+                return persoon.Type;
+
+            throw new Exception("Type not set");
+        }
+
+
         public Passenger GetLoggedIn() {
             try
             {
@@ -117,6 +127,10 @@ namespace InFlightApp.Services.Repositories
                 JObject obj = JObject.Parse(s);
 
                 Passenger p = obj.ToObject<Passenger>();
+
+                int type = obj.Value<int>("type");
+                p.Type = (PassengerType)(Enum.GetValues(typeof(PassengerType)).GetValue(type));
+
                 persoon = p;
                 return p;
             }catch(Exception ex)

@@ -12,6 +12,7 @@ namespace InFlightApp.Model{
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Id { get; set; }
+        public PassengerType? Type { get; set;  }
 
         private string imageFile;
         public string ImageFile {

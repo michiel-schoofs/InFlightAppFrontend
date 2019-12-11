@@ -17,6 +17,7 @@ namespace InFlightApp.Services.Interfaces
         void RemoveCredential(PasswordCredential cred);
 
         Passenger GetLoggedIn();
+        PassengerType? GetpassengerType();
 
         Task<bool> HasImage();
         Task<string> GetImage();

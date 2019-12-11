@@ -146,6 +146,7 @@
     <Compile Include="Model\OrderLine.cs" />
     <Compile Include="Model\Passenger.cs" />
     <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\PassengerType.cs" />
     <Compile Include="Model\Persoon.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductType.cs" />
