@@ -49,7 +49,10 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
-            <TextBlock Grid.Row="0" Text="{Binding Flight.Destination.City, Converter={StaticResource StringConverter}, ConverterParameter='Weather in {0}'}" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,40,0,0"/>
+            <StackPanel  Grid.Row="0" Orientation="Horizontal" Margin="0,40,0,0">
+                <TextBlock x:Uid="WeatherIn"  Style="{ThemeResource SubheaderTextBlockStyle}" Padding="0,0,10,0"/>
+                <TextBlock Text="{Binding Flight.Destination.City}" Style="{ThemeResource SubheaderTextBlockStyle}" />
+            </StackPanel>
             <Grid Margin="0,10,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -67,9 +70,9 @@
                         <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" Grid.Row="0">
-                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Current Temp"/>
-                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Min Temp"/>
-                        <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Max Temp"/>
+                        <TextBlock x:Uid="CurrentTemp" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock x:Uid="MinTemp" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock x:Uid="MaxTemp" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                     </StackPanel>
                     <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Weather.Description}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                     <StackPanel Grid.Column="1" Margin="20,0,0,0">
@@ -84,10 +87,10 @@
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Humidity" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                        <TextBlock Text="Windspeed" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                        <TextBlock Text="Cloudiness" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-                        <TextBlock Text="Pressure" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock x:Uid="Humidity" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                        <TextBlock x:Uid="Windspeed" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock x:Uid="Cloudiness" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                        <TextBlock x:Uid="Pressure" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="20,0,0,0">
                         <TextBlock Text="{Binding Weather.Humidity, Converter={StaticResource DoubleConverter}, ConverterParameter='\{0} %'}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
@@ -98,8 +101,8 @@
                 </Grid>
             </Grid>
         </StackPanel>
-        
-        <TextBlock Text="Flight Info" Style="{ThemeResource SubheaderTextBlockStyle}"></TextBlock>
+
+        <TextBlock  x:Uid="FlightInfoTitle" Style="{ThemeResource SubheaderTextBlockStyle}" Margin="0,20,0,10"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -112,11 +115,11 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Style="{ThemeResource SubtitleTextBlockStyle}" Text="Flight Nr"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="Plane Model" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Grid.Column="2" Grid.Row="0" Text="Flight Duration" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Grid.Column="3" Grid.Row="0" Text="Altitude" Style="{ThemeResource SubtitleTextBlockStyle}"/>
-            <TextBlock Grid.Column="4" Grid.Row="0" Text="Speed" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" x:Uid="FlightNr" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" x:Uid="PlaneModel" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Grid.Column="2" Grid.Row="0" x:Uid="FlightDuration" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Grid.Column="3" Grid.Row="0" x:Uid="Altitude" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            <TextBlock Grid.Column="4" Grid.Row="0" x:Uid="Speed" Style="{ThemeResource SubtitleTextBlockStyle}"/>
 
             <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Flight.FlightNr}"/>
             <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Flight.Plane}" />
@@ -124,12 +127,5 @@
             <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Flight.Altitude, Converter={StaticResource StringConverter}, ConverterParameter='\{0} m'}"/>
             <TextBlock Grid.Column="4" Grid.Row="1" Text="{Binding Flight.Speed, Converter={StaticResource StringConverter}, ConverterParameter='\{0} km/h'}"/>
         </Grid>
-
-
-
-
-
     </StackPanel>
-
-
 </Page>

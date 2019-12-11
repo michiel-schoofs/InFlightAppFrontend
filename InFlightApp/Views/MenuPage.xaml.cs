@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -81,9 +82,13 @@ namespace InFlightApp.Views
             });
         }
 
-        private void Lvm_LoggedOut(){
-            if(!ensureonetime)
-                Frame.Navigate(typeof(MainPage));
+        private async void Lvm_LoggedOut(){
+            if (!ensureonetime) {
+                if (Frame == null)
+                    await CoreApplication.RequestRestartAsync("oopsie");
+                else
+                    Frame.Navigate(typeof(MainPage));
+            }
             ensureonetime = true;
         }
 
@@ -150,10 +155,15 @@ namespace InFlightApp.Views
 
         private async Task CreateContentDialog(string notification)
         {
+
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var title = resourceBundle.GetString("NotificationTitleDialogTitle");
+            var close = resourceBundle.GetString("Close");
+
             ContentDialog contentDialog = new ContentDialog();
-            contentDialog.Title = "Notification from crew";
+            contentDialog.Title = title;
             contentDialog.Content = notification;
-            contentDialog.CloseButtonText = "Close";
+            contentDialog.CloseButtonText = close;
             contentDialog.DefaultButton = ContentDialogButton.Close;
             try
             {

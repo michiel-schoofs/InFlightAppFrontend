@@ -46,6 +46,7 @@ namespace InFlightApp.Views
             _model.LoadDetailsMovie(selectedMovie.imdbID);
 
             ContentDialog contentDialog = new ContentDialog();
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
 
             StringBuilder content = new StringBuilder().Append(selectedMovie.Year + ", " + selectedMovie.Director + ", " + selectedMovie.Runtime + "\n\n");
             content.Append(selectedMovie.Genre + "\n\n");
@@ -54,13 +55,13 @@ namespace InFlightApp.Views
 
             contentDialog.Title = selectedMovie.Title;
             contentDialog.Content = content;
-            contentDialog.PrimaryButtonText = "Watch";
+            contentDialog.PrimaryButtonText = resourceBundle.GetString("Watch");
             contentDialog.PrimaryButtonClick += ContentDialog_WatchButtonClick;
             void ContentDialog_WatchButtonClick(ContentDialog sender2, ContentDialogButtonClickEventArgs e2)
             {
                 Frame.Navigate(typeof(MoviePlayerPage));
             }
-            contentDialog.CloseButtonText = "Close";
+            contentDialog.CloseButtonText = resourceBundle.GetString("Close");
 
             contentDialog.DefaultButton = ContentDialogButton.Primary;
 

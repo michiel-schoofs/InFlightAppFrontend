@@ -34,5 +34,12 @@ namespace InFlightApp.Views {
                 InputBox.Text = "";
             }
         }
+
+        private void InputBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e) {
+            if (e.Key == Windows.System.VirtualKey.Enter) {
+                _model.SendMessage(InputBox.Text);
+                InputBox.Text = "";
+            }
+        }
     }
 }

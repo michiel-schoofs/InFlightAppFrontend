@@ -15,12 +15,12 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Margin="10">
-            <TextBlock Text="Enter your notification:" Style="{ThemeResource SubtitleTextBlockStyle}"  Margin="10"/>
-            <ComboBox x:Name="ReceiverBox"  HorizontalAlignment="Stretch"  Margin="10"
-                      ItemsSource="{Binding Passengers}" PlaceholderText="Pick a passenger">
+            <TextBlock x:Uid="NotificationTitle" Style="{ThemeResource SubtitleTextBlockStyle}"  Margin="10"/>
+            <ComboBox x:Uid="ReceiverBox" x:Name="ReceiverBox"  HorizontalAlignment="Stretch"  Margin="10"
+                      ItemsSource="{Binding Passengers}">
             </ComboBox>
             <TextBox x:Name="txtNotification"  Margin="10"/>
-            <Button x:Name="btnNotification" Content="Send" HorizontalAlignment="right" Click="BtnNotification_Click"  Margin="10"/>
+            <Button x:Uid="SendBtn" x:Name="btnNotification" HorizontalAlignment="right" Click="BtnNotification_Click"  Margin="10"/>
         </StackPanel>
         <ScrollViewer Grid.Column="1">
             <ScrollViewer.Background>
