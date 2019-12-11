@@ -112,7 +112,6 @@
                                             </Flyout>
                                         </Button.Flyout>
                                     </Button>
-                                    <Button>Promote</Button>
                                 </StackPanel>
                             </Grid>
                         </Grid>

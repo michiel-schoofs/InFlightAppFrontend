@@ -41,6 +41,7 @@ namespace InFlightApp.Views
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
                 _userModel = ServiceLocator.Current.GetService<LoginViewModel>(true);
+
                 logoutBtn.DataContext = _userModel;
                 UserStackPanel.DataContext = _userModel;
                 _userModel.LoggedOut += Lvm_LoggedOut;
@@ -180,13 +181,16 @@ namespace InFlightApp.Views
         }
 
         private void chatIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
-            ChatPage chat = new ChatPage(2);
+            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                Seat s = _userModel.GetSeatOfLoggedIn();
+                ChatPage chat = new ChatPage(s.SeatId);
 
-            Flyout fl = new Flyout();
-            StyleFlyout(fl);
+                Flyout fl = new Flyout();
+                StyleFlyout(fl);
 
-            fl.Content = chat;
-            fl.ShowAt(chatIcon);
+                fl.Content = chat;
+                fl.ShowAt(chatIcon);
+            });
         }
 
         private void StyleFlyout(Flyout fl) {

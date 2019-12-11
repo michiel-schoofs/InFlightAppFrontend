@@ -16,6 +16,7 @@ namespace InFlightApp.Services.Interfaces
         PasswordCredential GetCredential();
         void RemoveCredential(PasswordCredential cred);
 
+        Seat GetSeatOfLogedIn();
         Passenger GetLoggedIn();
         PassengerType? GetpassengerType();
 
