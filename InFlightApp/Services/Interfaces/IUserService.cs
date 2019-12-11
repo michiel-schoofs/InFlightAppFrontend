@@ -23,6 +23,7 @@ namespace InFlightApp.Services.Interfaces
         Task<string> GetImage();
         Task<string> GetImageForPerson(Persoon pers);
 
+        Task<bool> HasTravelgroup();
 
         IEnumerable<Passenger> GetPassengers();
         void ChangeSeat(int userId, int seatId);

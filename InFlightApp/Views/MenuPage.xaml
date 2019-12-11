@@ -27,7 +27,8 @@
         </NavigationView.Content>
         <NavigationView.PaneFooter>
             <StackPanel Orientation="Horizontal" Name="UserStackPanel" >
-                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80F;" Margin="0,5,10,0" PointerPressed="FontIcon_PointerPressed" />
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8F2;" Margin="0,5,10,0" Name="chatIcon" Visibility="Collapsed" PointerPressed="chatIcon_PointerPressed"/>
+                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE80F;" Margin="0,5,10,0" PointerPressed="FontIcon_PointerPressed"  />
                 <Ellipse Name="userIcon" Height="30" Width="30" Margin="0,5,20,0" PointerPressed="userIcon_PointerPressed" DataContext="{Binding LoggedInUser,Mode=OneWay}">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding ImageFile}"/>

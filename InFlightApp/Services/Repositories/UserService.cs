@@ -234,5 +234,15 @@ namespace InFlightApp.Services.Repositories
 
             return "Assets/users/defaultuser.png";
         }
+
+        public async Task<bool> HasTravelgroup(){
+            if (persoon == null || persoon.Type != PassengerType.Passenger)
+                return false;
+
+            string url = $"{ApiConnection.URL}/TravelGroup/exist";
+            bool exist = bool.Parse(client.GetStringAsync(url).Result);
+
+            return exist;
+        }
     }
 }

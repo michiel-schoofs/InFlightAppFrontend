@@ -14,24 +14,16 @@ namespace InFlightApp.Views {
     public sealed partial class ChatPage : Page {
         private TravelGroupViewModel _model;
 
-        public ChatPage() {
-            this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            int seatnr = (int)e.Parameter;
-            base.OnNavigatedTo(e);
-            try
-            {
-                //_model = ServiceLocator.Current.GetService<TravelGroupViewModel>(true);
+        public ChatPage(int seatnr) {
+            try {
                 _model = new TravelGroupViewModel(seatnr);
                 DataContext = _model;
+                this.InitializeComponent();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Console.WriteLine(ex.Message);
             }
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

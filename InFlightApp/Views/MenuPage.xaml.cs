@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,10 +48,12 @@ namespace InFlightApp.Views
                 PassengerType? pt = _userModel.GetPassengerType();
                 if (pt != null && pt == PassengerType.Passenger) {
                     HideUIElements();
+                    AddUIElements();
                 }
                 
                 source = new CancellationTokenSource();
                 ensureonetime = false;
+
                 this.Dispatcher.RunAsync(Dispatcher.CurrentPriority, () => {
                     _userModel.GetUserImage();
                 });
@@ -70,8 +73,11 @@ namespace InFlightApp.Views
             NavNotif.Visibility = Visibility.Collapsed;
         }
 
-        private void AddUIElements() { 
-        
+        private void AddUIElements() {
+            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                if(_userModel.PassengerInFlightgroup())
+                    chatIcon.Visibility = Visibility.Visible;
+            });
         }
 
         private void Lvm_LoggedOut(){
@@ -166,6 +172,28 @@ namespace InFlightApp.Views
 
         private void FontIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
             NavigateToInfoPage();
+        }
+
+        private void chatIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
+            ChatPage chat = new ChatPage(2);
+
+            Flyout fl = new Flyout();
+            StyleFlyout(fl);
+
+            fl.Content = chat;
+            fl.ShowAt(chatIcon);
+        }
+
+        private void StyleFlyout(Flyout fl) {
+            var style = new Style(typeof(FlyoutPresenter));
+
+            style.Setters.Add(new Setter(FlyoutPresenter.BackgroundProperty, new AcrylicBrush() {Opacity=0}));
+            style.Setters.Add(new Setter(FlyoutPresenter.MarginProperty,new Thickness(40,0,40,0)));
+            style.Setters.Add(new Setter(FlyoutPresenter.BorderThicknessProperty, 0));
+            style.Setters.Add(new Setter(FlyoutPresenter.MinHeightProperty, 600));
+            style.Setters.Add(new Setter(FlyoutPresenter.MinWidthProperty, 600));
+
+            fl.FlyoutPresenterStyle = style;
         }
     }
 }
