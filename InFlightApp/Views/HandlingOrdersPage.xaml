@@ -57,8 +57,8 @@
                                 <TextBlock Text="Total amount:" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="10"/>
                                 <TextBlock Text="{Binding TotalPrice, Converter={StaticResource MoneyConverter}}" Margin="10,0,0,0" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Content="Approve" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ApproveOrder}" CommandParameter="{Binding}"/>
-                                    <Button Content="Deny" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.DenyOrder}" CommandParameter="{Binding}"/>
+                                    <Button Content="Approve" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmApproveOrder}" CommandParameter="{Binding}"/>
+                                    <Button Content="Deny" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmDenyOrder}" CommandParameter="{Binding}"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
