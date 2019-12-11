@@ -313,4 +313,55 @@
     <value>Yes</value>
     <comment>Text for yes</comment>
   </data>
+  <data name="BEVERAGE" xml:space="preserve">
+    <value>BEVERAGE</value>
+  </data>
+  <data name="CIGARETTES" xml:space="preserve">
+    <value>CIGARETTES</value>
+  </data>
+  <data name="Entertainment.Content" xml:space="preserve">
+    <value>Enterainment</value>
+    <comment>Navbar Enterainment</comment>
+  </data>
+  <data name="FOOD" xml:space="preserve">
+    <value>FOOD</value>
+  </data>
+  <data name="LIQUOR" xml:space="preserve">
+    <value>LIQUOR</value>
+  </data>
+  <data name="Notifications.Content" xml:space="preserve">
+    <value>Notifications</value>
+    <comment>Navbar Notifications</comment>
+  </data>
+  <data name="Orders.Content" xml:space="preserve">
+    <value>Orders</value>
+    <comment>Navbar Orders</comment>
+  </data>
+  <data name="OTHER" xml:space="preserve">
+    <value>OTHER</value>
+  </data>
+  <data name="Passengers.Content" xml:space="preserve">
+    <value>Passengers</value>
+    <comment>Navbar Passengers</comment>
+  </data>
+  <data name="ProductAvailable.Content" xml:space="preserve">
+    <value>Only show Available:</value>
+    <comment>ProductAvailable.Content</comment>
+  </data>
+  <data name="Products.Content" xml:space="preserve">
+    <value>Products</value>
+    <comment>Navbar Products</comment>
+  </data>
+  <data name="ProductSearch.Header" xml:space="preserve">
+    <value>Name:</value>
+    <comment>Header for searchbar</comment>
+  </data>
+  <data name="ProductSearch.PlaceholderText" xml:space="preserve">
+    <value>Name</value>
+    <comment>Placeholder for searchbar</comment>
+  </data>
+  <data name="ProductSortby.Header" xml:space="preserve">
+    <value>Sort By:</value>
+    <comment>Header for sorting</comment>
+  </data>
 </root>

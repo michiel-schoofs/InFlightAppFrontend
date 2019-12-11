@@ -132,6 +132,7 @@
     <Compile Include="Converters\DurationConverter.cs" />
     <Compile Include="Converters\FlightDurationConverter.cs" />
     <Compile Include="Converters\MoneyConverter.cs" />
+    <Compile Include="Converters\ProductTypeConverter.cs" />
     <Compile Include="Converters\SortTypeConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Extensions.cs" />

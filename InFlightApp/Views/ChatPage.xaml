@@ -14,7 +14,7 @@
         <ScrollViewer>
             <ListView ItemsSource="{Binding Messages}" Height="500">
                 <ListView.Background>
-                    <AcrylicBrush TintOpacity="0.13"/>
+                    <AcrylicBrush TintOpacity="0.75" TintColor="Black"/>
                 </ListView.Background>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
