@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.View_Model {
     public class HandleOrdersViewModel {
-        private readonly IHandleOrderService _handleOrdersService;
+        private static IHandleOrderService _handleOrdersService = ServiceLocator.Current.GetService<IHandleOrderService>(true);
         public ObservableCollection<Order> Orders { get; private set; }
 
         private readonly Subject<Order> _popUpApprove = new Subject<Order>();
@@ -20,8 +20,13 @@ namespace InFlightApp.View_Model {
         private readonly Subject<Order> _popUpDeny = new Subject<Order>();
         public IObservable<Order> PopUpDeny { get => _popUpDeny; }
 
+        public delegate Task CartChangedDelegate();
+        public event CartChangedDelegate CartChanged;
+
         public RelayCommand ConfirmApproveOrder { get; set; }
         public RelayCommand ConfirmDenyOrder { get; set; }
+
+        public RelayCommand AddOrderToCart { get; set; }
 
         public RelayCommand ApproveOrder { get; set; }
         public RelayCommand DenyOrder { get; set; }
@@ -29,8 +34,8 @@ namespace InFlightApp.View_Model {
         public HandleOrdersViewModel() {
             try {
                 Orders = new ObservableCollection<Order>();
-                _handleOrdersService = ServiceLocator.Current.GetService<IHandleOrderService>(true);
                 MakeCommands();
+                MakeUserCommands();
                 UpdateOrders();
 
             } catch (Exception e) {
@@ -43,12 +48,27 @@ namespace InFlightApp.View_Model {
             return _handleOrdersService.GetAmountInCart(prod);
         }
 
+        public int GetAmountOfProductsInCar() {
+            return _handleOrdersService.GetAmountOfProductsInCart();
+        }
+
         private void UpdateOrders() {
             var orders = _handleOrdersService.GetAllUnprocessed();
             Orders.Clear();
             foreach (var item in orders) {
                 Orders.Add(item);
             }
+        }
+
+        private void MakeUserCommands() {
+            AddOrderToCart = new RelayCommand((object o) =>{
+                object[] obj = (object[])o;
+                Product p = ((Product)(obj[0]));
+                int amount = int.Parse((string)obj[1]);
+
+                _handleOrdersService.PlaceOrder(p, amount);
+                CartChanged.Invoke();
+            });
         }
 
         private void MakeCommands() {

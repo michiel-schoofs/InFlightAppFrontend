@@ -10,31 +10,30 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Repositories {
     public class HandleOrderService : IHandleOrderService {
-        private readonly IDictionary<Product, int> _cart;
+        private static readonly IDictionary<int, OrderLine> _cart = new Dictionary<int, OrderLine>();
+        private static Order order;
         private HttpClient client;
 
-        public int AmountOfOrdersInCart { get => _cart.Keys.Count; }
-
         public HandleOrderService() {
-            _cart = new Dictionary<Product, int>();
             client = ApiConnection.Client;
         }
 
         public void PlaceOrder(Product prod, int amount) {
-            if (!_cart.ContainsKey(prod))
-                _cart.Add(prod, amount);
+
+            if (!_cart.ContainsKey(prod.ProductID))
+                _cart.Add(prod.ProductID, new OrderLine() { Amount = amount, Product = prod});
             else
-                _cart[prod] += amount;
+                _cart[prod.ProductID].Amount += amount;
         }
 
         public void RemoveProductFromOrder(Product prod) {
-            if(_cart.ContainsKey(prod))
-                _cart.Remove(prod);
+            if(_cart.ContainsKey(prod.ProductID))
+                _cart.Remove(prod.ProductID);
         }
 
         public int GetAmountInCart(Product prod) {
-            if (_cart.ContainsKey(prod))
-                return _cart[prod];
+            if (_cart.ContainsKey(prod.ProductID))
+                return _cart[prod.ProductID].Amount;
 
             return -1;
         }
@@ -101,6 +100,10 @@ namespace InFlightApp.Services.Repositories {
                 }
                 return ord;
             }).ToArray();
+        }
+
+        public int GetAmountOfProductsInCart() {
+            return _cart.Keys.Count;
         }
     }
 }

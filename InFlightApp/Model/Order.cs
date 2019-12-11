@@ -17,6 +17,10 @@ namespace InFlightApp.Model {
         public IEnumerable<OrderLine> OrderLines { get; set; }
         public decimal TotalPrice { get => OrderLines.Sum(item => item.Amount * item.Product.UnitPrice); }
 
+        public Order(){
+            OrderLines = new List<OrderLine>();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged([CallerMemberName]string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
