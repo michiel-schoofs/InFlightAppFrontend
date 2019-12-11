@@ -56,7 +56,7 @@ namespace InFlightApp.Views
         private void Button_Click(object sender, RoutedEventArgs e){
             ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("BackwardConnectedAnimation", Grid);
             if (_originPage != null)
-                this.Frame.Navigate(_originPage, null, new SuppressNavigationTransitionInfo());
+                this.Frame.Navigate(_originPage, "passenger", new SuppressNavigationTransitionInfo());
         }
 
         private void Grid_SelectionChanged(object sender, SelectionChangedEventArgs e){
