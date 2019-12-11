@@ -96,7 +96,7 @@ namespace InFlightApp.View_Model{
 
         private void RefillProductHandler(object o) {
             object[] obj = (object[])o;
-            Product p = ((Product)((Image)obj[0]).DataContext);
+            Product p = ((Product)(obj[0]));
             
             int res;
             bool suc = int.TryParse((string)obj[1], out res);

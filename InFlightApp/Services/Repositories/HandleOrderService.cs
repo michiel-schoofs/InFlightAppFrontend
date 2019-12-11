@@ -10,11 +10,33 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Repositories {
     public class HandleOrderService : IHandleOrderService {
-
+        private readonly IDictionary<Product, int> _cart;
         private HttpClient client;
 
+        public int AmountOfOrdersInCart { get => _cart.Keys.Count; }
+
         public HandleOrderService() {
+            _cart = new Dictionary<Product, int>();
             client = ApiConnection.Client;
+        }
+
+        public void PlaceOrder(Product prod, int amount) {
+            if (!_cart.ContainsKey(prod))
+                _cart.Add(prod, amount);
+            else
+                _cart[prod] += amount;
+        }
+
+        public void RemoveProductFromOrder(Product prod) {
+            if(_cart.ContainsKey(prod))
+                _cart.Remove(prod);
+        }
+
+        public int GetAmountInCart(Product prod) {
+            if (_cart.ContainsKey(prod))
+                return _cart[prod];
+
+            return -1;
         }
 
         public void ApproveOrder(int id) {

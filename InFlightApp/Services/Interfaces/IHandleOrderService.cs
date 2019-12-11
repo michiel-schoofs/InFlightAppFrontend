@@ -10,5 +10,8 @@ namespace InFlightApp.Services.Interfaces {
         IEnumerable<Order> GetAllUnprocessed();
         void ApproveOrder(int id);
         void DenyOrder(int id);
+        void PlaceOrder(Product prod, int amount);
+        void RemoveProductFromOrder(Product prod);
+        int GetAmountInCart(Product prod);
     }
 }

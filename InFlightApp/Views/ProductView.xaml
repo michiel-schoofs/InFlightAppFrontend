@@ -1,0 +1,123 @@
+﻿<UserControl
+    x:Class="InFlightApp.Views.ProductView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:InFlightApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:converter="using:InFlightApp.Converters"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:vm ="using:InFlightApp.View_Model"
+    xmlns:x1="using:System"
+    xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="root">
+    <UserControl.Resources>
+        <vm:ProductViewModel x:Key="vm"/>
+        <converter:MoneyConverter x:Key="moneyConv"/>
+    </UserControl.Resources>
+    <Grid  Height="400" Width="350">
+        <Grid.Background>
+            <AcrylicBrush TintOpacity="0.4" TintColor="#CC080707"></AcrylicBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="{Binding ImageFile}" Grid.Column="1" Grid.Row="1" Margin="0,0,0,20" Name="Image"/>
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Style="{StaticResource TitleStyle}"/>
+            <TextBlock Text="{Binding Description}" Style="{StaticResource DescriptionStyle}"/>
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Price:" Grid.Row="0" Grid.Column="0"/>
+            <TextBlock Text="Availability:" Margin="0,0,20,0" Grid.Row="2" Grid.Column="0"/>
+            <TextBlock FontWeight="Bold" Text="{Binding UnitPrice, Converter={StaticResource moneyConv}}" Grid.Row="0" Grid.Column="1"/>
+            <SymbolIcon Grid.Row="2" Grid.Column="1" Symbol="{Binding Glyph}" Foreground="{Binding Color}"/>
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Margin="0,0,15,0"  Name="refillButton">
+                    Add to stock
+                    <Button.Flyout>
+                        <Flyout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition  Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Currently available: " Grid.Row="0" Grid.Column="0"/>
+                                <TextBlock Name="fix" Text="{Binding Amount}" DataContext="{Binding}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" FontWeight="Bold"/>
+                                <TextBlock VerticalAlignment="Center" Text="Add to stock amount:" Grid.Row="2" Grid.Column="0"/>
+                                <TextBox  Name="refillAmount" Grid.Row="2" Grid.Column="2" extensions:TextBoxRegex.ValidationType="Decimal"  
+                                                             extensions:TextBoxRegex.ValidationMode="Dynamic"/>
+                                <Button Grid.Row="4" Grid.ColumnSpan="3" DataContext="{StaticResource vm}" 
+                                                            HorizontalAlignment="Center" Command="{Binding RefillProduct}">
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:MultiBindingBehavior PropertyName="CommandParameter">
+                                            <behaviors:MultiBindingItem Value="{Binding ElementName=fix, Path=DataContext}"/>
+                                            <behaviors:MultiBindingItem Value="{Binding ElementName=refillAmount, Path=Text}"/>
+                                        </behaviors:MultiBindingBehavior>
+                                    </i:Interaction.Behaviors>
+                                    Restock
+                                </Button>
+                            </Grid>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button x:Uid="orderButton" x:Name="orderButton" Visibility="Collapsed">
+                    <Button.Flyout>
+                        <Flyout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="10"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="10"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Name="status" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource userText}"/>
+                            </Grid>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

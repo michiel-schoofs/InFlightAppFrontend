@@ -9,13 +9,14 @@
     xmlns:converter="using:InFlightApp.Converters"
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     xmlns:vm ="using:InFlightApp.View_Model"
+    xmlns:uc ="using:InFlightApp.Views"
     xmlns:x1="using:System"
     xmlns:behaviors="using:Cimbalino.Toolkit.Behaviors">
     <UserControl.Resources>
         <converter:MoneyConverter x:Key="moneyConv"/>
         <!-- <converter:RefillConverter x:Key="refillConv"/> -->
         <converter:SortTypeConverter x:Key="sortTypeConv"/>
-        <vm:ProductViewModel x:Key="vm"/>
+
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" MinWidth="1500">
         <Grid>
@@ -35,86 +36,10 @@
             <CheckBox Style="{StaticResource HorizontalCheckBox}" Content="Only show Available:" IsChecked="{Binding OnlyShowAvailable ,Mode=TwoWay}" Grid.Column="2"/>
         </Grid>
         <ScrollViewer Grid.Column="0" Height="700" HorizontalScrollMode="Auto" VerticalScrollMode="Enabled" CanBeScrollAnchor="True" IsHorizontalScrollChainingEnabled="False" >
-            <GridView Name="gridTemp" ScrollViewer.VerticalScrollBarVisibility="Visible" CanBeScrollAnchor="True" ShowsScrollingPlaceholders="True">
+            <GridView Name="gridTemp" ItemsSource="{Binding FilteredProducts}" ScrollViewer.VerticalScrollBarVisibility="Visible" CanBeScrollAnchor="True" ShowsScrollingPlaceholders="True">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <Grid  Height="400" Width="350">
-                            <Grid.Background>
-                                <AcrylicBrush TintOpacity="0.4" TintColor="#CC080707"></AcrylicBrush>
-                            </Grid.Background>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="20"/>
-                                <RowDefinition Height="2*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="20"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="20"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding ImageFile}" Grid.Column="1" Grid.Row="1" Margin="0,0,0,20" Name="Image"/>
-                            <StackPanel Grid.Column="1" Grid.Row="2">
-                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Style="{StaticResource TitleStyle}"/>
-                                <TextBlock Text="{Binding Description}" Style="{StaticResource DescriptionStyle}"/>
-                            </StackPanel>
-                            <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="auto"/>
-                                    <RowDefinition Height="10"/>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Price:" Grid.Row="0" Grid.Column="0"/>
-                                <TextBlock Text="Availability:" Margin="0,0,20,0" Grid.Row="2" Grid.Column="0"/>
-                                <TextBlock FontWeight="Bold" Text="{Binding UnitPrice, Converter={StaticResource moneyConv}}" Grid.Row="0" Grid.Column="1"/>
-                                <SymbolIcon Grid.Row="2" Grid.Column="1" Symbol="{Binding Glyph}" Foreground="{Binding Color}"/>
-                                <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Center" Orientation="Horizontal">
-                                    <Button Margin="0,0,15,0" >
-                                        Add to stock
-                                        <Button.Flyout>
-                                            <Flyout>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="auto"/>
-                                                        <RowDefinition Height="10"/>
-                                                        <RowDefinition Height="auto"/>
-                                                        <RowDefinition Height="15"/>
-                                                        <RowDefinition Height="auto"/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="auto"/>
-                                                        <ColumnDefinition Width="15"/>
-                                                        <ColumnDefinition  Width="auto"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Text="Currently available: " Grid.Row="0" Grid.Column="0"/>
-                                                    <TextBlock Text="{Binding Amount}" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2" FontWeight="Bold"/>
-                                                    <TextBlock VerticalAlignment="Center" Text="Add to stock amount:" Grid.Row="2" Grid.Column="0"/>
-                                                    <TextBox  Name="refillAmount" Grid.Row="2" Grid.Column="2" extensions:TextBoxRegex.ValidationType="Decimal"  
-                                                             extensions:TextBoxRegex.ValidationMode="Dynamic"/>
-                                                    <Button Grid.Row="4" Grid.ColumnSpan="3" DataContext="{StaticResource vm}" 
-                                                            HorizontalAlignment="Center" Command="{Binding RefillProduct}">
-                                                        <i:Interaction.Behaviors>
-                                                            <behaviors:MultiBindingBehavior PropertyName="CommandParameter">
-                                                                <behaviors:MultiBindingItem Value="{Binding ElementName=Image}"/>
-                                                                <behaviors:MultiBindingItem Value="{Binding ElementName=refillAmount, Path=Text}"/>
-                                                            </behaviors:MultiBindingBehavior>
-                                                        </i:Interaction.Behaviors>
-                                                        Restock
-                                                    </Button>
-                                                </Grid>
-                                            </Flyout>
-                                        </Button.Flyout>
-                                    </Button>
-                                </StackPanel>
-                            </Grid>
-                        </Grid>
+                        <uc:ProductView DataContext="{Binding}"/>
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>

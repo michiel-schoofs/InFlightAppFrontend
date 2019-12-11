@@ -153,6 +153,10 @@
     <value>Accepteer</value>
     <comment>Text to display in button </comment>
   </data>
+  <data name="orderButton.Content" xml:space="preserve">
+    <value>Voeg toe aan winkelwagentje</value>
+    <comment>Text for the order button</comment>
+  </data>
   <data name="PassengerButton.Content" xml:space="preserve">
     <value>Ik ga reizen als passagier</value>
     <comment>Text for the opening screen button as passenger</comment>
@@ -164,6 +168,14 @@
   <data name="passwordField.PlaceholderText" xml:space="preserve">
     <value>Wachtwoord</value>
     <comment>Text for the textbox password</comment>
+  </data>
+  <data name="productInCart" xml:space="preserve">
+    <value>Aantal al in je winkelmandje:</value>
+    <comment>Text to display when product in cart</comment>
+  </data>
+  <data name="productNotInCart" xml:space="preserve">
+    <value>Dit product is nog niet in je winkelmandje</value>
+    <comment>Text to display when product not in cart</comment>
   </data>
   <data name="rememberMe.Text" xml:space="preserve">
     <value>Onthoud me </value>

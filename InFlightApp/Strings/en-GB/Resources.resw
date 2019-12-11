@@ -153,6 +153,10 @@
     <value>Confirm</value>
     <comment>Text to display in button </comment>
   </data>
+  <data name="orderButton.Content" xml:space="preserve">
+    <value>Add to cart</value>
+    <comment>Text for the order button</comment>
+  </data>
   <data name="PassengerButton.Content" xml:space="preserve">
     <value>I'm going to travel as a passenger</value>
     <comment>Text for the opening screen button as passenger</comment>
@@ -164,6 +168,14 @@
   <data name="passwordField.PlaceholderText" xml:space="preserve">
     <value>Password</value>
     <comment>Text for the textbox password</comment>
+  </data>
+  <data name="productInCart" xml:space="preserve">
+    <value>Amount already in cart:</value>
+    <comment>Text to display when product in cart</comment>
+  </data>
+  <data name="productNotInCart" xml:space="preserve">
+    <value>This product isn't in your cart yet</value>
+    <comment>Text to display when product not in cart</comment>
   </data>
   <data name="rememberMe.Text" xml:space="preserve">
     <value>Remember me</value>

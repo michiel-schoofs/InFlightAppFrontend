@@ -39,6 +39,10 @@ namespace InFlightApp.View_Model {
             }
         }
 
+        public int GetAmountInCart(Product prod) {
+            return _handleOrdersService.GetAmountInCart(prod);
+        }
+
         private void UpdateOrders() {
             var orders = _handleOrdersService.GetAllUnprocessed();
             Orders.Clear();
