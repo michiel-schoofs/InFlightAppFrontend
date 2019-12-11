@@ -230,6 +230,9 @@
     <Compile Include="Configuration\ServiceLocator.cs" />
     <Compile Include="View Model\LoginViewModel.cs" />
     <Compile Include="View Model\MainPageViewModel.cs" />
+    <Compile Include="Views\ShoppingCart.xaml.cs">
+      <DependentUpon>ShoppingCart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartAppPage.xaml.cs">
       <DependentUpon>StartAppPage.xaml</DependentUpon>
     </Compile>
@@ -404,6 +407,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SeriesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShoppingCart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

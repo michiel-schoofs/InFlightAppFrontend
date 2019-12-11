@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace InFlightApp.Services.Interfaces {
     interface IHandleOrderService {
+        OrderLine[] GetCartLines();
         IEnumerable<Order> GetAllUnprocessed();
         int GetAmountOfProductsInCart();
         void ApproveOrder(int id);

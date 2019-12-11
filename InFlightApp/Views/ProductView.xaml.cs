@@ -41,7 +41,7 @@ namespace InFlightApp.Views
         private void ChangeToOrder()
         {
             hovm = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
-            hovm.CartChanged += Hovm_CartChanged;
+            HandleOrdersViewModel.CartChanged += Hovm_CartChanged;
 
             refillButton.Visibility = Visibility.Collapsed;
             orderButton.Visibility = Visibility.Visible;

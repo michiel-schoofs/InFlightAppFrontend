@@ -18,6 +18,10 @@ namespace InFlightApp.Services.Repositories {
             client = ApiConnection.Client;
         }
 
+        public OrderLine[] GetCartLines() {
+            return _cart.Values.ToArray();
+        }
+
         public void PlaceOrder(Product prod, int amount) {
 
             if (!_cart.ContainsKey(prod.ProductID))

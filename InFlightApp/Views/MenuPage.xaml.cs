@@ -80,12 +80,12 @@ namespace InFlightApp.Views
 
         private void AddUIElements() {
             this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
-                if (_userModel.PassengerInFlightgroup()) {
+                if (_userModel.PassengerInFlightgroup()) 
                     chatIcon.Visibility = Visibility.Visible;
-                    cartIcon.Visibility = Visibility.Visible;
-                    AddCartInteractivity();
-                    _hovm.CartChanged += _hovm_CartChanged;
-                }
+
+                cartIcon.Visibility = Visibility.Visible;
+                AddCartInteractivity();
+                HandleOrdersViewModel.CartChanged += _hovm_CartChanged;
             });
         }
 
@@ -231,7 +231,7 @@ namespace InFlightApp.Views
 
         private void StyleFlyoutCart(Flyout fl) {
             var style = new Style(typeof(FlyoutPresenter));
-            style.Setters.Add(new Setter(FlyoutPresenter.BackgroundProperty, new AcrylicBrush() { Opacity = 0.2, TintColor = Windows.UI.Colors.Black }));
+            style.Setters.Add(new Setter(FlyoutPresenter.MarginProperty, new Thickness(0,15,0,0)));
             fl.FlyoutPresenterStyle = style;
         }
 
@@ -240,13 +240,16 @@ namespace InFlightApp.Views
                 Flyout fl = new Flyout();
                 StyleFlyoutCart(fl);
 
-                if (_hovm.GetAmountOfProductsInCar() <= 0) {
+                if (_hovm.GetAmountOfProductsInCar() <= 0)
+                {
                     TextBlock tb = new TextBlock();
 
                     var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                     tb.Text = resourceBundle.GetString("emptyCart");
 
                     fl.Content = tb;
+                }else {
+                    fl.Content = new ShoppingCart();
                 }
 
                 fl.ShowAt(cartIcon);
