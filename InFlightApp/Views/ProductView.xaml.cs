@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -40,12 +41,18 @@ namespace InFlightApp.Views
         private void ChangeToOrder()
         {
             hovm = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
-           
+            hovm.CartChanged += Hovm_CartChanged;
+
             refillButton.Visibility = Visibility.Collapsed;
             orderButton.Visibility = Visibility.Visible;
-            orderButton.DataContext = hovm;
+            addToCartbtn.DataContext = hovm;
 
             ChangeTextBox();
+        }
+
+        private Task Hovm_CartChanged(){
+            ChangeTextBox();
+            return null;
         }
 
         private void ChangeTextBox(){

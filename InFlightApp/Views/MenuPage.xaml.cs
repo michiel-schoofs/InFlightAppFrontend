@@ -31,6 +31,8 @@ namespace InFlightApp.Views
     {
         private readonly NotificationsViewModel _model;
         private readonly LoginViewModel _userModel;
+        private readonly HandleOrdersViewModel _hovm;
+
         private CancellationTokenSource source;
         private Task task;
         private static bool ensureonetime = false;
@@ -42,6 +44,7 @@ namespace InFlightApp.Views
             {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
                 _userModel = ServiceLocator.Current.GetService<LoginViewModel>(true);
+                _hovm = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
 
                 logoutBtn.DataContext = _userModel;
                 UserStackPanel.DataContext = _userModel;
@@ -52,7 +55,7 @@ namespace InFlightApp.Views
                     HideUIElements();
                     AddUIElements();
                 }
-                
+
                 source = new CancellationTokenSource();
                 ensureonetime = false;
 
@@ -77,9 +80,25 @@ namespace InFlightApp.Views
 
         private void AddUIElements() {
             this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
-                if(_userModel.PassengerInFlightgroup())
+                if (_userModel.PassengerInFlightgroup()) {
                     chatIcon.Visibility = Visibility.Visible;
+                    cartIcon.Visibility = Visibility.Visible;
+                    AddCartInteractivity();
+                    _hovm.CartChanged += _hovm_CartChanged;
+                }
             });
+        }
+
+        private Task _hovm_CartChanged(){
+            AddCartInteractivity();
+            return null;
+        }
+
+        private void AddCartInteractivity() {
+            if (_hovm.GetAmountOfProductsInCar() > 0)
+                hasOrdersCircle.Visibility = Visibility.Visible;
+            else
+                hasOrdersCircle.Visibility = Visibility.Collapsed;
         }
 
         private async void Lvm_LoggedOut(){
@@ -201,13 +220,37 @@ namespace InFlightApp.Views
         private void StyleFlyout(Flyout fl) {
             var style = new Style(typeof(FlyoutPresenter));
 
-            style.Setters.Add(new Setter(FlyoutPresenter.BackgroundProperty, new AcrylicBrush() {Opacity=0}));
+            style.Setters.Add(new Setter(FlyoutPresenter.BackgroundProperty, new AcrylicBrush() { Opacity = 0 }));
             style.Setters.Add(new Setter(FlyoutPresenter.MarginProperty,new Thickness(40,0,40,0)));
             style.Setters.Add(new Setter(FlyoutPresenter.BorderThicknessProperty, 0));
             style.Setters.Add(new Setter(FlyoutPresenter.MinHeightProperty, 600));
             style.Setters.Add(new Setter(FlyoutPresenter.MinWidthProperty, 600));
 
             fl.FlyoutPresenterStyle = style;
+        }
+
+        private void StyleFlyoutCart(Flyout fl) {
+            var style = new Style(typeof(FlyoutPresenter));
+            style.Setters.Add(new Setter(FlyoutPresenter.BackgroundProperty, new AcrylicBrush() { Opacity = 0.2, TintColor = Windows.UI.Colors.Black }));
+            fl.FlyoutPresenterStyle = style;
+        }
+
+        private void cartIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
+            this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                Flyout fl = new Flyout();
+                StyleFlyoutCart(fl);
+
+                if (_hovm.GetAmountOfProductsInCar() <= 0) {
+                    TextBlock tb = new TextBlock();
+
+                    var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                    tb.Text = resourceBundle.GetString("emptyCart");
+
+                    fl.Content = tb;
+                }
+
+                fl.ShowAt(cartIcon);
+            });
         }
     }
 }

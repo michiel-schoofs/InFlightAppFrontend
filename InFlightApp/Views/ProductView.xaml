@@ -102,17 +102,32 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="10"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="10"/>
                                     <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="15"/>
                                     <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="10"/>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition Height="10"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Name="status" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource userText}"/>
+                                <TextBlock Name="fix2" DataContext="{Binding}" Visibility="Collapsed"/>
+                                <TextBlock Name="status" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Style="{StaticResource userText}"/>
+                                <TextBlock x:Uid="addToCart" Style="{StaticResource userText}" Grid.Row="3" Grid.Column="1"/>
+                                <TextBox  Name="addToCartAmount" Grid.Row="3" Grid.Column="3" extensions:TextBoxRegex.ValidationType="Decimal"  
+                                                             extensions:TextBoxRegex.ValidationMode="Dynamic"/>
+                                <Button x:Uid="addToCartButton" Name="addToCartbtn" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" Command="{Binding AddOrderToCart}">
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:MultiBindingBehavior PropertyName="CommandParameter">
+                                            <behaviors:MultiBindingItem Value="{Binding ElementName=fix2, Path=DataContext}"/>
+                                            <behaviors:MultiBindingItem Value="{Binding ElementName=addToCartAmount, Path=Text}"/>
+                                        </behaviors:MultiBindingBehavior>
+                                    </i:Interaction.Behaviors>
+                                </Button>
                             </Grid>
                         </Flyout>
                     </Button.Flyout>

@@ -286,7 +286,7 @@
     <comment>Text for the flight speed</comment>
   </data>
   <data name="TotalAmount.Text" xml:space="preserve">
-    <value>Totaal amount:</value>
+    <value>Total amount:</value>
     <comment>Text for total amount</comment>
   </data>
   <data name="usernameField.PlaceholderText" xml:space="preserve">
@@ -312,6 +312,18 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
     <comment>Text for yes</comment>
+  </data>
+  <data name="addToCart.Text" xml:space="preserve">
+    <value>Amount you want to order:</value>
+    <comment>Text for amount label</comment>
+  </data>
+  <data name="addToCartButton.Content" xml:space="preserve">
+    <value>Add</value>
+    <comment>Text for the button to add to cart</comment>
+  </data>
+  <data name="emptyCart" xml:space="preserve">
+    <value>There's no products in your cart</value>
+    <comment>Empty cart text</comment>
   </data>
   <data name="BEVERAGE" xml:space="preserve">
     <value>BEVERAGE</value>

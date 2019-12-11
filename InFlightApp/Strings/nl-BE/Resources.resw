@@ -313,6 +313,18 @@
     <value>Ja</value>
     <comment>Text for yes</comment>
   </data>
+  <data name="addToCart.Text" xml:space="preserve">
+    <value>Hoeveelheid die je wilt bestellen:</value>
+    <comment>Text for amount label</comment>
+  </data>
+  <data name="addToCartButton.Content" xml:space="preserve">
+    <value>Voeg toe</value>
+    <comment>Text for the button to add to cart</comment>
+  </data>
+  <data name="emptyCart" xml:space="preserve">
+    <value>Er zitten geen producten in je winkelwagen</value>
+    <comment>Empty cart text</comment>
+  </data>
   <data name="BEVERAGE" xml:space="preserve">
     <value>WARME DRANKEN</value>
     <comment>test</comment>
