@@ -18,7 +18,7 @@ namespace InFlightApp.View_Model
         public ObservableCollection<Seat> Seats { get; set; }
         public ObservableCollection<Passenger> Passengers { get; set; }
 
-        public Seat SelectedSeat { get; set; }
+        public static Seat SelectedSeat { get; set; }
         public RelayCommand SetPassenger { get; set; }
 
         public int SeatRows { get => GetSeatRows(); }

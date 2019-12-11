@@ -50,6 +50,10 @@ namespace InFlightApp.View_Model{
             LoggedOut.Invoke();
         }
 
+        public Seat GetSeatOfLoggedIn() {
+            return _userRepo.GetSeatOfLogedIn();
+        }
+
         public bool PassengerInFlightgroup() {
             return  _userRepo.HasTravelgroup().Result;
         }

@@ -244,5 +244,29 @@ namespace InFlightApp.Services.Repositories
 
             return exist;
         }
+
+        public Seat GetSeatOfLogedIn(){ 
+            if (persoon != null && persoon.Type == PassengerType.Passenger) {
+
+                if (((Passenger)persoon).Seat != null)
+                    return ((Passenger)persoon).Seat;
+
+                string url = $"{ApiConnection.URL}/Users/passengers/{persoon.Id}/seat";
+
+                string s = client.GetStringAsync(url).Result;
+                JObject obj = JObject.Parse(s);
+
+                Seat se = new Seat(){
+                    SeatId = obj.Value<int>("seatID"),
+                    Type = (SeatType)Enum.Parse(typeof(SeatType), obj.Value<string>("type")),
+                    SeatCode = obj.Value<string>("seatCode")
+                };
+
+                ((Passenger)persoon).Seat = se;
+                return se;
+            }
+
+            return null;
+        }
     }
 }
