@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -171,7 +172,7 @@ namespace InFlightApp.Services.Repositories
 
             if (obj != null && obj.Value<int>("id") >= 0)
             {
-                string name = $"user.{obj.Value<string>("extension").ToLower()}";
+                string name = $"user-{ obj.Value<int>("id")}.{obj.Value<string>("extension").ToLower()}";
                 byte[] bytes = Convert.FromBase64String(obj.Value<string>("data"));
 
                 try
