@@ -50,6 +50,10 @@ namespace InFlightApp.View_Model{
             LoggedOut.Invoke();
         }
 
+        public bool PassengerInFlightgroup() {
+            return  _userRepo.HasTravelgroup().Result;
+        }
+
         private void ConfigureCommands() {
             Login = new RelayCommand(_ => LoginToApplication());
             LogoutCommand = new RelayCommand(_ => Logout());

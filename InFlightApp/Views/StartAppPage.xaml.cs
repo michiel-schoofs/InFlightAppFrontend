@@ -32,7 +32,10 @@ namespace InFlightApp.Views
             base.OnNavigatedTo(e);
             var anim = ConnectedAnimationService.GetForCurrentView().GetAnimation("BackwardConnectedAnimation");
             if (anim != null){
-                anim.TryStart(crewButton);
+                if (e.Parameter != null && ((string)e.Parameter).Equals("passenger"))
+                    anim.TryStart(passengerButton);
+                else
+                    anim.TryStart(crewButton);
             }
         }
 
