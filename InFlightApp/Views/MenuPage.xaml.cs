@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -81,9 +82,13 @@ namespace InFlightApp.Views
             });
         }
 
-        private void Lvm_LoggedOut(){
-            if(!ensureonetime)
-                Frame.Navigate(typeof(MainPage));
+        private async void Lvm_LoggedOut(){
+            if (!ensureonetime) {
+                if (Frame == null)
+                    await CoreApplication.RequestRestartAsync("oopsie");
+                else
+                    Frame.Navigate(typeof(MainPage));
+            }
             ensureonetime = true;
         }
 
