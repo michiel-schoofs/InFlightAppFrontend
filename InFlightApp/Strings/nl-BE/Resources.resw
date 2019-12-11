@@ -117,17 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AcceptOrder" xml:space="preserve">
+    <value>Ben je zeker dat de passagier dit order heeft betaald?</value>
+    <comment>Text for accepting an order</comment>
+  </data>
+  <data name="Altitude.Text" xml:space="preserve">
+    <value>Altitude</value>
+    <comment>Text for the altitude</comment>
+  </data>
+  <data name="Approve.Content" xml:space="preserve">
+    <value>Betaald</value>
+    <comment>Text for approve button</comment>
+  </data>
   <data name="cancelButton.Content" xml:space="preserve">
     <value>Annuleer</value>
     <comment>Text to display in button</comment>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Sluiten</value>
+    <comment>Close</comment>
+  </data>
+  <data name="Cloudiness.Text" xml:space="preserve">
+    <value>Bewolking</value>
+    <comment>Text for the cloudiness</comment>
   </data>
   <data name="CrewmemberButton.Content" xml:space="preserve">
     <value>Ik ga reizen als boordpersoneel</value>
     <comment>Text for the opening screen button as crewMember</comment>
   </data>
+  <data name="CurrentTemp.Text" xml:space="preserve">
+    <value>Huidige Temp</value>
+    <comment>Text for the current temperature</comment>
+  </data>
+  <data name="Deny.Content" xml:space="preserve">
+    <value>Weiger</value>
+    <comment>Text for deny button</comment>
+  </data>
   <data name="firstName.Text" xml:space="preserve">
     <value>voornaam</value>
     <comment>Text to display in userlogin name field</comment>
+  </data>
+  <data name="FlightDuration.Text" xml:space="preserve">
+    <value>Vluchtduur</value>
+    <comment>Text for the flight duration</comment>
+  </data>
+  <data name="FlightInfoTitle.Text" xml:space="preserve">
+    <value>Vlucht Informatie</value>
+    <comment>Text for the flightinfo title</comment>
+  </data>
+  <data name="FlightNr.Text" xml:space="preserve">
+    <value>Vluchtnummer</value>
+    <comment>Text for the flight number</comment>
+  </data>
+  <data name="Humidity.Text" xml:space="preserve">
+    <value>Vochtigheid</value>
+    <comment>Text for the humidity</comment>
   </data>
   <data name="isThisYou.Text" xml:space="preserve">
     <value>Zijn dit jouw gegevens?</value>
@@ -149,6 +193,26 @@
     <value>Blij om je aan boord te hebben!</value>
     <comment>Text for the login menu top</comment>
   </data>
+  <data name="MaxTemp.Text" xml:space="preserve">
+    <value>Max Temp</value>
+    <comment>Text for the maximum temperature</comment>
+  </data>
+  <data name="MinTemp.Text" xml:space="preserve">
+    <value>Min Temp</value>
+    <comment>Text for the minimum temperature</comment>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nee</value>
+    <comment>Text for no</comment>
+  </data>
+  <data name="NotificationTitle.Text" xml:space="preserve">
+    <value>Voer je notificatie in:</value>
+    <comment>Text for notification title</comment>
+  </data>
+  <data name="NotificationTitleDialogTitle" xml:space="preserve">
+    <value>Notificatie van de crew</value>
+    <comment>Title for notification dialog</comment>
+  </data>
   <data name="okButton.Content" xml:space="preserve">
     <value>Accepteer</value>
     <comment>Text to display in button </comment>
@@ -165,16 +229,60 @@
     <value>Wachtwoord</value>
     <comment>Text for the textbox password</comment>
   </data>
+  <data name="PlaneModel.Text" xml:space="preserve">
+    <value>Vliegtuig Model</value>
+    <comment>Text for the plane model</comment>
+  </data>
+  <data name="Pressure.Text" xml:space="preserve">
+    <value>Luchtdruk</value>
+    <comment>Text for the pressure</comment>
+  </data>
+  <data name="ReceiverBox.PlaceholderText" xml:space="preserve">
+    <value>Kies een passagier</value>
+    <comment>Text for receiverbox placeholder</comment>
+  </data>
   <data name="rememberMe.Text" xml:space="preserve">
     <value>Onthoud me </value>
     <comment>Text for the checkbox remember me</comment>
+  </data>
+  <data name="RemoveOrder" xml:space="preserve">
+    <value>Ben je zeker dat je dit order wil verwijderen?</value>
+    <comment>Text for removing an order</comment>
   </data>
   <data name="seatHasNoUser" xml:space="preserve">
     <value>Er zit niemand op deze stoel</value>
     <comment>Text to display when seat has no user</comment>
   </data>
+  <data name="SendBtn.Content" xml:space="preserve">
+    <value>Verstuur</value>
+    <comment>Text for sendbtn</comment>
+  </data>
+  <data name="Speed.Text" xml:space="preserve">
+    <value>Snelheid</value>
+    <comment>Text for the flight speed</comment>
+  </data>
+  <data name="TotalAmount.Text" xml:space="preserve">
+    <value>Totaal bedrag:</value>
+    <comment>Text for total amount</comment>
+  </data>
   <data name="usernameField.PlaceholderText" xml:space="preserve">
     <value>Gebruikersnaam</value>
     <comment>Text for the texbox username</comment>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Waarschuwing</value>
+    <comment>Text for warning</comment>
+  </data>
+  <data name="WeatherIn.Text" xml:space="preserve">
+    <value>Het weer in</value>
+    <comment>Text for the weather in</comment>
+  </data>
+  <data name="Windspeed.Text" xml:space="preserve">
+    <value>Windsnelheid</value>
+    <comment>Text for the windspeed</comment>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+    <comment>Text for yes</comment>
   </data>
 </root>

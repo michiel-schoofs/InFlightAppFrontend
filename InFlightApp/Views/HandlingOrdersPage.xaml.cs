@@ -30,28 +30,37 @@ namespace InFlightApp.Views {
             _model = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
             
             _model.PopUpDeny.Subscribe(order => {
-                MakePopup(_model.DenyOrder, order, "Are you sure yu want to remove this order?");
+                MakePopup(_model.DenyOrder, order, "RemoveOrder");
             });
 
             _model.PopUpApprove.Subscribe(order => {
-                MakePopup(_model.ApproveOrder, order, "Are you sure the passenger paid for this order?");
+                MakePopup(_model.ApproveOrder, order, "AcceptOrder");
             });
 
             DataContext = _model;
         }
 
-        private async void MakePopup(RelayCommand rc, Order o, String message) {
+        private async void MakePopup(RelayCommand rc, Order o, String key) {
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var yes = resourceBundle.GetString("Yes");
+            var no = resourceBundle.GetString("No");
+            var message = resourceBundle.GetString(key);
+            var warning = resourceBundle.GetString("Warning");
+
             ContentDialog dialog = new ContentDialog() {
-                Title = "Warning",
+                Title = warning,
                 Content = message,
-                PrimaryButtonText = "Yes",
-                CloseButtonText = "No"
+                PrimaryButtonText = yes,
+                CloseButtonText = no
             };
 
             dialog.PrimaryButtonCommand = rc;
             dialog.PrimaryButtonCommandParameter = o;
 
-            await dialog.ShowAsync();
+            //Dirty NoUIEntryPoints Fix
+            try {
+                await dialog.ShowAsync();
+            } catch {}
         }
     }
 }

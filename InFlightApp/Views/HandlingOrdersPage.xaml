@@ -13,7 +13,6 @@
         <ListView ItemsSource="{Binding Orders}" SelectionMode="None" x:Name="OrdersListView">
             <ListView.Resources>
                 <localConverter:MoneyConverter x:Key="MoneyConverter"/>
-                <!--<localVm:HandleOrdersViewModel x:Key="ViewModelLocator"/>-->
             </ListView.Resources>
             <ListView.Background>
                 <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
@@ -54,11 +53,11 @@
                             </ListView>
 
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="Total amount:" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="10"/>
+                                <TextBlock x:Uid="TotalAmount" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="10"/>
                                 <TextBlock Text="{Binding TotalPrice, Converter={StaticResource MoneyConverter}}" Margin="10,0,0,0" />
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Content="Approve" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmApproveOrder}" CommandParameter="{Binding}"/>
-                                    <Button Content="Deny" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmDenyOrder}" CommandParameter="{Binding}"/>
+                                    <Button x:Uid="Approve" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmApproveOrder}" CommandParameter="{Binding}"/>
+                                    <Button x:Uid="Deny" Margin="10" Command="{Binding ElementName=ScrollViewer, Path=DataContext.ConfirmDenyOrder}" CommandParameter="{Binding}"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

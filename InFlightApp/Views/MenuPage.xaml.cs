@@ -143,10 +143,15 @@ namespace InFlightApp.Views
 
         private async Task CreateContentDialog(string notification)
         {
+
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var title = resourceBundle.GetString("NotificationTitleDialogTitle");
+            var close = resourceBundle.GetString("Close");
+
             ContentDialog contentDialog = new ContentDialog();
-            contentDialog.Title = "Notification from crew";
+            contentDialog.Title = title;
             contentDialog.Content = notification;
-            contentDialog.CloseButtonText = "Close";
+            contentDialog.CloseButtonText = close;
             contentDialog.DefaultButton = ContentDialogButton.Close;
             try
             {
