@@ -16,12 +16,12 @@
                     IsSettingsVisible="False"
                     IsPaneOpen="True" SelectionChanged="NavigationViewEntertainment_SelectionChanged">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Movies" Tag="Nav_Entertainment_Movies"></NavigationViewItem>
-            <NavigationViewItem Content="Series" Tag="Nav_Entertainment_Series"></NavigationViewItem>
-            <NavigationViewItem Content="Music" Tag="Nav_Entertainment_Music"></NavigationViewItem>
+            <NavigationViewItem x:Uid="MoviesNav" Tag="Nav_Entertainment_Movies"/>
+            <NavigationViewItem x:Uid="SeriesNav" Tag="Nav_Entertainment_Series"/>
+            <NavigationViewItem x:Uid="MusicNav" Tag="Nav_Entertainment_Music"/>
         </NavigationView.MenuItems>
         <NavigationView.Content>
-            <Frame x:Name="NavigationViewEntertainmentFrame"></Frame>
+            <Frame x:Name="NavigationViewEntertainmentFrame"/>
         </NavigationView.Content>
     </NavigationView>
 </Page>

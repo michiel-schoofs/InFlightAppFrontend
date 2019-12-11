@@ -201,6 +201,14 @@
     <value>Min Temp</value>
     <comment>Text for the minimum temperature</comment>
   </data>
+  <data name="MoviesNav.Content" xml:space="preserve">
+    <value>Films</value>
+    <comment>Text for MoviesNav</comment>
+  </data>
+  <data name="MusicNav.Content" xml:space="preserve">
+    <value>Muziek</value>
+    <comment>Text for MusicNav</comment>
+  </data>
   <data name="No" xml:space="preserve">
     <value>Nee</value>
     <comment>Text for no</comment>
@@ -257,6 +265,10 @@
     <value>Verstuur</value>
     <comment>Text for sendbtn</comment>
   </data>
+  <data name="SeriesNav.Content" xml:space="preserve">
+    <value>Series</value>
+    <comment>Text for SeriesNav</comment>
+  </data>
   <data name="Speed.Text" xml:space="preserve">
     <value>Snelheid</value>
     <comment>Text for the flight speed</comment>
@@ -272,6 +284,10 @@
   <data name="Warning" xml:space="preserve">
     <value>Waarschuwing</value>
     <comment>Text for warning</comment>
+  </data>
+  <data name="Watch" xml:space="preserve">
+    <value>Bekijk</value>
+    <comment>Watch</comment>
   </data>
   <data name="WeatherIn.Text" xml:space="preserve">
     <value>Het weer in</value>

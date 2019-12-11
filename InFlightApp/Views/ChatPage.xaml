@@ -23,7 +23,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Width="500" Margin="10,10,10,10">
+                        <StackPanel Width="450" Margin="10,10,10,10">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding Sender.FirstName}" Margin="0,0,5,0"></TextBlock>
                                 <TextBlock Text="{Binding Sender.LastName}" Margin="0,0,5,0"></TextBlock>
@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Style="{StaticResource ChatTextBox}" Grid.Column ="0" x:Name="InputBox"></TextBox>
+            <TextBox Style="{StaticResource ChatTextBox}" Grid.Column ="0" x:Name="InputBox" KeyDown="InputBox_KeyDown"/>
             <Button Style="{StaticResource ChatButtonStyle}" Grid.Column ="1" Click="Button_Click_1" Height="32">
                 <Image Source="/Assets/send.png" Stretch="UniformToFill"/>
             </Button>
