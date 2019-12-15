@@ -12,6 +12,7 @@
             <localConverter:StringFormatConverter x:Key="StringConverter"/>
             <localConverter:DoubleConverter x:Key="DoubleConverter"/>
             <localConverter:FlightDurationConverter x:Key="DurationConverter"/>
+            <localConverter:DateTimeConverter x:Key="DateTimeConverter"/>
         </StackPanel.Resources>
         <StackPanel.Background>
             <AcrylicBrush TintColor="Black" TintOpacity="0.13"/>
@@ -38,14 +39,14 @@
                     <Image Source="/Assets/img/info/take-offw.png" Stretch="Uniform" Height="70px"/>
                     <StackPanel Margin="15,0,5,15">
                         <TextBlock Text="{Binding Flight.Origin.City}" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Flight.DepartureTime}" />
+                        <TextBlock Text="{Binding Flight.DepartureTime, Converter={StaticResource DateTimeConverter}}" />
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Image Source="/Assets/img/info/landingw.png" Stretch="Uniform" Height="70px"/>
                     <StackPanel Margin="15,0,5,15">
                         <TextBlock Text="{Binding Flight.Destination.City}" Style="{ThemeResource SubheaderTextBlockStyle}"/>
-                        <TextBlock Text="{Binding Flight.ArrivalTime}" />
+                        <TextBlock Text="{Binding Flight.ArrivalTime, Converter={StaticResource DateTimeConverter}}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

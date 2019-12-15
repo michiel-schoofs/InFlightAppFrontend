@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:InFlightApp.Views"
+    xmlns:localConverter="using:InFlightApp.Converters"
     xmlns:vm="using:InFlightApp.View_Model"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -10,7 +11,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <StackPanel>
-        <Pivot x:Name="PivotSelection" ItemsSource="{Binding Categories}" >
+        <Pivot x:Name="PivotSelection" ItemsSource="{Binding Categories}">
+            <Pivot.Resources>
+                <localConverter:ProductTypeConverter x:Key="ProductTypeConverter"/>
+            </Pivot.Resources>
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding SelectCategory}" CommandParameter="{Binding ElementName=PivotSelection,Path=SelectedItem}"/>
@@ -23,6 +27,11 @@
                     </ContentControl>
                 </DataTemplate>
             </Pivot.ItemTemplate>
+            <Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource ProductTypeConverter}}"/>
+                </DataTemplate>
+            </Pivot.HeaderTemplate>
         </Pivot>
     </StackPanel>
 </Page>

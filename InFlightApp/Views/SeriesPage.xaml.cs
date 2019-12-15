@@ -46,6 +46,7 @@ namespace InFlightApp.Views
         {
             var selectedSerie = (Serie)GridViewSeries.SelectedItem;
             ContentDialog contentDialog = new ContentDialog();
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
 
             StringBuilder content = new StringBuilder().Append(selectedSerie.Year + ", " + selectedSerie.Runtime + "\n\n");
             content.Append(selectedSerie.Genre + "\n\n");
@@ -54,13 +55,13 @@ namespace InFlightApp.Views
 
             contentDialog.Title = selectedSerie.Title;
             contentDialog.Content = content;
-            contentDialog.PrimaryButtonText = "Watch";
+            contentDialog.PrimaryButtonText = resourceBundle.GetString("Watch");
             contentDialog.PrimaryButtonClick += ContentDialog_WatchButtonClick;
             void ContentDialog_WatchButtonClick(ContentDialog sender2, ContentDialogButtonClickEventArgs e2)
             {
                 Frame.Navigate(typeof(MoviePlayerPage));
             }
-            contentDialog.CloseButtonText = "Close";
+            contentDialog.CloseButtonText = resourceBundle.GetString("Close");
 
             contentDialog.DefaultButton = ContentDialogButton.Primary;
 

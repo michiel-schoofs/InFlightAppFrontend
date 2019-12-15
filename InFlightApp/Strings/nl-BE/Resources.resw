@@ -158,7 +158,7 @@
     <comment>Text to display in userlogin name field</comment>
   </data>
   <data name="FlightDuration.Text" xml:space="preserve">
-    <value>Vluchtduur</value>
+    <value>Resterende Vluchtduur</value>
     <comment>Text for the flight duration</comment>
   </data>
   <data name="FlightInfoTitle.Text" xml:space="preserve">
@@ -328,5 +328,57 @@
   <data name="clearButton.Content" xml:space="preserve">
     <value>Maak winkelwagen leeg</value>
     <comment>Clear cart</comment>
+  </data>
+  <data name="BEVERAGE" xml:space="preserve">
+    <value>WARME DRANKEN</value>
+    <comment>test</comment>
+  </data>
+  <data name="CIGARETTES" xml:space="preserve">
+    <value>CIGARETTEN</value>
+  </data>
+  <data name="Entertainment.Content" xml:space="preserve">
+    <value>Amusement</value>
+    <comment>Navbar Enterainment</comment>
+  </data>
+  <data name="FOOD" xml:space="preserve">
+    <value>ETEN</value>
+  </data>
+  <data name="LIQUOR" xml:space="preserve">
+    <value>ALCOHOL</value>
+  </data>
+  <data name="Notifications.Content" xml:space="preserve">
+    <value>Meldingen</value>
+    <comment>Navbar Notifications</comment>
+  </data>
+  <data name="Orders.Content" xml:space="preserve">
+    <value>Bestellingen</value>
+    <comment>Navbar Orders</comment>
+  </data>
+  <data name="OTHER" xml:space="preserve">
+    <value>ANDERE</value>
+  </data>
+  <data name="Passengers.Content" xml:space="preserve">
+    <value>Passagiers</value>
+    <comment>Navbar Passengers</comment>
+  </data>
+  <data name="ProductAvailable.Content" xml:space="preserve">
+    <value>Toon enkel beschikbaar:</value>
+    <comment>ProductAvailable.Content</comment>
+  </data>
+  <data name="Products.Content" xml:space="preserve">
+    <value>Producten</value>
+    <comment>Navbar Products</comment>
+  </data>
+  <data name="ProductSearch.Header" xml:space="preserve">
+    <value>Naam:</value>
+    <comment>Header for searchbar</comment>
+  </data>
+  <data name="ProductSearch.PlaceholderText" xml:space="preserve">
+    <value>Naam</value>
+    <comment>Placeholder for searchbar</comment>
+  </data>
+  <data name="ProductSortby.Header" xml:space="preserve">
+    <value>Sorteer Op:</value>
+    <comment>Header for sorting</comment>
   </data>
 </root>

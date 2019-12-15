@@ -25,15 +25,15 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox Style="{StaticResource HorizontalTextBox}" Name="SearchBox" PlaceholderText="Name" Grid.Column="0" Header="Name:">
+            <TextBox Style="{StaticResource HorizontalTextBox}" Name="SearchBox" x:Uid="ProductSearch" Grid.Column="0">
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="KeyUp">
                         <core:InvokeCommandAction Command="{Binding KeyUpTextBox}" CommandParameter="{Binding Text , ElementName=SearchBox}"/>
                     </core:EventTriggerBehavior>
                 </i:Interaction.Behaviors>
             </TextBox>
-            <ComboBox Style="{StaticResource HorizontalComboBox}" ItemsSource="{Binding SortModes}" Margin="0,0,15,0" Header="Sort By:" Grid.Column="1" VerticalAlignment="Center" SelectedItem="{Binding Sort,Converter={StaticResource sortTypeConv},Mode=TwoWay}"/>
-            <CheckBox Style="{StaticResource HorizontalCheckBox}" Content="Only show Available:" IsChecked="{Binding OnlyShowAvailable ,Mode=TwoWay}" Grid.Column="2"/>
+            <ComboBox x:Uid="ProductSortby" Style="{StaticResource HorizontalComboBox}" ItemsSource="{Binding SortModes}" Margin="0,0,15,0" Grid.Column="1" VerticalAlignment="Center" SelectedItem="{Binding Sort,Converter={StaticResource sortTypeConv},Mode=TwoWay}"/>
+            <CheckBox x:Uid="ProductAvailable" Style="{StaticResource HorizontalCheckBox}" IsChecked="{Binding OnlyShowAvailable ,Mode=TwoWay}" Grid.Column="2"/>
         </Grid>
         <ScrollViewer Grid.Column="0" Height="700" HorizontalScrollMode="Auto" VerticalScrollMode="Enabled" CanBeScrollAnchor="True" IsHorizontalScrollChainingEnabled="False" >
             <GridView Name="gridTemp" ItemsSource="{Binding FilteredProducts}" ScrollViewer.VerticalScrollBarVisibility="Visible" CanBeScrollAnchor="True" ShowsScrollingPlaceholders="True">
