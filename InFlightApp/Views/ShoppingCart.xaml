@@ -18,37 +18,26 @@
         <ListView ItemsSource="{Binding OrderLines}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="15"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="15"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel x:Name="stack" Orientation="Vertical" DataContext="{Binding Product}" Grid.Row="0" Grid.Column="1">
+                    <StackPanel Orientation="Horizontal" Padding="15,0,15,0" HorizontalAlignment="Stretch">
+                        <StackPanel x:Name="stack" Orientation="Vertical" DataContext="{Binding Product}" Margin="0,0,10,0" MinWidth="100">
                             <Image Source="{Binding ImagePath}" Width="50" Height="50"/>
                             <TextBlock Text="{Binding Name}" Style="{StaticResource userText}"/>
                         </StackPanel>
-                        
-                        <TextBlock Text="{Binding Total, Converter={StaticResource moneyConv} }" Style="{StaticResource userText}" VerticalAlignment="Center" Grid.Row="0" Grid.Column="5"/>
+
+                        <TextBlock Text="{Binding Total, Converter={StaticResource moneyConv} }" MinWidth="100" Margin="0,0,10,0" Style="{StaticResource userText}" VerticalAlignment="Center" />
                         <Button Name="deleteBtn" DataContext="{StaticResource hovm}" Command="{Binding DeleteProductFromCartCom}" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                CommandParameter="{Binding ElementName=stack,Path=DataContext}" Grid.Row="0" Grid.Column="7">
+                                CommandParameter="{Binding ElementName=stack,Path=DataContext}">
                             <Button.Content>
                                 <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;"/>
                             </Button.Content>
                         </Button>
-                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Uid="okButton" HorizontalAlignment="Center" Margin="0,10,0,10" Command ="{Binding ConfirmOrder}"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"> 
+            <Button x:Uid="okButton" Margin="0,10,10,10" Command ="{Binding ConfirmOrder}"/>
+            <Button x:Uid="clearButton" Margin="0,10,0,10" Command="{Binding ClearCart}"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

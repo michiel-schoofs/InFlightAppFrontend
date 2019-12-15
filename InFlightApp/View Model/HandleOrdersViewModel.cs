@@ -37,6 +37,8 @@ namespace InFlightApp.View_Model {
         public RelayCommand ApproveOrder { get; set; }
         public RelayCommand DenyOrder { get; set; }
 
+        public RelayCommand ClearCart { get; set; }
+
         public HandleOrdersViewModel() {
             try {
                 Orders = new ObservableCollection<Order>();
@@ -50,6 +52,7 @@ namespace InFlightApp.View_Model {
                 Console.WriteLine(e);
             }
         }
+
 
         public int GetAmountInCart(Product prod) {
             return _handleOrdersService.GetAmountInCart(prod);
@@ -69,6 +72,15 @@ namespace InFlightApp.View_Model {
             foreach (var item in orders) {
                 Orders.Add(item);
             }
+        }
+
+        private void SendOrder() {
+            _handleOrdersService.SendOrder();
+        }
+
+
+        private void ClearCartRepo() {
+            _handleOrdersService.ClearCart();
         }
 
         public void FillList() {
@@ -92,9 +104,15 @@ namespace InFlightApp.View_Model {
                 CartChanged.Invoke();
             });
 
-            ConfirmOrder = new RelayCommand((object o) => {
+            ClearCart = new RelayCommand((object o) => {
+                ClearCartRepo();
+                OrderLines.Clear();
+                CartChanged.Invoke();
+            });
 
-                //Finish up confirm code here but I'm too tired now 
+            ConfirmOrder = new RelayCommand((object o) => {
+                SendOrder();
+                ClearCartRepo();
                 OrderLines.Clear();
                 CartChanged.Invoke();
             });

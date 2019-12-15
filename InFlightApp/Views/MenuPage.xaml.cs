@@ -32,7 +32,7 @@ namespace InFlightApp.Views
         private readonly NotificationsViewModel _model;
         private readonly LoginViewModel _userModel;
         private readonly HandleOrdersViewModel _hovm;
-
+        private Flyout _flyout;
         private CancellationTokenSource source;
         private Task task;
         private static bool ensureonetime = false;
@@ -91,6 +91,10 @@ namespace InFlightApp.Views
 
         private Task _hovm_CartChanged(){
             AddCartInteractivity();
+            
+            if(_flyout != null && _flyout.IsOpen)
+                makeFlyout();
+
             return null;
         }
 
@@ -236,9 +240,16 @@ namespace InFlightApp.Views
         }
 
         private void cartIcon_PointerPressed(object sender, PointerRoutedEventArgs e){
+            makeFlyout();
+        }
+
+        private void makeFlyout() {
             this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 Flyout fl = new Flyout();
                 StyleFlyoutCart(fl);
+
+                if(this._flyout !=null)
+                    this._flyout.Hide();
 
                 if (_hovm.GetAmountOfProductsInCar() <= 0)
                 {
@@ -248,12 +259,20 @@ namespace InFlightApp.Views
                     tb.Text = resourceBundle.GetString("emptyCart");
 
                     fl.Content = tb;
-                }else {
+                } else {
                     fl.Content = new ShoppingCart();
                 }
+
+                this._flyout = fl;
+                fl.Closing += Fl_Closing;
 
                 fl.ShowAt(cartIcon);
             });
         }
+
+        private void Fl_Closing(FlyoutBase sender, FlyoutBaseClosingEventArgs args) {
+            this._flyout = null;
+        }
+
     }
 }

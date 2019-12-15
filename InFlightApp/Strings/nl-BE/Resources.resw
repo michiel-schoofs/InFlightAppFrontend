@@ -325,4 +325,8 @@
     <value>Er zitten geen producten in je winkelwagen</value>
     <comment>Empty cart text</comment>
   </data>
+  <data name="clearButton.Content" xml:space="preserve">
+    <value>Maak winkelwagen leeg</value>
+    <comment>Clear cart</comment>
+  </data>
 </root>

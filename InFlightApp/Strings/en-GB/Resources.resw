@@ -325,4 +325,8 @@
     <value>There's no products in your cart</value>
     <comment>Empty cart text</comment>
   </data>
+  <data name="clearButton.Content" xml:space="preserve">
+    <value>Clear cart</value>
+    <comment>Clear cart</comment>
+  </data>
 </root>

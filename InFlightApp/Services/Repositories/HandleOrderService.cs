@@ -109,5 +109,34 @@ namespace InFlightApp.Services.Repositories {
         public int GetAmountOfProductsInCart() {
             return _cart.Keys.Count;
         }
+
+        public void ClearCart(){
+            _cart.Clear();
+        }
+
+        public void SendOrder(){
+            string url = $"{ApiConnection.URL}/Order/";
+
+            JArray ja = ParseToOrderLine();
+            var data = new StringContent(ja.ToString(), Encoding.UTF8, "application/json");
+
+            try{
+                client.PostAsync(url, data).Wait();
+            }catch (Exception e) { }
+        }
+
+        private JArray ParseToOrderLine() {
+            JArray ja = new JArray();
+
+            for (int i = 0;i < _cart.Count();i++) {
+                JObject parsed = new JObject();
+                parsed.Add("productID",_cart.Keys.ElementAt(i));
+                parsed.Add("amount", _cart.Values.ElementAt(i).Amount);
+                ja.Add(parsed);
+            }
+
+            return ja;
+        }
+
     }
 }
