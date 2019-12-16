@@ -29,7 +29,9 @@ Het is ook aangeraden om eens te controleren of de connectionstring in `appsetti
 
 ### Login
 Bij het opstarten krijg je de keuze om in te loggen als passagier of crew.
-Als passagier moet je de stoel kiezen waarop je zit. Hierbij zal je de gegevens van de passagier die op de stoel is geregistreerd te zien krijgen. Als crew gebruik je onderstaande login gegevens:
+Als passagier moet je de stoel kiezen waarop je zit. Hierbij zal je de gegevens van de passagier die op de stoel is geregistreerd te zien krijgen. **Let op!** Als een passagier niet in een reisgezelschap zit zal de chat uitgeschakeld zijn! Kies voor een passagier die in een reisgezelschap zit. (Tim, Tybo of Rob)
+
+Als crew gebruik je onderstaande login gegevens:
 
 Gebruikersnaam:
 ```
