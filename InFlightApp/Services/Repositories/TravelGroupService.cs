@@ -13,18 +13,8 @@ using System.Threading.Tasks;
 namespace InFlightApp.Services.Repositories {
     class TravelGroupService : ITravelGroupService {
 
-        private HttpClient client;
-
-        public TravelGroupService() {
-            client = ApiConnection.Client;
-        }
-
-        public void ReloadHttpClient() {
-            client = ApiConnection.Client;
-        }
-
         public bool AddMessage(string content) {
-            HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/TravelGroup/messages?content={content}", null).Result;
+            HttpResponseMessage response = ApiConnection.Client.PostAsync($"{ApiConnection.URL}/TravelGroup/messages?content={content}", null).Result;
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
@@ -34,7 +24,7 @@ namespace InFlightApp.Services.Repositories {
 
         public async Task<Message[]> GetMessages() {
             string url = $"{ApiConnection.URL}/TravelGroup/messages";
-            string response = await client.GetStringAsync(url);
+            string response = await ApiConnection.Client.GetStringAsync(url);
             JArray responseArray = JArray.Parse(response);
 
             if (responseArray != null)

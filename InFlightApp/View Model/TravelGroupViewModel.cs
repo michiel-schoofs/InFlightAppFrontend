@@ -24,10 +24,6 @@ namespace InFlightApp.View_Model {
             {
                 _travelGroupService = ServiceLocator.Current.GetService<ITravelGroupService>(true);
                 _userService = ServiceLocator.Current.GetService<IUserService>(true);
-                //TODO: Get seat from screen
-                _userService.AuthenticatePassenger(seatNr);
-                _travelGroupService.ReloadHttpClient();
-                _userService.ReloadHttpClient();
                 getPassengers();
                 Messages = new ObservableCollection<Message>();
                 var pers = _userService.GetLoggedIn();

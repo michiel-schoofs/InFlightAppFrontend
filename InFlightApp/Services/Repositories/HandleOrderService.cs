@@ -12,18 +12,12 @@ namespace InFlightApp.Services.Repositories {
     public class HandleOrderService : IHandleOrderService {
         private static readonly IDictionary<int, OrderLine> _cart = new Dictionary<int, OrderLine>();
         private static Order order;
-        private HttpClient client;
-
-        public HandleOrderService() {
-            client = ApiConnection.Client;
-        }
 
         public OrderLine[] GetCartLines() {
             return _cart.Values.ToArray();
         }
 
         public void PlaceOrder(Product prod, int amount) {
-
             if (!_cart.ContainsKey(prod.ProductID))
                 _cart.Add(prod.ProductID, new OrderLine() { Amount = amount, Product = prod});
             else
@@ -31,7 +25,7 @@ namespace InFlightApp.Services.Repositories {
         }
 
         public void RemoveProductFromOrder(Product prod) {
-            if(_cart.ContainsKey(prod.ProductID))
+            if (_cart.ContainsKey(prod.ProductID))
                 _cart.Remove(prod.ProductID);
         }
 
@@ -44,17 +38,17 @@ namespace InFlightApp.Services.Repositories {
 
         public void ApproveOrder(int id) {
             string url = $"{ApiConnection.URL}/Order/crew/approve/{id}";
-            client.PostAsync(url, null).Wait();
+            ApiConnection.Client.PostAsync(url, null).Wait();
         }
 
         public void DenyOrder(int id) {
             string url = $"{ApiConnection.URL}/Order/crew/deny/{id}";
-            client.PostAsync(url, null).Wait();
+            ApiConnection.Client.PostAsync(url, null).Wait();
         }
 
         public IEnumerable<Order> GetAllUnprocessed() {
             string url = $"{ApiConnection.URL}/Order/crew/orders";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
 
             JArray ar = JArray.Parse(s);
 
@@ -92,9 +86,16 @@ namespace InFlightApp.Services.Repositories {
                     };
                 });
 
+                DateTime dateTime;
+                try {
+                    dateTime = DateTime.ParseExact(o.Value<string>("orderDate"), "yyyy-MM-dd HH:mm:ss", null);
+                } catch (FormatException fe) {
+                    dateTime = DateTime.ParseExact(o.Value<string>("orderDate"), "MM/dd/yyyy HH:mm:ss", null);
+                }
+
                 Order ord =  new Order() {
                     OrderId = o.Value<int>("orderID"),
-                    OrderDate = DateTime.Parse(o.Value<string>("orderDate")),
+                    OrderDate = dateTime,
                     IsDone = o.Value<bool>("isDone"),
                     Passenger = p,
                     OrderLines = orderlines
@@ -121,7 +122,7 @@ namespace InFlightApp.Services.Repositories {
             var data = new StringContent(ja.ToString(), Encoding.UTF8, "application/json");
 
             try{
-                client.PostAsync(url, data).Wait();
+                ApiConnection.Client.PostAsync(url, data).Wait();
             }catch (Exception e) { }
         }
 

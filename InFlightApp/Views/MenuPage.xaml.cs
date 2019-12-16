@@ -151,7 +151,7 @@ namespace InFlightApp.Views
                 while (true && !ct.IsCancellationRequested)
                 {
                     await Task.Delay(10000);
-                    ddvar result = _model.LoadMostRecentNotification();
+                    var result = _model.LoadMostRecentNotification();
                     if (result != null)
                     {
                         {

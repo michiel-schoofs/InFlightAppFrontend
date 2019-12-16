@@ -27,17 +27,24 @@ namespace InFlightApp.Views {
 
         public HandlingOrdersPage() {
             this.InitializeComponent();
-            _model = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
-            
-            _model.PopUpDeny.Subscribe(order => {
-                MakePopup(_model.DenyOrder, order, "RemoveOrder");
-            });
 
-            _model.PopUpApprove.Subscribe(order => {
-                MakePopup(_model.ApproveOrder, order, "AcceptOrder");
-            });
+            try {
+                _model = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
 
-            DataContext = _model;
+                _model.UpdateOrders();
+                _model.PopUpDeny.Subscribe(order => {
+                    MakePopup(_model.DenyOrder, order, "RemoveOrder");
+                });
+
+                _model.PopUpApprove.Subscribe(order => {
+                    MakePopup(_model.ApproveOrder, order, "AcceptOrder");
+                });
+
+                DataContext = _model;
+            } catch (Exception e) {
+                MakeWarning(e.Message);
+            }
+
         }
 
         private async void MakePopup(RelayCommand rc, Order o, String key) {
@@ -61,6 +68,20 @@ namespace InFlightApp.Views {
             try {
                 await dialog.ShowAsync();
             } catch {}
+        }
+
+        private async void MakeWarning(String message) {
+            var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var warning = resourceBundle.GetString("Warning");
+            ContentDialog dialog = new ContentDialog() {
+                Title = warning,
+                Content = message,
+                PrimaryButtonText = "Ok",
+            };
+
+            try {
+                await dialog.ShowAsync();
+            } catch { }
         }
     }
 }

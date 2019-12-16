@@ -13,17 +13,11 @@ namespace InFlightApp.Services.Repositories
 {
     public class NotificationService : INotificationService
     {
-        private HttpClient client;
-
-        public NotificationService()
-        {
-            client = ApiConnection.Client;
-        }
 
         public IEnumerable<Notification> GetAllNotifications()
         {
             string url = $"{ApiConnection.URL}/Notification";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
 
             return ar.Select(n =>
@@ -40,7 +34,7 @@ namespace InFlightApp.Services.Repositories
         public Notification GetMostRecentNotification()
         {
             string url = $"{ApiConnection.URL}/Notification/recent";
-            HttpResponseMessage s = client.GetAsync(url).Result;
+            HttpResponseMessage s = ApiConnection.Client.GetAsync(url).Result;
             if (s.StatusCode == HttpStatusCode.OK)
             {
                 string str = s.Content.ReadAsStringAsync().Result;
@@ -60,7 +54,7 @@ namespace InFlightApp.Services.Repositories
         {
             string json = JsonConvert.SerializeObject(new { content = notification, receiver });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            client.PostAsync($"{ApiConnection.URL}/Notification", content);
+            ApiConnection.Client.PostAsync($"{ApiConnection.URL}/Notification", content);
         }
     }
 }

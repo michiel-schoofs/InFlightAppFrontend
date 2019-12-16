@@ -12,17 +12,11 @@ namespace InFlightApp.Services.Repositories
 {
     public class FlightService : IFlightService
     {
-        private HttpClient client;
-
-        public FlightService()
-        {
-            client = ApiConnection.Client;
-        }
 
         public Weather GetCurrentWeather(string city, string country)
         {
             string url = $"https://samples.openweathermap.org/data/2.5/weather?q={city},{country}&appid=6326ae48f0ab3d3df2909c877d21a633";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
 
             string desc = obj.SelectToken("weather")[0].SelectToken("description").ToString();
@@ -45,13 +39,13 @@ namespace InFlightApp.Services.Repositories
         public Flight GetFlight()
         {
             string url = $"{ApiConnection.URL}/Flight/info";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             return JObject.Parse(s).ToObject<Flight>();
         }
 
         public Persoon GetPassengerOnSeat(int seatID){
             string url = $"{ApiConnection.URL}/Flight/seats/{seatID}/user";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
 
             JObject jObject = JObject.Parse(s);
             string voornaam = jObject.Value<string>("firstName");
@@ -68,7 +62,7 @@ namespace InFlightApp.Services.Repositories
         public IEnumerable<Seat> GetSeats()
         {
             string url = $"{ApiConnection.URL}/Flight/seats";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
 
             return ar.Select(seat =>
@@ -84,7 +78,7 @@ namespace InFlightApp.Services.Repositories
 
         public bool SeatHasUser(int id){
             string url = $"{ApiConnection.URL}/Flight/seats/{id}/user/exist";
-            return bool.Parse(client.GetStringAsync(url).Result);
+            return bool.Parse(ApiConnection.Client.GetStringAsync(url).Result);
         }
     }
 }

@@ -22,18 +22,11 @@ namespace InFlightApp.Services.Repositories
         private static bool imageAsked;
         private static StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
 
-        private HttpClient client;
-
-        public UserService()
-        {
-            client = ApiConnection.Client;
-        }
-
         public bool Login(string username, string password)
         {
             string json = JsonConvert.SerializeObject(new { username, password });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/Users/crewmember/login", content).Result;
+            HttpResponseMessage response = ApiConnection.Client.PostAsync($"{ApiConnection.URL}/Users/crewmember/login", content).Result;
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
@@ -47,7 +40,7 @@ namespace InFlightApp.Services.Repositories
         }
 
         public bool AuthenticatePassenger(int seatnumber) {
-            HttpResponseMessage response = client.PostAsync($"{ApiConnection.URL}/Users/passengers/login/{seatnumber}", null).Result;
+            HttpResponseMessage response = ApiConnection.Client.PostAsync($"{ApiConnection.URL}/Users/passengers/login/{seatnumber}", null).Result;
 
             if (response.StatusCode == HttpStatusCode.BadRequest)
                 return false;
@@ -97,13 +90,13 @@ namespace InFlightApp.Services.Repositories
         public void ChangeSeat(int userId, int seatId)
         {
             string url = $"{ApiConnection.URL}/Users/passengers/{userId}/seat/change/{seatId}";
-            client.PutAsync(url, null).Wait();
+            ApiConnection.Client.PutAsync(url, null).Wait();
         }
 
         public IEnumerable<Passenger> GetPassengers()
         {
             string url = $"{ApiConnection.URL}/Users/passengers";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
             return ar.Select(p => p.ToObject<Passenger>()).ToList();
         }
@@ -124,7 +117,7 @@ namespace InFlightApp.Services.Repositories
                     return (Passenger)persoon;
 
                 string url = $"{ApiConnection.URL}/Users/current";
-                string s = client.GetStringAsync(url).Result;
+                string s = ApiConnection.Client.GetStringAsync(url).Result;
                 JObject obj = JObject.Parse(s);
 
                 Passenger p = obj.ToObject<Passenger>();
@@ -155,7 +148,7 @@ namespace InFlightApp.Services.Repositories
         }
 
         public void ReloadHttpClient() {
-            client = ApiConnection.Client;
+            ApiConnection.UpdateHttpClient();
         }
 
         public async Task<string> GetImage(){
@@ -167,7 +160,7 @@ namespace InFlightApp.Services.Repositories
             }
 
             string url = $"{ApiConnection.URL}/Users/current/image";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
 
             if (obj != null && obj.Value<int>("id") >= 0)
@@ -203,13 +196,13 @@ namespace InFlightApp.Services.Repositories
                 return persoon.ImageFile != null;
             
             string url = $"{ApiConnection.URL}/Users/current/image/exist";
-            bool exist = bool.Parse(client.GetStringAsync(url).Result);
+            bool exist = bool.Parse(ApiConnection.Client.GetStringAsync(url).Result);
             return exist;
         }
 
         public async Task<string> GetImageForPerson(Persoon pers){
             string url = $"{ApiConnection.URL}/Users/{pers.Id}/image";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
             if (obj != null && obj.Value<int>("id") >= 0)
             {
@@ -241,7 +234,7 @@ namespace InFlightApp.Services.Repositories
                 return false;
 
             string url = $"{ApiConnection.URL}/TravelGroup/exist";
-            bool exist = bool.Parse(client.GetStringAsync(url).Result);
+            bool exist = bool.Parse(ApiConnection.Client.GetStringAsync(url).Result);
 
             return exist;
         }
@@ -254,7 +247,7 @@ namespace InFlightApp.Services.Repositories
 
                 string url = $"{ApiConnection.URL}/Users/passengers/{persoon.Id}/seat";
 
-                string s = client.GetStringAsync(url).Result;
+                string s = ApiConnection.Client.GetStringAsync(url).Result;
                 JObject obj = JObject.Parse(s);
 
                 Seat se = new Seat(){

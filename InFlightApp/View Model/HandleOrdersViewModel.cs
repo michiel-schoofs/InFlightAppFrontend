@@ -66,7 +66,7 @@ namespace InFlightApp.View_Model {
             return _handleOrdersService.GetAmountOfProductsInCart();
         }
 
-        private void UpdateOrders() {
+        public void UpdateOrders() {
             var orders = _handleOrdersService.GetAllUnprocessed();
             Orders.Clear();
             foreach (var item in orders) {

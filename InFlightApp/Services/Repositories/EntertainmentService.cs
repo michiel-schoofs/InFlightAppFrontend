@@ -14,12 +14,6 @@ namespace InFlightApp.Services.Repositories
 {
     public class EntertainmentService : IEntertainmentService
     {
-        private HttpClient client;
-
-        public EntertainmentService()
-        {
-            client = ApiConnection.Client;
-        }
 
         public IEnumerable<Movie> GetMovies()
         {
@@ -33,7 +27,7 @@ namespace InFlightApp.Services.Repositories
 
             foreach (var url in urls)
             {
-                string s = client.GetStringAsync(url).Result;
+                string s = ApiConnection.Client.GetStringAsync(url).Result;
                 JArray ar = JObject.Parse(s).Value<JArray>("Search");
                 foreach (var e in ar)
                 {
@@ -47,7 +41,7 @@ namespace InFlightApp.Services.Repositories
         public Movie GetMovie(string imdbID)
         {
             string url = $"http://omdbapi.com/?apikey=bc156e83&i={imdbID}";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             return JObject.Parse(s).ToObject<Movie>();
         }
 
@@ -71,7 +65,7 @@ namespace InFlightApp.Services.Repositories
 
             foreach (var url in urls)
             {
-                string s = client.GetStringAsync(url).Result;
+                string s = ApiConnection.Client.GetStringAsync(url).Result;
                 JObject obj = JObject.Parse(s);
                 series.Add(obj.ToObject<Serie>());
             }
@@ -84,7 +78,7 @@ namespace InFlightApp.Services.Repositories
             ICollection<Music> music = new List<Music>();
 
             string url = $"https://api.deezer.com/chart";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JObject rootObj = JObject.Parse(s).Value<JObject>("tracks");
             JArray ar = rootObj.Value<JArray>("data");
             foreach (var e in ar)

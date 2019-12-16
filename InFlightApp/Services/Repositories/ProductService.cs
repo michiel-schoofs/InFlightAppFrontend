@@ -14,13 +14,9 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace InFlightApp.Services.Repositories{
     public class ProductService : IProductService{
-        private HttpClient client;
         private readonly static Dictionary<int, string> _images = new Dictionary<int, string>();
         private static StorageFolder sf = ApplicationData.Current.LocalCacheFolder;
 
-        public ProductService(){
-            client = ApiConnection.Client;
-        }
 
         public string[] GetCategories(){
             return Enum.GetNames(typeof(ProductType));
@@ -28,7 +24,7 @@ namespace InFlightApp.Services.Repositories{
 
         public async Task<Product[]> GetProducts(ProductType pt){
             string url = $"{ApiConnection.URL}/Products/categories/{Enum.GetName(typeof(ProductType), pt)}";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JArray ar = JArray.Parse(s);
 
             return ar.Select(p =>{
@@ -49,7 +45,7 @@ namespace InFlightApp.Services.Repositories{
                 return _images.GetValueOrDefault(productID);
 
             string url = $"{ApiConnection.URL}/Products/{productID}/image";
-            string s = client.GetStringAsync(url).Result;
+            string s = ApiConnection.Client.GetStringAsync(url).Result;
             JObject obj = JObject.Parse(s);
 
             if (obj != null && obj.Value<int>("id")>=0) {
@@ -80,7 +76,7 @@ namespace InFlightApp.Services.Repositories{
             var content = new StringContent("",Encoding.UTF8, "application/json");
             string url = $"{ApiConnection.URL}/Products/{productID}/restock/{restock}";
 
-            HttpResponseMessage message = client.PutAsync(url, content).Result;
+            HttpResponseMessage message = ApiConnection.Client.PutAsync(url, content).Result;
 
             if (message.StatusCode != HttpStatusCode.OK)
                 return false;
