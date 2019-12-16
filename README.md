@@ -9,7 +9,7 @@ Dit software pakket is een combinatie van een ASP.NET Core backend en een UWP ap
 Onderstaande instructies gaan over het opzetten van het project op basis van de broncode.
 
 ### Vereisten
-Het is belangrijk om het project te openen in **Visual Studio versie 2019** en Microsoft SQL Server.
+Het is belangrijk om het project te openen in **Visual Studio versie 2019**. Je hebt ook Microsoft SQL Server nodig.
 
 ### Installeren
 Als het project is geopend in VS, klik dan rechtermuisknop op de solution  en open propperties. In het tabblad  Startup Project, kies Multiple startup projects. 
