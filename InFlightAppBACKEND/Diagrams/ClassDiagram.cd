@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="InFlightAppBACKEND.Models.Domain.Conversation">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAgABAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Domain\Conversation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Messages" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.CrewMember" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\CrewMember.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Flight" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAACAAAAAAIAAgCAkAABAABAAAIEAAIAAAgAABA=</HashCode>
+      <FileName>Models\Domain\Flight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Image" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAARAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Message" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgIAAAAAAAAAAAAAABABAAAEAAAAAAAIAAA=</HashCode>
+      <FileName>Models\Domain\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Order" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAAAACAgEAAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Domain\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.OrderLine" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\OrderLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Passenger" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAgAAAAAAAAAQAAQAAgAAAAAAACIQAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Passenger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Product" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAEAAAAAAAAgAAAAAAAIAASAgQAAABAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.Seat" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAQAYAAAAAAIAA=</HashCode>
+      <FileName>Models\Domain\Seat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.TravelGroup" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIQAAAAAAAAAAAAgAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Domain\TravelGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InFlightAppBACKEND.Models.Domain.User" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAgAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAg=</HashCode>
+      <FileName>Models\Domain\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="InFlightAppBACKEND.Models.Domain.ProductType" Collapsed="true">
+    <Position X="5.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAQAACAAAAAAAAAAAAAAABAAAAQAAAAAA=</HashCode>
+      <FileName>Models\Domain\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InFlightAppBACKEND.Models.Domain.SeatType" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAAAA=</HashCode>
+      <FileName>Models\Domain\SeatType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

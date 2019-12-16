@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InFlightApp", "InFlightApp\InFlightApp.csproj", "{E440A413-B33E-4994-B41C-E03904CE6A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InFlightAppBACKEND", "InFlightAppBACKEND\InFlightAppBACKEND.csproj", "{443B9887-E07E-438E-9D47-126F31DC2099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,26 @@ Global
 		{E440A413-B33E-4994-B41C-E03904CE6A0F}.Release|x86.ActiveCfg = Release|x86
 		{E440A413-B33E-4994-B41C-E03904CE6A0F}.Release|x86.Build.0 = Release|x86
 		{E440A413-B33E-4994-B41C-E03904CE6A0F}.Release|x86.Deploy.0 = Release|x86
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|ARM.Build.0 = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|x64.Build.0 = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Debug|x86.Build.0 = Debug|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|ARM.ActiveCfg = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|ARM.Build.0 = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|ARM64.Build.0 = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|x64.ActiveCfg = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|x64.Build.0 = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|x86.ActiveCfg = Release|Any CPU
+		{443B9887-E07E-438E-9D47-126F31DC2099}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

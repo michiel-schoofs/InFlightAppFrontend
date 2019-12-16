@@ -1,0 +1,51 @@
+{
+  "Crewmembers": [
+    {
+      "FirstName": "Johanna",
+      "LastName": "De Bruycker",
+      "Image": "./wwwroot/images/user/user6.jpg"
+    },
+    {
+      "FirstName": "Bram",
+      "LastName": "De Bleecker",
+      "Image": "./wwwroot/images/user/user7.jpg"
+    }
+  ],
+  "Passengers": [
+    {
+      "FirstName": "Tybo",
+      "LastName": "Vanderstraeten",
+      "SeatNr": "1A",
+      "inTravelGroup": true,
+      "Image": "./wwwroot/images/user/user1.jpg"
+    },
+    {
+      "FirstName": "Lars",
+      "LastName": "Vandenberghe",
+      "SeatNr": "3A",
+      "inTravelGroup": false,
+      "Image": "./wwwroot/images/user/user2.jpg"
+    },
+    {
+      "FirstName": "Tim",
+      "LastName": "Geldof",
+      "SeatNr": "1B",
+      "inTravelGroup": true,
+      "Image": "./wwwroot/images/user/user3.jpg"
+    },
+    {
+      "FirstName": "Rob",
+      "LastName": "De Putter",
+      "SeatNr": "2A",
+      "inTravelGroup": true,
+      "Image": "./wwwroot/images/user/user4.jpg"
+    },
+    {
+      "FirstName": "Michiel",
+      "LastName": "Schoofs",
+      "SeatNr": "2B",
+      "inTravelGroup": false,
+      "Image": "./wwwroot/images/user/user5.jpg"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "Products": [
+    {
+      "Name": "Diet coke",
+      "Description": "Coca-cola for the real men among us!",
+      "Price": 3.00,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/Diet_Coke.png"
+    },
+    {
+      "Name": "Iced-tea",
+      "Description": "Sweet tea, you'll feel like a British snob",
+      "Price": 3.00,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/icetea.png"
+    },
+    {
+      "Name": "Iced-tea green",
+      "Description": "Doesn't save the planet, doesn't organise a mars but does save your sugar intake",
+      "Price": 4.50,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/iceteagreen.png"
+    },
+    {
+      "Name": "Dr pepper",
+      "Description": "American obesity is on a rise, not to worry just drink a dr pepper.",
+      "Price": 2.50,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/drpepper.png"
+    },
+    {
+      "Name": "Fanta",
+      "Description": "The child friendly alternative to cola so you don't have to feel like a bad parent.",
+      "Price": 3.59,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/fanta.png"
+    },
+    {
+      "Name": "Pepsi",
+      "Description": "It's no coke but we can pretend it is",
+      "Price": 2.25,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/pepsi.png"
+    },
+    {
+      "Name": "Espresso",
+      "Description": "George clooney not included!",
+      "Price": 2.00,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/espresso.png"
+    },
+    {
+      "Name": "Mountain dew",
+      "Description": "Life's too long, so shorten it with this awfully sour stuff",
+      "Price": 3.64,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/mtndew.png"
+    },
+    {
+      "Name": "Home made whipped laté",
+      "Description": "You'll feel right at home in italy",
+      "Price": 4.10,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/latte.png"
+    },
+    {
+      "Name": "Ubuntu cola",
+      "Description": "For all those computerfreaks out there",
+      "Price": 6.10,
+      "Type": "BEVERAGE",
+      "Image": "./wwwroot/images/products/UB.png"
+    },
+    {
+      "Name": "Fries with steak",
+      "Description": "Fresh French fries with great steak!",
+      "Price": 25.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/steak.jpg"
+    },
+    {
+      "Name": "Lasagna",
+      "Description": "Fresh from italy (or at least we can pretend it is)",
+      "Price": 18.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/lasagne.png"
+    },
+    {
+      "Name": "Salmon cake",
+      "Description": "Yes you read that right, cake! Yes it's pretty good...",
+      "Price": 8.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/salmoncake.jpg"
+    },
+    {
+      "Name": "Surprise from the chef",
+      "Description": "What's in it? Don't know! All I know is it doesn't contain human meat (or so I hope)",
+      "Price": 16.5,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/surprise.png"
+    },
+    {
+      "Name": "Pringles",
+      "Description": "Chips, served with laughter and slight judgement",
+      "Price": 7.00,
+      "Amount": 0,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/pringles.png"
+    },
+    {
+      "Name": "Pizza hawaii",
+      "Description": "Pizza, pinapple, get over it",
+      "Price": 12.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/pizzahawai.png"
+    },
+    {
+      "Name": "Sweet burger",
+      "Description": "Error witty comment description for this sweet and oh so delicious burger not found",
+      "Price": 5.50,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/burger.png"
+    },
+    {
+      "Name": "Vol au ventre",
+      "Description": "Full in stomach,might be a slight mistranslation but who cares",
+      "Price": 42.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/vol.png"
+    },
+    {
+      "Name": "Catfish",
+      "Description": "No this is not that one hookup from tinder, neither is this an mtv show",
+      "Price": 22.00,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/catfish.png"
+    },
+    {
+      "Name": "Cuberdons",
+      "Description": "A sweet belgian candy",
+      "Price": 2.50,
+      "Type": "FOOD",
+      "Image": "./wwwroot/images/products/cuberdons.png"
+    },
+    {
+      "Name": "Slavic vodka",
+      "Description": "You better be drinking this in moderation because I'm not cleaning up your mess",
+      "Price": 25.00,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/vodka.png"
+    },
+    {
+      "Name": "Bombay Saphire",
+      "Description": "Not the name of a female companion but good Gin none the less ",
+      "Price": 32.00,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/saphire.png"
+    },
+    {
+      "Name": "Bulldog gin",
+      "Description": "Woof woof, let the traumas roll in",
+      "Price": 22.00,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/gin.png"
+    },
+    {
+      "Name": "Heineken",
+      "Description": "The beer for people who don't know any better",
+      "Price": 3.50,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/heiniken.png"
+    },
+    {
+      "Name": "Jupiler",
+      "Description": "Hapiness, regrets and wild nights with terrible morning afters all contained in one 33cl can",
+      "Price": 3.75,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/jupiler.png"
+    },
+    {
+      "Name": "Rum",
+      "Description": "No, soda is sold seperatly we're not a charity after all! Go to ryan air...",
+      "Price": 12.15,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/rum.png"
+    },
+    {
+      "Name": "Tequila",
+      "Description": "Mexico here we come baby",
+      "Price": 13.00,
+      "Type": "LIQUOR",
+      "Image": "./wwwroot/images/products/teq.png"
+    }
+  ]
+}
