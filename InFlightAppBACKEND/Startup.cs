@@ -40,8 +40,8 @@ namespace InFlightAppBACKEND
             #region DBContext
             services.AddDbContext<DBContext>(options =>
             {
-                //options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]); 
-                options.UseSqlServer(Configuration["ConnectionStrings:MichielAndLarsConnection"]);
+                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]);
+                //options.UseSqlServer(Configuration["ConnectionStrings:SQLEXPRESSConnection"]);
             });
             #endregion
 
