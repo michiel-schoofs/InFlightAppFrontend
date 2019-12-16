@@ -150,8 +150,8 @@ namespace InFlightApp.Views
                 task =  Task.Run(async () =>{
                 while (true && !ct.IsCancellationRequested)
                 {
-                    await Task.Delay(5000);
-                    var result = _model.LoadMostRecentNotification();
+                    await Task.Delay(10000);
+                    ddvar result = _model.LoadMostRecentNotification();
                     if (result != null)
                     {
                         {

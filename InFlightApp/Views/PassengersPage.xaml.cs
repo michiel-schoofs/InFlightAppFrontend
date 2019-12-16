@@ -133,25 +133,15 @@ namespace InFlightApp.Views
                         btnChangeSeat.VerticalAlignment = VerticalAlignment.Center;
                         btnChangeSeat.FontSize = 20;
                         btnChangeSeat.Margin = new Thickness(15);
-                        spButtons.Children.Add(btnChangeSeat);
-
-                        Button btnViewOrders = new Button();
-                        btnViewOrders.Content = "View orders";
-                        btnViewOrders.HorizontalAlignment = HorizontalAlignment.Center;
-                        btnViewOrders.VerticalAlignment = VerticalAlignment.Center;
-                        btnViewOrders.FontSize = 20;
-                        btnViewOrders.Margin = new Thickness(15);
-                        spButtons.Children.Add(btnViewOrders);
+                        spButtons.Children.Add(btnChangeSeat);              
 
                         if (passenger == null)
                         {
                             btnChangeSeat.Visibility = Visibility.Collapsed;
-                            btnViewOrders.Visibility = Visibility.Collapsed;
                         }
 
                         // Click events for buttons
                         btnChangeSeat.Click += ButtonChangeSeat_Click;
-                        btnViewOrders.Click += ButtonViewOrders_Click;
 
                         #region Button Change Seat
                         void ButtonChangeSeat_Click(object sender, RoutedEventArgs e)
@@ -208,13 +198,6 @@ namespace InFlightApp.Views
                             spChangeSeat.Children.Add(cbSeats);
                             spChangeSeat.Children.Add(btnChange);
                             spChangeSeat.Children.Add(btnCancel);
-                        }
-                        #endregion
-
-                        #region Button View Orders
-                        void ButtonViewOrders_Click(object sender, RoutedEventArgs e)
-                        {
-                            // To be filled in by Michiel
                         }
                         #endregion
 

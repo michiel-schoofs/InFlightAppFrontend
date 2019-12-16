@@ -334,7 +334,7 @@
     <comment>test</comment>
   </data>
   <data name="CIGARETTES" xml:space="preserve">
-    <value>CIGARETTEN</value>
+    <value>SIGARETTEN</value>
   </data>
   <data name="Entertainment.Content" xml:space="preserve">
     <value>Amusement</value>
