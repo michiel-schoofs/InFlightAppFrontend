@@ -12,6 +12,7 @@ Onderstaande instructies gaan over het opzetten van het project op basis van de 
 Het is belangrijk om het project te openen in **Visual Studio versie 2019**. Je hebt ook Microsoft SQL Server nodig.
 
 ### Installeren
+Download het project in een `path zonder spaties`! 
 Als het project is geopend in VS, klik dan rechtermuisknop op de solution  en open propperties. In het tabblad  Startup Project, kies Multiple startup projects. 
 
 Selecteer `Start without debugging` voor de backend en `Start` voor de App.
