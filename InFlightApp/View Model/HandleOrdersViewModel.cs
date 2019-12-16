@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,9 @@ namespace InFlightApp.View_Model {
 
         private readonly Subject<Order> _popUpDeny = new Subject<Order>();
         public IObservable<Order> PopUpDeny { get => _popUpDeny; }
+
+        private readonly Subject<String> _errorOnPlaceOrder = new Subject<String>();
+        public IObservable<String> ErrorOnPlaceOrder { get => _errorOnPlaceOrder; }
 
         public static ObservableCollection<OrderLine> OrderLines { get;set; }
 
@@ -75,7 +79,11 @@ namespace InFlightApp.View_Model {
         }
 
         private void SendOrder() {
-            _handleOrdersService.SendOrder();
+            try {
+                _handleOrdersService.SendOrder();
+        } catch (HttpRequestException e) {
+                    _errorOnPlaceOrder.OnNext(e.Message);
+                } catch (Exception e) { }
         }
 
 
@@ -93,8 +101,10 @@ namespace InFlightApp.View_Model {
                 Product p = ((Product)(obj[0]));
                 int amount = int.Parse((string)obj[1]);
 
-                _handleOrdersService.PlaceOrder(p, amount);
-                CartChanged.Invoke();
+      
+                    _handleOrdersService.PlaceOrder(p, amount);
+                    CartChanged.Invoke();
+
             });
 
             DeleteProductFromCartCom = new RelayCommand((object o) => {

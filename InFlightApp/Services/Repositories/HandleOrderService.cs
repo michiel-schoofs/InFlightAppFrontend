@@ -121,9 +121,10 @@ namespace InFlightApp.Services.Repositories {
             JArray ja = ParseToOrderLine();
             var data = new StringContent(ja.ToString(), Encoding.UTF8, "application/json");
 
-            try{
-                ApiConnection.Client.PostAsync(url, data).Wait();
-            }catch (Exception e) { }
+            HttpResponseMessage responese = ApiConnection.Client.PostAsync(url, data).Result;
+            if (responese.StatusCode != System.Net.HttpStatusCode.OK && responese.StatusCode != System.Net.HttpStatusCode.Created) {
+                throw new HttpRequestException(responese.Content.ReadAsStringAsync().Result);
+            }
         }
 
         private JArray ParseToOrderLine() {

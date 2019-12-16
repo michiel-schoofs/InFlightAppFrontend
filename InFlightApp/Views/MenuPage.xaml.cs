@@ -40,8 +40,7 @@ namespace InFlightApp.Views
         public MenuPage()
         {
             this.InitializeComponent();
-            try
-            {
+            try {
                 _model = ServiceLocator.Current.GetService<NotificationsViewModel>(true);
                 _userModel = ServiceLocator.Current.GetService<LoginViewModel>(true);
                 _hovm = ServiceLocator.Current.GetService<HandleOrdersViewModel>(true);
@@ -49,6 +48,19 @@ namespace InFlightApp.Views
                 logoutBtn.DataContext = _userModel;
                 UserStackPanel.DataContext = _userModel;
                 _userModel.LoggedOut += Lvm_LoggedOut;
+                _hovm.ErrorOnPlaceOrder.Subscribe(async message => {
+                    var resourceBundle = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                    var warning = resourceBundle.GetString("Warning");
+                    ContentDialog dialog = new ContentDialog() {
+                        Title = warning,
+                        Content = message,
+                        PrimaryButtonText = "Ok",
+                    };
+
+                    try {
+                        await dialog.ShowAsync();
+                    } catch { }
+                });
 
                 PassengerType? pt = _userModel.GetPassengerType();
                 if (pt != null && pt == PassengerType.Passenger) {
